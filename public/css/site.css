@@ -1,0 +1,99 @@
+*{
+    margin:0px;
+    padding:0px;
+}
+
+html{
+  height: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+body{
+    color: #272727;
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: 300;
+}
+
+/* ==================== Navigation ==================== */
+
+#site-navbar{
+    background: #004c9b;
+    border-bottom: 3px solid #ffdc00;
+    padding: 5px;
+}
+
+#site-brand{
+    display: flex;
+    align-items: center;
+}
+
+#site-brand *{
+    color: #fff;
+    margin: 0;
+    padding-left: 10px;
+}
+
+#site-brand{
+    padding: 0 10px 0 10px;
+    font-weight: 400;
+    color: #000;
+}
+
+#site-nav-links li{
+    border-left: 3px solid #ffdc00;
+    padding: 0 30px 0 30px;
+    transform: skewX(30deg) scaleY(1.2);
+}
+
+#site-nav-links a{
+    color: #fff;
+    font-weight: 400;
+    transform: scaleY(0.833) skewX(-30deg);
+}
+
+#site-nav-links a:hover{
+    color: #ffdc00;
+}
+
+/* ==================== Content ==================== */
+
+.content-bg-blue{
+    background: #004c9b;
+}
+
+.content-bg-white{
+    background: #fff;
+}
+
+.section{
+    padding: 30px;
+}
+
+.section-default{
+    color: #000;
+}
+
+.section-inverted{
+    color: #fff;
+}
+
+.section-header{
+    border-bottom: 1px solid #eee;
+    font-size: 2.5em;
+    font-weight: 700;
+    padding: 10px;
+
+}
+
+.section-content{
+    font-size: 1.5em;
+    padding: 10px;
+}
+
+/* ==================== Footer ==================== */
+
+#footer{
+    background: #004c9b;
+    color: #fff;
+}

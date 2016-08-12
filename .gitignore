@@ -1,0 +1,25 @@
+.DS_Store
+
+## Node
+/node_modules
+npm-debug.log
+.DS_Store
+/*.env
+
+## Reference Files
+/reference
+
+## Bower
+/bower_components
+/public/libs
+
+## VS Code files
+.vscode/
+ftp-sync.json
+
+## Sublime Text cache files
+*.tmlanguage.cache
+*.tmPreferences.cache
+*.stTheme.cache
+*.sublime-workspace
+*.sublime-project

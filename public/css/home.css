@@ -1,0 +1,41 @@
+/* ==================== Cover ==================== */
+
+#cover{
+    background: url('../img/cover.jpg');
+    background-size: cover;
+    height:100vh;
+}
+
+#splash{
+    background: rgba(255, 255, 255, 0.7);
+    border: 8px solid rgb(100, 100, 100);
+    margin: 20% 0 0 0;
+}
+
+#splash-img{
+    margin: 0 0 20px 0;
+}
+
+#splash-title, #splash-date{
+    font-size: 3em;
+    font-weight: 700;
+}
+
+#splash-call-to-action{
+    padding: 10px;
+}
+
+#splash-call-to-action button{
+    background: transparent;
+    border: 2px solid #000;
+    font-size: 1.5em;
+    margin: 10px;
+}
+
+#splash-call-to-action button:hover{
+    background: #004c9b;
+    color: #fff;
+}
+
+/* ==================== About ==================== */
+
