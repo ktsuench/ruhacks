@@ -1,0 +1,78 @@
+/* ==================== Landing ==================== */
+
+#landing{
+    align-items: center;
+    background: url('../img/cover.jpg');
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    height:100vh;
+    justify-content: center;
+}
+
+#splash{
+    background: rgba(255, 255, 255, 0.7);
+    border: 8px solid rgb(100, 100, 100);
+    padding: 20px;
+    text-align: center;
+}
+
+#splash-img{
+    margin: 0 0 20px 0;
+}
+
+#splash-title{
+    font-size: 4em;
+    font-weight: 700;
+}
+
+#splash-loc-date{
+    font-size: 3em;
+}
+
+#splash-call-to-action{
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 10px;
+}
+
+#splash-call-to-action button{
+    background: #004c9b;
+    border: 2px solid #004c9b;
+    box-shadow: 0px 5px #002d72;
+    color: #fff;
+    font-size: 1.5em;
+    margin: 10px 5px 10px 5px;
+    text-transform: uppercase;
+ }
+
+#splash-call-to-action button:hover{
+    box-shadow: 0px 3px #002d72;
+    transform: translate(0, 2px);
+}
+
+#splash-call-to-action button:active{
+    box-shadow: 0px 0px #002d72;
+    transform: translate(0, 5px);
+}
+
+#splash-contact{
+    font-size: 1.5em;
+    padding: 10px 0 40px 0;
+}
+
+#splash-contact a, #splash-contact a:link{
+    color: #004c9b;
+    font-weight: 700;
+}
+
+#splash-contact a:hover, #splash-contact a:visited{
+    color: #0077c8;
+}
+
+#splash-contact a:visited{
+    color: #004c9b;
+}

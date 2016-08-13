@@ -11,7 +11,7 @@ module.exports = function(app) {
         if (arbitraryUrls.indexOf(req.url.split('/')[1]) > -1) {
             next();
         } else {
-            res.render('index');
+            res.render('landing');
         }
     });
 
