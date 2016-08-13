@@ -10,6 +10,8 @@ var autoprefix = require('autoprefixer');
 var sourcemaps = require('gulp-sourcemaps');
 var cache = require('gulp-cache');
 var imagemin = require('gulp-imagemin');
+var pngquant = require('pngquant');
+var imageminJpegRecompress = require('imagemin-jpeg-recompress');
 
 var baseDirs = {
   app: './',
@@ -126,9 +128,14 @@ gulp.task('dist:minifyjs', ['dev:concatjs'], function() {
 
 gulp.task('dist:minifyimg', function () {
     return gulp.src(appFiles.img)
-        .pipe(cache(imagemin({ optimizationLevel: 5, progressive: true, interlaced: true })))
+        .pipe(cache(imagemin({
+          optimizationLevel: 7,
+          progressive: true,
+          interlaced: true,
+          use: [pngquant(), imageminJpegRecompress()]
+        })))
         .pipe(gulp.dest(baseDirs.app + publicDirs.img))
-        .pipe(gulp.dest(baseDirs.dist + publicDirs.img))
+        //.pipe(gulp.dest(baseDirs.dist + publicDirs.img))
 });
 
 gulp.task('dist:copy', ['dist:minifycss', 'dist:minifyjs', 'dist:minifyimg'], function() {
