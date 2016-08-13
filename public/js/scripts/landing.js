@@ -10,3 +10,19 @@ var imageSlideshow = window.setInterval(function() {
 	landing.setAttribute('style', 'background: url("' + path + cover[index++] + ext + '"); background-size: cover; background-position: 50% 80%');
 	index = index >= cover.length ? 0 : index;			
 }, 10000);
+
+//Preload images
+cover.forEach( function(file, index) {
+    //Append images to document to send request to server
+    var image = document.createElement('img');
+    image.setAttribute('id', file);
+    image.setAttribute('src', path + file + ext);
+    image.setAttribute('style', 'display: none;');
+    document.body.appendChild(image);
+
+    //Once loaded, remove the image
+    image = document.getElementById(file);
+    image.onload = function(){
+        document.body.removeChild(image);
+    }
+});
