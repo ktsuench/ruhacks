@@ -3,7 +3,7 @@ var landing = document.getElementById('landing');
 var path = '../img/cover/';
 var cover = ['eng1', 'eng2', 'image center1', 'image center2', 'mac', 'slc1', 'slc2', 'TRSM'];
 var ext = '.jpg';
-var index = cover.length;
+var index = 0;
 
 //Switch the images every 30 seconds
 var imageSlideshow = window.setInterval(function() {
