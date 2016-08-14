@@ -3,13 +3,13 @@ var landing = document.getElementById('landing');
 var path = '../img/cover/';
 var cover = ['eng1', 'eng2', 'image center1', 'image center2', 'mac', 'slc1', 'slc2', 'TRSM'];
 var ext = '.jpg';
-var index = 1;
+var index = cover.length;
 
-//Switch the images every 10 seconds
+//Switch the images every 30 seconds
 var imageSlideshow = window.setInterval(function() {
 	landing.setAttribute('style', 'background: url("' + path + cover[index++] + ext + '"); background-size: cover; background-position: 50% 80%');
 	index = index >= cover.length ? 0 : index;			
-}, 10000);
+}, 30000);
 
 //Preload images
 cover.forEach( function(file, index) {
