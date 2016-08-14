@@ -5,11 +5,11 @@ var cover = ['eng1', 'eng2', 'image center1', 'image center2', 'mac', 'slc1', 's
 var ext = '.jpg';
 var index = 0;
 
-//Switch the images every 30 seconds
+//Switch the images every 10 seconds
 var imageSlideshow = window.setInterval(function() {
 	landing.setAttribute('style', 'background: url("' + path + cover[index++] + ext + '"); background-size: cover; background-position: 50% 80%; background-repeat: no-repeat;');
 	index = index >= cover.length ? 0 : index;		
-}, 30000);
+}, 10000);
 
 //Preload images
 window.setTimeout(function(){
