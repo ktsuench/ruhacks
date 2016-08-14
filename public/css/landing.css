@@ -5,6 +5,7 @@
     background: url('../img/cover/TRSM.jpg');
     background-position: 50% 80%;
     background-size: cover;
+    background-repeat: no-repeat;
     display: flex;
     flex-direction: column;
     justify-content: center;

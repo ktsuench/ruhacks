@@ -7,8 +7,8 @@ var index = 0;
 
 //Switch the images every 30 seconds
 var imageSlideshow = window.setInterval(function() {
-	landing.setAttribute('style', 'background: url("' + path + cover[index++] + ext + '"); background-size: cover; background-position: 50% 80%');
-	index = index >= cover.length ? 0 : index;			
+	landing.setAttribute('style', 'background: url("' + path + cover[index++] + ext + '"); background-size: cover; background-position: 50% 80%; background-repeat: no-repeat;');
+	index = index >= cover.length ? 0 : index;		
 }, 30000);
 
 //Preload images
