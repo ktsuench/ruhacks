@@ -12,17 +12,19 @@ var imageSlideshow = window.setInterval(function() {
 }, 30000);
 
 //Preload images
-cover.forEach( function(file, index) {
-    //Append images to document to send request to server
-    var image = document.createElement('img');
-    image.setAttribute('id', file);
-    image.setAttribute('src', path + file + ext);
-    image.setAttribute('style', 'display: none;');
-    document.body.appendChild(image);
+window.setTimeout(function(){
+    cover.slice(0, cover.length - 1).forEach( function(file, index) {
+        //Append images to document to send request to server
+        var image = document.createElement('img');
+        image.setAttribute('id', file);
+        image.setAttribute('src', path + file + ext);
+        image.setAttribute('style', 'display: none;');
+        document.body.appendChild(image);
 
-    //Once loaded, remove the image
-    image = document.getElementById(file);
-    image.onload = function(){
-        document.body.removeChild(image);
-    }
-});
+        //Once loaded, remove the image
+        image = document.getElementById(file);
+        image.onload = function(){
+            document.body.removeChild(image);
+        }
+    });
+}, 1000);
