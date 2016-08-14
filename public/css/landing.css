@@ -33,6 +33,16 @@
     font-size: 3em;
 }
 
+@media not handheld{
+    #divider{
+        display: inline;
+    }
+
+    #divider:after{
+        content: ' | ';
+    }
+}
+
 #splash-call-to-action{
     align-items: center;
     display: flex;
