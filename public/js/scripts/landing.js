@@ -1,9 +1,10 @@
 /* Change this script so that it gets the name and count of images in the specified folder - done through call to nodejs backend*/
 var landing = document.getElementById('landing');
 var path = '../img/cover/';
-var cover = ['eng1', 'eng2', 'image center1', 'image center2', 'mac', 'slc1', 'slc2', 'TRSM'];
+var cover = ['eng1', 'eng2', 'holding_a_laptop','image_center', 'img_3828', 'mac', 'slc', 'TRSM'];
 var ext = '.jpg';
-var index = 0;
+var startingIndex = 3;
+var index = startingIndex;
 
 //Switch the images every 10 seconds
 var imageSlideshow = window.setInterval(function() {
@@ -13,7 +14,8 @@ var imageSlideshow = window.setInterval(function() {
 
 //Preload images
 window.setTimeout(function(){
-    cover.slice(0, cover.length - 1).forEach( function(file, index) {
+    var coverCopy = cover.slice(0);
+    coverCopy.splice(startingIndex, 1).forEach( function(file, index) {
         //Append images to document to send request to server
         var image = document.createElement('img');
         image.setAttribute('id', file);
