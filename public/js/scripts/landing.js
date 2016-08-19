@@ -15,7 +15,8 @@ var imageSlideshow = window.setInterval(function() {
 //Preload images
 window.setTimeout(function(){
     var coverCopy = cover.slice(0);
-    coverCopy.splice(startingIndex, 1).forEach( function(file, index) {
+    coverCopy.splice(startingIndex - 1, 1);
+    coverCopy.forEach( function(file, index) {
         //Append images to document to send request to server
         var image = document.createElement('img');
         image.setAttribute('id', file);
