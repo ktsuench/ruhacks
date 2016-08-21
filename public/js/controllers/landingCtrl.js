@@ -12,7 +12,7 @@ angular
         'show': false
     }
 
-    // Start background slideshow
+    // Start background slideshow and fix layout of landing page
     _ctrl.init = function() {
         /* Change this script so that it gets the name and count of images in the specified folder - done through call to nodejs backend*/
         var landing = document.getElementById('landing');
@@ -47,6 +47,11 @@ angular
                 }
             });
         }, 1000);
+        
+        // Fix layout of landing page
+        var doc = document.getElementById('top');
+
+        doc.setAttribute('style', 'align-items: center; display: flex; flex-direction: row; justify-content: center;');
     };
 
     // Show modal
