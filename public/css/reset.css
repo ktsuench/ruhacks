@@ -4,7 +4,8 @@
 }
 
 html{
-    max-width: 100%;
+    min-height: 100%;
+    min-width: 100%;
     overflow-x: hidden;
 }
 
@@ -12,4 +13,7 @@ body{
     color: #272727;
     font-family: 'Ubuntu', sans-serif;
     font-weight: 300;
+    min-height: 100%;
+    min-width: 100%;
+    position: absolute;
 }
