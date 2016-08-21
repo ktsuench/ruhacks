@@ -1,7 +1,6 @@
 // place models here to build api
 var pg = require('pg');
 var db = require('../config/db');
-var client = new pg.Client(db.url);
 
 module.exports = function(app) {
     // route to handle all angular requests
@@ -28,13 +27,21 @@ module.exports = function(app) {
         console.log(req.body);
 
         // connect to db
+        var client = new pg.Client(db.url);
+        
         client.connect(function(err) {
-            if(err) throw err;            
+            if(err) {
+                console.log(err);
+                throw err;
+            }            
         });
 
         // start query to db
         client.query("INSERT INTO mailingList(email) VALUES ('" + req.body.email + "')", function(err, result) {
-            if(err) throw err;
+            if(err) {
+                console.log(err);
+                throw err;
+            }
             console.log(result.rows);
 
             // end connection to db
