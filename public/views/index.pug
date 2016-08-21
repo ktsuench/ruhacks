@@ -1,13 +1,9 @@
 doctype html
 html(lang="en", data-framework="angularjs")
     head
-        meta(http-equiv="Content-Type", content="text/html; charset=UTF-8")
-        meta(http-equiv="X-UA-Compatible", content="IE=edge")
-        meta(name="viewport", content="width=device-width, initial-scale=1")
-        base(href="/")
+        include partials/site_info.pug
 
-        title RU Hacks
+        title RU Hacks | Ryerson University
 
-        link(rel="icon", type="image/png", href="img/logo_50x50.png")
         include partials/includes.pug
-    body(ng-app="app", controller="MainCtrl", ng-view="")
+    body#landing(ng-app="app", ng-controller="landingCtrl as landing", ng-view="")

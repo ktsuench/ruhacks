@@ -1,0 +1,25 @@
+#splash(ng-init="landing.init()")
+    img#splash-img(src="img/logo_150x150.png", title="RU Hacks Logo")
+    #splash-title RU Hacks
+    #splash-loc-date
+        |Ryerson University
+        #divider
+        |Winter 2017
+    #splash-call-to-action
+        button.btn.btn-default(ng-click="landing.showSubscribe()") 2017 Mailing List
+        a(href="/")
+            button.btn.btn-default News
+    #splash-contact
+        |Contact us at 
+        a(href="mailto:helloworld@ruhacks.io") helloworld@ruhacks.io
+#modal(ng-show="landing.showModal")
+    #modal-container
+        span#modal-close(ng-click="landing.hideSubscribe()") X
+        form#subscribe(name="mailingList")
+            h2 Be the first to hear<br>about RU Hacks 2017!
+            span#subscribe-result(ng-show="landing.result.show", ng-class="landing.result.class") 
+                |{{ landing.result.text }}
+            .form-group
+                label.control-label(for="mailingListEmail") Email
+                input.form-control(type="email", name="mailingListEmail", placeholder="example@domain.com", ng-model="landing.email")
+            button#subscribe-submit.btn.btn-default(ng-click="landing.subscribe()") Subscribe
