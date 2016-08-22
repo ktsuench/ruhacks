@@ -1,21 +1,23 @@
 var gulp = require('gulp');
 
+var autoprefix = require('autoprefixer');
+var cache = require('gulp-cache');
 var clean = require('gulp-clean');
 var concat = require('gulp-concat');
-var nodemon = require('gulp-nodemon');
+var imagemin = require('gulp-imagemin');
+var imageminJpegRecompress = require('imagemin-jpeg-recompress');
+var less = require('gulp-less');
 var livereload = require('gulp-livereload');
 var minify = require('gulp-minifier');
-var postcss = require('gulp-postcss');
-var autoprefix = require('autoprefixer');
-var sourcemaps = require('gulp-sourcemaps');
-var cache = require('gulp-cache');
-var imagemin = require('gulp-imagemin');
+var nodemon = require('gulp-nodemon');
+var path = require('path');
 var pngquant = require('pngquant');
-var imageminJpegRecompress = require('imagemin-jpeg-recompress');
+var postcss = require('gulp-postcss');
+var sourcemaps = require('gulp-sourcemaps');
 
 var baseDirs = {
   app: './',
-  dist: './dist/'
+  dist: './'
 };
 
 var publicDirs = {
@@ -30,7 +32,7 @@ var bowerComponentsDir = baseDirs.app + 'public/libs/';
 // Bower components first!
 var appFiles = {
   js: [bowerComponentsDir + '**/*.min.js', baseDirs.app + 'public/js/**/*.js'],
-  css: [bowerComponentsDir + '**/*.min.css', baseDirs.app + 'public/css/**/*.css'],
+  css: [bowerComponentsDir + '**/*.min.css', [baseDirs.app + 'src/less/**/*.less', '!' + baseDirs.app + 'src/less/**/*.inc.less']],
   img: [baseDirs.app + 'public/img/**/*'],
   index: [baseDirs.app + 'views/index.pug']
 };
@@ -74,27 +76,27 @@ gulp.task('nodemon', function () {
   nodemon({
       script: baseDirs.app + startupScript,
       ext: 'js',
-      /*ignore: [
+      ignore: [
         baseDirs.app + 'public/',
         baseDirs.app + 'js/',
-        baseDirs.app + 'css/']*/
+        baseDirs.app + 'css/']
     })
     .on('restart', function () {
       console.log('Magic restarted');
     });
 });
 
-gulp.task('livereload', ['dev:concatjs', 'dev:concatcss'], function () {
+gulp.task('livereload', ['dist:compileless'], function () {
   return gulp.src(appFiles.index)
     .pipe(livereload());
 });
 
 gulp.task('watch', function () {
-  livereload.listen();
+  //livereload.listen();
   gulp.watch([
       appFiles.js,
       appFiles.css,
-      baseDirs.app + '**/*.pug',
+      //baseDirs.app + '**/*.pug',
     ], ['livereload'])
     .on('change', function(event) {
       console.log('File ' + event.path + ' was ' + event.type + ', running tasks...');
@@ -103,6 +105,17 @@ gulp.task('watch', function () {
 
 gulp.task('default', ['dev:concatjs', 'dev:concatcss', 'nodemon', 'watch']);
 gulp.task('dist', ['dist:copy']);
+
+gulp.task('dist:compileless', function () {
+  return gulp.src(appFiles.css[1])
+    .pipe(sourcemaps.init())
+    .pipe(less({
+      paths: [ path.join(__dirname, 'src', 'less', 'includes') ]
+    }))
+    .pipe(postcss([autoprefix({ browsers: ['last 50 versions'] })]))
+    .pipe(sourcemaps.write('.'))
+    .pipe(gulp.dest(baseDirs.dist + publicDirs.css));
+});
 
 gulp.task('dist:minifycss', ['dev:concatcss'], function() {
   return gulp.src(baseDirs.app + publicDirs.css + concatFilenames.css)
@@ -134,8 +147,8 @@ gulp.task('dist:minifyimg', function () {
           interlaced: true,
           use: [pngquant(), imageminJpegRecompress()]
         })))
-        .pipe(gulp.dest(baseDirs.app + publicDirs.img))
-        //.pipe(gulp.dest(baseDirs.dist + publicDirs.img))
+        //.pipe(gulp.dest(baseDirs.app + publicDirs.img))
+        .pipe(gulp.dest(baseDirs.dist + publicDirs.img))
 });
 
 gulp.task('dist:copy', ['dist:minifycss', 'dist:minifyjs', 'dist:minifyimg'], function() {
