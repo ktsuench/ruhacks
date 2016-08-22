@@ -1,0 +1,60 @@
+@import (reference) 'colors.inc.less';
+@import (once) 'layout.inc.less';
+
+/* ==================== General ==================== */
+
+.ru {
+    &-btn {
+        background: @ryerson-blue;
+        border: 2px solid @ryerson-blue;
+        border-radius: 5px;
+        box-shadow: 0px 5px @blue-midnight;
+        color: @white;
+        font-size: 1.25em;
+        margin: 10px 5px 10px 5px;
+        padding: 10px 20px 10px 20px;
+        text-transform: uppercase;
+
+        &:hover {
+            box-shadow: 0px 3px @blue-midnight;
+            transform: translate(0, 2px);
+        }
+
+        &:active {
+            box-shadow: 0px 0px @blue-midnight;
+            transform: translate(0, 5px);
+        }
+    }
+
+    &-form-group {
+        .ru-form-elements(@display: block) {
+            & .ru-control-label {
+                display: @display;
+                font-size: 1em;
+                padding: 5px;
+                margin: 5px 0 5px 0;
+            }
+
+            & .ru-form-control {
+                text-align: left;
+                border: 1px solid @gray-dusty;
+                border-radius: 5px;
+                display: @display;
+                font-size: 1em;
+                padding: 5px 10px 5px 10px;
+            }
+        }
+
+        &-vertical {
+            display: block;
+
+            .ru-form-elements(block);
+        }
+        
+        &-horizontal {
+            display: block;
+
+            .ru-form-elements(inline);
+        }
+    }
+}

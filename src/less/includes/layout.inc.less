@@ -1,0 +1,19 @@
+.flex-center(){
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.divider{
+    display: block;
+
+    @media (min-width: 680px) {
+        & {
+            display: inline;
+        }
+
+        &:after {
+            content: ' | ';
+        }
+    }
+}
