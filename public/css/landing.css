@@ -1,0 +1,190 @@
+/* ==================== Landing ==================== */
+#landing {
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+     -moz-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+     -moz-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background: url('../img/cover/holding_a_laptop.jpg');
+  background-color: #0077c8;
+  background-position: 50% 80%;
+  -moz-background-size: cover;
+    -o-background-size: cover;
+       background-size: cover;
+  background-repeat: no-repeat;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+     -moz-box-orient: vertical;
+     -moz-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-transition: background 0.5s;
+  -o-transition: background 0.5s;
+  -moz-transition: background 0.5s;
+  transition: background 0.5s;
+}
+/* ==================== Splash ==================== */
+#splash {
+  background: rgba(255, 255, 255, 0.6);
+  border: 4px solid rgba(220, 220, 220, 0.6);
+  -webkit-border-radius: 10px;
+     -moz-border-radius: 10px;
+          border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+}
+#splash-img {
+  margin: 20px 0 20px 0;
+}
+#splash-title {
+  font-size: 3.5em;
+  font-weight: 700;
+  margin: 0 0 10px 0;
+}
+#splash-loc-date {
+  font-size: 2.65em;
+  margin: 5px 0 5px 0;
+}
+#splash-call-to-action {
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+     -moz-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+     -moz-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+     -moz-box-orient: horizontal;
+     -moz-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
+  padding: 10px;
+}
+#splash-contact {
+  font-size: 1.5em;
+  padding: 10px 0 10px 0;
+}
+#splash-contact a {
+  color: #004c9b;
+  font-weight: 700;
+  text-decoration: none;
+}
+#splash-contact a:link,
+#splash-contact a:visited {
+  color: #004c9b;
+}
+#splash-contact a:active,
+#splash-contact a:hover,
+#splash-contact a:visited {
+  color: #0077c8;
+}
+/* ==================== Modal ==================== */
+#modal {
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+     -moz-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+     -moz-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background: rgba(200, 200, 200, 0.6);
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+     -moz-box-orient: horizontal;
+     -moz-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+#modal-container {
+  background: #ffffff;
+  -webkit-border-radius: 10px;
+     -moz-border-radius: 10px;
+          border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+}
+@media (max-width: 680px) {
+  #modal-container {
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+}
+#modal-close {
+  cursor: pointer;
+  float: right;
+  margin: -10px -5px 0 0;
+  position: relative;
+}
+@media (max-width: 680px) {
+  #modal-close {
+    margin-right: 5px;
+  }
+}
+#subscribe {
+  padding: 5px;
+}
+#subscribe-msg {
+  font-size: 2em;
+  margin: 0 0 10px 0;
+}
+#subscribe-result {
+  font-size: 1em;
+}
+#subscribe-result.has-error {
+  color: #ff2822;
+}
+#subscribe-result.has-success {
+  color: #35de33;
+}
+#subscribe-email-lbl {
+  font-size: 1.5em;
+}
+#subscribe-email {
+  font-size: 1.5em;
+  text-align: center;
+}
+@media (max-width: 680px) {
+  #subscribe-email {
+    padding-right: 0;
+    padding-left: 0;
+  }
+}
+
+/*# sourceMappingURL=landing.css.map */
