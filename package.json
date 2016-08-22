@@ -3,9 +3,6 @@
   "version": "1.0.0",
   "description": "ruhacks",
   "main": "server.js",
-  "scripts": {
-    "postinstall": "./node_modules/bower/bin/bower install"
-  },
   "keywords": [
     "ryerson",
     "ryerson university",
@@ -19,6 +16,7 @@
     "body-parser": "1.15.2",
     "bower": "1.7.9",
     "express": "4.14.0",
+    "less": "2.7.1",
     "method-override": "2.3.6",
     "pg": "6.1.0",
     "pug": "2.0.0-beta4"
@@ -30,6 +28,7 @@
     "gulp-clean": "^0.3.1",
     "gulp-concat": "^2.4.2",
     "gulp-imagemin": "^3.0.2",
+    "gulp-less": "^3.1.0",
     "gulp-livereload": "^3.0.2",
     "gulp-minifier": "^0.1.4",
     "gulp-nodemon": "^1.0.4",
@@ -45,5 +44,8 @@
   },
   "engines": {
     "node": "4.4.7"
+  },
+  "scripts": {
+    "postinstall": "bower install && gulp dist:compileless"
   }
 }
