@@ -46,6 +46,6 @@
     "node": "4.4.7"
   },
   "scripts": {
-    "postinstall": "bower install && gulp dist:compileless"
+    "postinstall": "bower install"
   }
 }
