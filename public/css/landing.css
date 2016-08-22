@@ -105,7 +105,8 @@
     flex-direction: row;
     height: 100%;
     justify-content: center;
-    position: absolute;
+    position: fixed;
+    top: 0;
     width: 100%;
 }
 
