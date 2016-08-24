@@ -2,7 +2,7 @@
 
 angular
 .module('app.controllers', [])
-.controller('landingCtrl', function landingCtrl(landingService) {
+.controller('landingCtrl', function landingCtrl(mailingListService) {
     var _ctrl = this;
     _ctrl.showModal = false;
     _ctrl.email = '';
@@ -14,6 +14,9 @@ angular
 
     // Start background slideshow and fix layout of landing page
     _ctrl.init = function() {
+        // Attach id to body
+        document.body.setAttribute('id', 'landing');
+        
         /* Change this script so that it gets the name and count of images in the specified folder - done through call to nodejs backend*/
         var landing = document.getElementById('landing');
         var path = '../img/cover/';
@@ -71,7 +74,7 @@ angular
             _ctrl.result.text = 'Please provide your email.';
             _ctrl.result.show = true;
         } else {
-            landingService.create({'email': _ctrl.email}).then(
+            mailingListService.create({'email': _ctrl.email}).then(
                 function(res){
                     _ctrl.result.class = 'has-success';
                     _ctrl.result.text = 'Thanks, we\'ll email you soon! :)';

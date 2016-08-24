@@ -2,7 +2,7 @@
 
 angular
 .module('app.services', [])
-.factory('landingService', ['$http', function($http){
+.factory('mailingListService', ['$http', function mailingListService($http){
     return {
         // call to get all subscribers
         get : function() {
