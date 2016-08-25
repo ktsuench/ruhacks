@@ -57,14 +57,9 @@ angular
         doc.setAttribute('style', 'align-items: center; display: flex; flex-direction: row; justify-content: center;');
     };
 
-    // Show modal
-    _ctrl.showSubscribe = function() {
-        _ctrl.showModal = true;
-    };
-
-    // Hide modal
-    _ctrl.hideSubscribe = function() {
-        _ctrl.showModal = false;
+    // Toggle modal
+    _ctrl.toggleSubscribe = function() {
+        _ctrl.showModal = !_ctrl.showModal;
     };
 
     // Submit user's email to database
