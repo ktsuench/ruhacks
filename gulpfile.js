@@ -112,7 +112,7 @@ gulp.task('dist:compileless', function () {
     .pipe(less({
       paths: [ path.join(__dirname, 'src', 'less', 'includes') ]
     }))
-    .pipe(postcss([autoprefix({ browsers: ['last 50 versions'] })]))
+    .pipe(postcss([autoprefix({ browsers: ['last 2 versions'] })]))
     .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest(baseDirs.dist + publicDirs.css));
 });
