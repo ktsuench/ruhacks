@@ -6,7 +6,7 @@
         .divider
         |Winter 2017
     #splash-call-to-action
-        button.ru-btn(ng-click="landing.showSubscribe()") 2017 Mailing List
+        button.ru-btn(ng-click="landing.toggleSubscribe()") 2017 Mailing List
         a(href="/")
             button.ru-btn Exec Applications
     #splash-contact
@@ -14,7 +14,7 @@
         a(href="mailto:helloworld@ruhacks.com") helloworld@ruhacks.com
 #modal(ng-show="landing.showModal")
     #modal-container
-        span#modal-close(ng-click="landing.hideSubscribe()") X
+        span#modal-close(ng-click="landing.toggleSubscribe()") X
         form#subscribe(name="mailingList")
             #subscribe-msg Be the first to hear<br>about RU Hacks 2017!
             span#subscribe-result(ng-show="landing.result.show", ng-class="landing.result.class") 
@@ -23,3 +23,4 @@
                 label#subscribe-email-lbl.ru-control-label(for="mailingListEmail") Email
                 input#subscribe-email.ru-form-control(type="email", name="mailingListEmail", placeholder="example@domain.com", ng-model="landing.email")
             button.ru-btn(ng-click="landing.subscribe()") Subscribe
+link(rel="stylesheet", type="text/css", href="css/landing.css")
