@@ -1,21 +1,21 @@
 /*global angular */
 
 angular
-.module('app', ['ngRoute', /*'ngLoadScript',*/ 'app.controllers', 'app.services'])
+.module('app', ['ngRoute', 'app.controllers', 'app.services'])
 .config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
     $routeProvider
     .when('/', {
         templateUrl: 'pages/landing',
         controller: 'landingCtrl as landing'
     })
-    /*.when('/', {
+    .when('/login', {
+        templateUrl: 'pages/login',
+        controller: 'loginCtrl as login'
+    })
+    .when('/home', {
         templateUrl: 'pages/home',
         controller: 'homeCtrl as home'
-    })*/
-    /*.when('/apply', {
-        templateUrl: 'pages/apply',
-        controller: 'ApplyCtrl as apply'
-    })*/
+    })
     .otherwise({
     	redirectTo: '/'
     });
