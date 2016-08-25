@@ -13,15 +13,27 @@
   background-repeat: no-repeat;
   -ms-flex-direction: column;
       flex-direction: column;
+  position: relative;
   transition: background 0.5s;
+}
+@media (min-width: 768px) and (min-height: 650px) {
+  #landing {
+    height: 100vh;
+  }
 }
 /* ==================== Splash ==================== */
 #splash {
   background: rgba(255, 255, 255, 0.6);
   border: 4px solid rgba(220, 220, 220, 0.6);
   border-radius: 10px;
+  margin: 62px 0 0 0;
   padding: 20px;
   text-align: center;
+}
+@media (min-width: 768px) {
+  #splash {
+    margin: 100px 0 40px 0;
+  }
 }
 #splash-img {
   margin: 20px 0 20px 0;
@@ -79,7 +91,7 @@
       flex-direction: row;
   height: 100%;
   left: 0;
-  position: fixed;
+  position: absolute;
   top: 0;
   width: 100%;
 }
@@ -136,4 +148,4 @@
   }
 }
 
-/*# sourceMappingURL=landing.css.map */
+/*# sourceMappingURL=home.css.map */

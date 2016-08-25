@@ -9,16 +9,105 @@
     content: ' | ';
   }
 }
+/* ==================== Navigation ==================== */
+#ru-navbar {
+  background: rgba(200, 200, 200, 0.95);
+  border-bottom: 3px solid #ffdc00;
+  padding: 5px;
+}
+@media (min-width: 768px) {
+  #ru-navbar {
+    padding: 5px 100px 5px 100px;
+  }
+}
+#ru-navbar-links li {
+  padding: 0 10px 0 10px;
+}
+#ru-navbar-links a {
+  color: #000000;
+  font-size: 1.15em;
+  font-weight: 400;
+  text-decoration: none !important;
+}
+#ru-navbar-links a:link,
+#ru-navbar-links a:visited {
+  color: #000000;
+  text-decoration: none !important;
+}
+#ru-navbar-links a:hover,
+#ru-navbar-links a:active,
+#ru-navbar-links a:focus {
+  color: #ffdc00;
+  text-decoration: none !important;
+}
+#ru-brand {
+  -ms-flex-align: center;
+      align-items: center;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+      justify-content: center;
+  color: #000000;
+  -ms-flex-direction: row;
+      flex-direction: row;
+  font-weight: 400;
+  padding: 0 10px 0 10px;
+  text-decoration: none !important;
+}
+#ru-brand * {
+  color: #000000;
+  padding: 0 0 0 10px;
+}
+#ru-brand-title {
+  font-size: 1.25em;
+  font-weight: 700;
+}
+#ru-brand:link,
+#ru-brand:visited,
+#ru-brand:hover,
+#ru-brand:active,
+#ru-brand:focus {
+  color: #000000;
+  text-decoration: none !important;
+}
+/* ==================== Content ==================== */
+.ru-content-blue {
+  background: #004c9b;
+}
+.ru-content-white {
+  background: #ffffff;
+}
+.ru-section {
+  padding: 30px;
+}
+.ru-section-default {
+  color: #000000;
+}
+.ru-section-inverted {
+  color: #ffffff;
+}
+.ru-section-header {
+  border-bottom: 1px solid #999999;
+  color: inherit;
+  font-size: 2.5em;
+  font-weight: 700;
+  padding: 10px;
+}
+.ru-section-content {
+  color: inherit;
+  font-size: 1.5em;
+  padding: 10px;
+}
+/* ==================== Footer ==================== */
+#ru-footer {
+  padding: 20px;
+}
 /* ==================== General ==================== */
 .ru-btn {
   background: #004c9b;
   border: 2px solid #004c9b;
-  -webkit-border-radius: 5px;
-     -moz-border-radius: 5px;
-          border-radius: 5px;
-  -webkit-box-shadow: 0px 5px #002d72;
-     -moz-box-shadow: 0px 5px #002d72;
-          box-shadow: 0px 5px #002d72;
+  border-radius: 5px;
+  box-shadow: 0px 5px #002d72;
   color: #ffffff;
   font-size: 1.25em;
   margin: 10px 5px 10px 5px;
@@ -26,24 +115,12 @@
   text-transform: uppercase;
 }
 .ru-btn:hover {
-  -webkit-box-shadow: 0px 3px #002d72;
-     -moz-box-shadow: 0px 3px #002d72;
-          box-shadow: 0px 3px #002d72;
-  -webkit-transform: translate(0, 2px);
-     -moz-transform: translate(0, 2px);
-      -ms-transform: translate(0, 2px);
-       -o-transform: translate(0, 2px);
-          transform: translate(0, 2px);
+  box-shadow: 0px 3px #002d72;
+  transform: translate(0, 2px);
 }
 .ru-btn:active {
-  -webkit-box-shadow: 0px 0px #002d72;
-     -moz-box-shadow: 0px 0px #002d72;
-          box-shadow: 0px 0px #002d72;
-  -webkit-transform: translate(0, 5px);
-     -moz-transform: translate(0, 5px);
-      -ms-transform: translate(0, 5px);
-       -o-transform: translate(0, 5px);
-          transform: translate(0, 5px);
+  box-shadow: 0px 0px #002d72;
+  transform: translate(0, 5px);
 }
 .ru-form-group-vertical {
   display: block;
@@ -57,9 +134,7 @@
 .ru-form-group-vertical .ru-form-control {
   text-align: left;
   border: 1px solid #999999;
-  -webkit-border-radius: 5px;
-     -moz-border-radius: 5px;
-          border-radius: 5px;
+  border-radius: 5px;
   display: block;
   font-size: 1em;
   padding: 5px 10px 5px 10px;
@@ -76,9 +151,7 @@
 .ru-form-group-horizontal .ru-form-control {
   text-align: left;
   border: 1px solid #999999;
-  -webkit-border-radius: 5px;
-     -moz-border-radius: 5px;
-          border-radius: 5px;
+  border-radius: 5px;
   display: inline;
   font-size: 1em;
   padding: 5px 10px 5px 10px;

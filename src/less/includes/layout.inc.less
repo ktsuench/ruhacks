@@ -1,10 +1,12 @@
-.flex-center(){
+@import (reference) 'colors.inc.less';
+
+.flex-center() {
     align-items: center;
     display: flex;
     justify-content: center;
 }
 
-.divider{
+.divider {
     display: block;
 
     @media (min-width: 680px) {
@@ -16,4 +18,110 @@
             content: ' | ';
         }
     }
+}
+
+/* ==================== Navigation ==================== */
+
+#ru {
+    &-navbar {
+        background: rgba(200, 200, 200, 0.95);
+        border-bottom: 3px solid @ryerson-gold;
+        padding: 5px;
+
+        @media (min-width: 768px) {
+            padding: 5px 100px 5px 100px;
+        }
+
+        &-links li {
+            padding: 0 10px 0 10px;
+        }
+
+        &-links a {
+            color: @black;
+            font-size: 1.15em;
+            font-weight: 400;
+            text-decoration: none !important;
+
+            &:link, &:visited {
+                color: @black;
+                text-decoration: none !important;
+            }
+
+            &:hover, &:active, &:focus{
+                color: @ryerson-gold;
+                text-decoration: none !important;
+            }
+        }
+    }
+
+    &-brand {
+        .flex-center();
+        color: @black;
+        flex-direction: row;
+        font-weight: 400;
+        padding: 0 10px 0 10px;
+        text-decoration: none !important;
+
+        & * {
+            color :@black;
+            padding: 0 0 0 10px;
+        }
+
+        &-title {
+            font-size: 1.25em;
+            font-weight: 700;
+        }
+
+        &:link, &:visited, &:hover, &:active, &:focus {
+            color: @black;
+            text-decoration: none !important;
+        }
+    }
+
+
+}
+
+/* ==================== Content ==================== */
+
+.ru{
+    &-content-blue {
+        background: @ryerson-blue;
+    }
+
+    &-content-white {
+        background: @white;
+    }
+
+    &-section {
+        padding: 30px;
+
+        &-default {
+            color: @black;
+        }
+
+        &-inverted {
+            color: @white;
+        }
+
+        &-header {
+            border-bottom: 1px solid @gray-dusty;   
+            color: inherit;
+            font-size: 2.5em;
+            font-weight: 700;
+            padding: 10px;
+        }
+
+        &-content {
+            color: inherit;
+            font-size: 1.5em;
+            padding: 10px;
+
+        }
+    }
+}
+
+/* ==================== Footer ==================== */
+
+#ru-footer {
+    padding: 20px;
 }
