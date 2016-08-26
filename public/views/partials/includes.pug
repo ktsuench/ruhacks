@@ -1,5 +1,6 @@
 //-Bootstrap
 //-link(rel="stylesheet", type="text/css", href="libs/bootstrap/dist/css/bootstrap.min.css")
+link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css", integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u", crossorigin="anonymous")
 
 // App Stylesheets
 link(rel="stylesheet", type="text/css", href="https://fonts.googleapis.com/css?family=Ubuntu:400,700")
@@ -10,14 +11,18 @@ link(rel="stylesheet", type="text/css", href="css/site.css")
 script(src="libs/prefix-free/prefixfree.js")
 
 // Angular JS
-script(src="libs/angular/angular.js")
-script(src="libs/angular-route/angular-route.js")
+//-script(src="libs/angular/angular.js")
+//-script(src="libs/angular-route/angular-route.js")
+script(src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js")
+script(src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-route.min.js")
 
 // App Scripts
 script(src="js/controllers/landingCtrl.js")
 script(src="js/controllers/homeCtrl.js")
+script(src="js/controllers/dashCtrl.js")
 //script(src="js/controllers/applyCtrl.js")
 script(src="js/services/mailingListService.js")
+script(src="js/services/dashService.js")
 //script(src="js/services/applyService.js")
 script(src="js/app.js")
 
