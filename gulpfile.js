@@ -4,6 +4,7 @@ var autoprefix = require('autoprefixer');
 var cache = require('gulp-cache');
 var clean = require('gulp-clean');
 var concat = require('gulp-concat');
+var ifElse = require('gulp-if-else');
 var imagemin = require('gulp-imagemin');
 var imageminJpegRecompress = require('imagemin-jpeg-recompress');
 var less = require('gulp-less');
@@ -14,6 +15,7 @@ var path = require('path');
 var pngquant = require('pngquant');
 var postcss = require('gulp-postcss');
 var sourcemaps = require('gulp-sourcemaps');
+var yargs = require('yargs');
 
 var baseDirs = {
   app: './',
@@ -32,7 +34,9 @@ var bowerComponentsDir = baseDirs.app + 'public/libs/';
 // Bower components first!
 var appFiles = {
   js: [bowerComponentsDir + '**/*.min.js', baseDirs.app + 'public/js/**/*.js'],
-  css: [bowerComponentsDir + '**/*.min.css', [baseDirs.app + 'src/less/**/*.less', '!' + baseDirs.app + 'src/less/**/*.inc.less']],
+  angular: [baseDirs.app + 'src/angular/**/*.js', '!' + baseDirs.app + 'src/angular/**/*.inc.*'],
+  css: [bowerComponentsDir + '**/*.min.css'],
+  less: [baseDirs.app + 'src/less/**/*.less', '!' + baseDirs.app + 'src/less/**/*.inc.*'],
   img: [baseDirs.app + 'public/img/**/*'],
   index: [baseDirs.app + 'views/index.pug']
 };
@@ -51,28 +55,28 @@ var sysDirs = [
   baseDirs.app + 'node_modules/'
 ];
 
-gulp.task('clean', function() {
+/*gulp.task('clean', function() {
   return gulp.src(baseDirs.dist, {read: false}).pipe(clean());
-});
+});*/
 
-gulp.task('dev:concatjs', function () {
+/*gulp.task('dev:concatjs', function () {
   return gulp.src(appFiles.js)
     .pipe(sourcemaps.init())
     .pipe(concat(concatFilenames.js))
     .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest(baseDirs.app + publicDirs.js));
-});
+});*/
 
-gulp.task('dev:concatcss', function () {
+/*gulp.task('dev:concatcss', function () {
   return gulp.src(appFiles.css)
     .pipe(sourcemaps.init())
     .pipe(concat(concatFilenames.css))
     .pipe(postcss([autoprefix({ browsers: ['last 2 versions'] })]))
     .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest(baseDirs.app + publicDirs.css));
-});
+});*/
 
-gulp.task('nodemon', function () {
+/*gulp.task('nodemon', function () {
   nodemon({
       script: baseDirs.app + startupScript,
       ext: 'js',
@@ -84,7 +88,7 @@ gulp.task('nodemon', function () {
     .on('restart', function () {
       console.log('Magic restarted');
     });
-});
+});*/
 
 gulp.task('livereload', ['dist:compileless'], function () {
   return gulp.src(appFiles.index)
@@ -92,10 +96,11 @@ gulp.task('livereload', ['dist:compileless'], function () {
 });
 
 gulp.task('watch', function () {
-  //livereload.listen();
+  livereload.listen();
   gulp.watch([
       appFiles.js,
       appFiles.css,
+      appFiles.less
       //baseDirs.app + '**/*.pug',
     ], ['livereload'])
     .on('change', function(event) {
@@ -103,32 +108,93 @@ gulp.task('watch', function () {
     });
 });
 
-gulp.task('default', ['dev:concatjs', 'dev:concatcss', 'nodemon', 'watch']);
-gulp.task('dist', ['dist:copy']);
+gulp.task('default', [/*'dev:concatjs',*/ /*'dev:concatcss',*/ /*'nodemon',*/ 'watch']);
+//gulp.task('dist', ['dist:copy']);
+
+var lessarg = yargs.array('files')
+  .default({
+    'files': appFiles.less,
+    'minify': false,
+    'sourcemaps': false,
+  })
+  .argv;
 
 gulp.task('dist:compileless', function () {
-  return gulp.src(appFiles.css[1])
-    .pipe(sourcemaps.init())
+  return gulp.src(lessarg.files)
+    .pipe(ifElse(lessarg.sourcemaps, function() {
+      return sourcemaps.init();
+    }))
     .pipe(less({
       paths: [ path.join(__dirname, 'src', 'less', 'includes') ]
     }))
     .pipe(postcss([autoprefix({ browsers: ['last 2 versions'] })]))
-    .pipe(sourcemaps.write('.'))
+    .pipe(ifElse(lessarg.minify, function() {
+      return minify({
+        minify: true,
+        collapseWhitespace: true,
+        conservativeCollapse: true,
+        minifyCSS: true,
+        getKeptComment: function (content, filePath) {
+          var m = content.match(/\/\*![\s\S]*?\*\//img);
+          return m && m.join('\n') + '\n' || '';
+        }
+      });
+    }))
+    .pipe(ifElse(lessarg.sourcemaps, function() {
+      return sourcemaps.write('.');
+    }))
     .pipe(gulp.dest(baseDirs.dist + publicDirs.css));
 });
 
-gulp.task('dist:minifycss', ['dev:concatcss'], function() {
+/*gulp.task('dist:minifycss', ['dev:concatcss'], function() {
   return gulp.src(baseDirs.app + publicDirs.css + concatFilenames.css)
     .pipe(minify({
       minify: true,
       collapseWhitespace: true,
       conservativeCollapse: true,
-      minifyCSS: true
+      minifyCSS: true,
+      getKeptComment: function (content, filePath) {
+        var m = content.match(/\/\*![\s\S]*?\*\//img);
+        return m && m.join('\n') + '\n' || '';
+      }
     }))
     .pipe(gulp.dest(baseDirs.dist + publicDirs.css));
-});
+});*/
 
-gulp.task('dist:minifyjs', ['dev:concatjs'], function() {
+var cjsarg = yargs.array('files')
+  .default({
+    'files': appFiles.angular,
+    'minify': false,
+    'output': concatFilenames.js,
+    'sourcemaps': false,
+  })
+  .argv;
+
+gulp.task('dist:concatjs', function() {
+  return gulp.src(cjsarg.files)
+    .pipe(ifElse(cjsarg.sourcemaps, function() {
+      return sourcemaps.init();
+    }))
+    .pipe(concat(cjsarg.output))
+    .pipe(ifElse(cjsarg.sourcemaps, function() {
+      return sourcemaps.write('.');
+    }))
+    .pipe(ifElse(cjsarg.minify, function() {
+      return minify({
+        minify: true,
+        // collapseWhitespace: true,
+        // conservativeCollapse: true,
+        minifyJS: true,
+        getKeptComment: function (content, filePath) {
+          var m = content.match(/\/\*![\s\S]*?\*\//img);
+          return m && m.join('\n') + '\n' || '';
+        }
+      });
+    }))
+    .pipe(gulp.dest(baseDirs.dist + publicDirs.js)); 
+})
+
+/*gulp.task('dist:minifyjs', ['dev:concatjs'], function() {
   return gulp.src(baseDirs.app + publicDirs.js + concatFilenames.js)
     .pipe(minify({
       minify: true,
@@ -137,7 +203,7 @@ gulp.task('dist:minifyjs', ['dev:concatjs'], function() {
       minifyJS: true
     }))
     .pipe(gulp.dest(baseDirs.dist + publicDirs.js));
-});
+});*/
 
 gulp.task('dist:minifyimg', function () {
     return gulp.src(appFiles.img)
@@ -151,7 +217,7 @@ gulp.task('dist:minifyimg', function () {
         .pipe(gulp.dest(baseDirs.dist + publicDirs.img))
 });
 
-gulp.task('dist:copy', ['dist:minifycss', 'dist:minifyjs', 'dist:minifyimg'], function() {
+/*gulp.task('dist:copy', ['dist:minifycss', 'dist:minifyjs', 'dist:minifyimg'], function() {
   // server.js
   gulp.src(baseDirs.app + '/' + startupScript)
     .pipe(gulp.dest(baseDirs.dist));
@@ -159,4 +225,4 @@ gulp.task('dist:copy', ['dist:minifycss', 'dist:minifyjs', 'dist:minifyimg'], fu
   // sysDirs
   gulp.src(sysDirs, {cwd: baseDirs.app + '**'})
     .pipe(gulp.dest(baseDirs.dist));
-});
+});*/
