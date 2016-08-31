@@ -5,16 +5,16 @@ angular
 .config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
     $routeProvider
     .when('/', {
-        templateUrl: 'pages/landing',
-        controller: 'landingCtrl as landing'
-    })
-    .when('/login', {
-        templateUrl: 'pages/login',
-        controller: 'loginCtrl as login'
+        templateUrl: 'pages/home',
+        controller: 'homeCtrl as home'
     })
     .when('/home', {
         templateUrl: 'pages/home',
         controller: 'homeCtrl as home'
+    })
+    .when('/login', {
+        templateUrl: 'pages/login',
+        controller: 'dashCtrl as dash'
     })
     .otherwise({
     	redirectTo: '/'

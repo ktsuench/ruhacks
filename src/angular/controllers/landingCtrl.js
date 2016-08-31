@@ -13,10 +13,7 @@ angular
     }
 
     // Start background slideshow and fix layout of landing page
-    _ctrl.init = function() {
-        // Attach id to body
-        document.body.setAttribute('id', 'landing');
-        
+    _ctrl.init = function() {        
         /* Change this script so that it gets the name and count of images in the specified folder - done through call to nodejs backend*/
         var landing = document.getElementById('landing');
         var path = '../img/cover/';
