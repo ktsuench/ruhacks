@@ -8,14 +8,19 @@ module.exports = function(app) {
     app.set('view engine', 'pug');
 
     app.all('/*', function(req, res, next) {
-        var arbitraryUrls = ['pages', 'api'];
+        var arbitraryUrls = ['pages', 'api', 'index'];
         
         if (arbitraryUrls.indexOf(req.url.split('/')[1]) > -1) {
             next();
         } else {
-            res.render('index');
+            res.render('landing');
         }
     });
+
+    // Temporary Route
+    app.get('/index', function(req, res, next) {
+        res.render('index');
+    });    
 
     // server routes =================================================
     // handle things like api calls
@@ -37,11 +42,12 @@ module.exports = function(app) {
         });
 
         // start query to db
-        client.query("INSERT INTO mailingList(email) VALUES ('" + req.body.email + "')", function(err, result) {
+        client.query("INSERT INTO mailingList(email) VALUES ('" + req.body.email + "');", function(err, result) {
             if(err) {
                 console.log(err);
                 throw err;
             }
+
             console.log(result.rows);
 
             // end connection to db
@@ -52,6 +58,7 @@ module.exports = function(app) {
 
         res.sendStatus(200);
     });
+
     // route to handle delete goes here (app.delete)
 
     // frontend routes =================================================
