@@ -1,0 +1,60 @@
+doctype html
+html#top(lang="en", data-framework="angularjs")
+    head
+        include partials/site_info.pug
+
+        title RU Hacks | Ryerson University
+    body#landing(ng-app="app", ng-controller="landingCtrl as landing" ng-view="")
+        #splash(ng-init="landing.init()")
+            img#splash-img(src="img/logo_150x150.png", title="RU Hacks Logo")
+            #splash-title RU Hacks
+            #splash-loc-date
+                |Ryerson University
+                .divider
+                |Winter 2017
+            #splash-call-to-action
+                button.ru-btn(ng-click="landing.toggleSubscribe()") 2017 Mailing List
+                a(href="https://ruhacks.typeform.com/to/qbHukB")
+                    button.ru-btn Exec Applications
+            #splash-contact
+                |Contact us at 
+                a(href="mailto:helloworld@ruhacks.com") helloworld@ruhacks.com
+        #modal(ng-show="landing.showModal")
+            #modal-container
+                span#modal-close(ng-click="landing.toggleSubscribe()") X
+                form#subscribe(name="mailingList")
+                    #subscribe-msg Be the first to hear<br>about RU Hacks 2017!
+                    span#subscribe-result(ng-show="landing.result.show", ng-class="landing.result.class") 
+                        |{{ landing.result.text }}
+                    .ru-form-group-vertical
+                        label#subscribe-email-lbl.ru-control-label(for="mailingListEmail") Email
+                        input#subscribe-email.ru-form-control(type="email", name="mailingListEmail", placeholder="example@domain.com", ng-model="landing.email")
+                    button.ru-btn(ng-click="landing.subscribe()") Subscribe
+
+        // ==================== App Stylesheets ==================== 
+        link(rel="stylesheet", type="text/css", href="https://fonts.googleapis.com/css?family=Ubuntu:400,700")
+        link(rel="stylesheet", type="text/css", href="css/landing.css")
+
+        // ==================== Prefix Free ==================== 
+        //-script(src="libs/prefix-free/prefixfree.js")
+        //-script(src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js")
+
+        // ==================== Angular JS ==================== 
+        //-script(src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js")
+        //-script(src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-route.min.js")
+
+        // ==================== App Scripts ==================== 
+        //-script(src="js/controllers/landingCtrl.js")
+        //-script(src="js/services/mailingListService.js")
+        //-script(src="js/landingApp.js")
+        script(src="js/landing.js")
+
+        // ==================== Google Analytics ==================== 
+        script.
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+            ga('create', 'UA-83248605-1', 'auto');
+            ga('send', 'pageview');
