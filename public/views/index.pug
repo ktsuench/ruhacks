@@ -4,6 +4,14 @@ html#top(lang="en", data-framework="angularjs")
         include partials/site_info.pug
 
         title RU Hacks | Ryerson University
+    body(ng-app="app")
+        // ==================== Header ==================== 
+        include partials/header_home.pug
 
+        #ru-container(ng-view="")
+
+        // ==================== Footer ==================== 
+        include partials/layout/footer.pug
+
+        // ==================== Includes ==================== 
         include partials/includes.pug
-    body(ng-app="app", ng-view="")
