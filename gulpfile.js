@@ -34,16 +34,16 @@ var bowerComponentsDir = baseDirs.app + 'public/libs/';
 // Bower components first!
 var appFiles = {
   js: [bowerComponentsDir + '**/*.min.js', baseDirs.app + 'public/js/**/*.js'],
-  angular: [baseDirs.app + 'src/angular/**/*.js', '!' + baseDirs.app + 'src/angular/**/*.inc.*'],
+  angular: ['!' + baseDirs.app + 'src/angular/**/*.inc.*', '!' + baseDirs.app + 'src/angular/landing/**/*', baseDirs.app + 'src/angular/libs/*.js', baseDirs.app + 'src/angular/**/*.js'],
   css: [bowerComponentsDir + '**/*.min.css'],
-  less: [baseDirs.app + 'src/less/**/*.less', '!' + baseDirs.app + 'src/less/**/*.inc.*'],
+  less: ['!' + baseDirs.app + 'src/less/**/*.inc.*', '!' + baseDirs.app + 'src/less/landing.less', baseDirs.app + 'src/less/**/*.less'],
   img: [baseDirs.app + 'public/img/**/*'],
   index: [baseDirs.app + 'views/index.pug']
 };
 
 var concatFilenames = {
-  js: 'script.js',
-  css: 'stylesheet.css'
+  js: 'app.js',
+  css: 'styles.css'
 };
 
 var startupScript = 'server.js';
@@ -113,8 +113,10 @@ gulp.task('default', [/*'dev:concatjs',*/ /*'dev:concatcss',*/ /*'nodemon',*/ 'w
 
 var lessarg = yargs.array('files')
   .default({
+    'concat': false,
     'files': appFiles.less,
     'minify': false,
+    'output': concatFilenames.css,
     'sourcemaps': false,
   })
   .argv;
@@ -126,6 +128,9 @@ gulp.task('dist:compileless', function () {
     }))
     .pipe(less({
       paths: [ path.join(__dirname, 'src', 'less', 'includes') ]
+    }))
+    .pipe(ifElse(lessarg.concat, function() {
+      return concat(lessarg.output);
     }))
     .pipe(postcss([autoprefix({ browsers: ['last 2 versions'] })]))
     .pipe(ifElse(lessarg.minify, function() {
@@ -176,9 +181,6 @@ gulp.task('dist:concatjs', function() {
       return sourcemaps.init();
     }))
     .pipe(concat(cjsarg.output))
-    .pipe(ifElse(cjsarg.sourcemaps, function() {
-      return sourcemaps.write('.');
-    }))
     .pipe(ifElse(cjsarg.minify, function() {
       return minify({
         minify: true,
@@ -190,6 +192,9 @@ gulp.task('dist:concatjs', function() {
           return m && m.join('\n') + '\n' || '';
         }
       });
+    }))
+    .pipe(ifElse(cjsarg.sourcemaps, function() {
+      return sourcemaps.write('.');
     }))
     .pipe(gulp.dest(baseDirs.dist + publicDirs.js)); 
 })

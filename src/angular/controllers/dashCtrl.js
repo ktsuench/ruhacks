@@ -1,7 +1,7 @@
 /*global angular */
 
 angular
-.module('app.controllers')
+.module('app.controllers', [])
 .controller('dashCtrl', function dashCtrl(mailingListService, dashService) {
     var _ctrl = this;
 

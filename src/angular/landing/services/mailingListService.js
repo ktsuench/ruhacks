@@ -1,7 +1,7 @@
 /*global angular */
 
 angular
-.module('app.services')
+.module('app.services', [])
 .factory('mailingListService', ['$http', function mailingListService($http){
     return {
         // call to get all subscribers

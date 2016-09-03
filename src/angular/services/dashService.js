@@ -1,7 +1,7 @@
 /*global angular */
 
 angular
-.module('app.services')
+.module('app.services', [])
 .factory('dashService', ['$http', function dashService($http){
     return {
         // auth login info
