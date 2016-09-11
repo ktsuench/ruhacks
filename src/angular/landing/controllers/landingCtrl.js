@@ -19,7 +19,7 @@ angular
         var path = '../img/cover/';
         var cover = ['eng1', 'eng2', 'holding_a_laptop','image_center', 'img_3828', 'mac', 'slc', 'TRSM'];
         var ext = '.jpg';
-        var startingIndex = 3;
+        var startingIndex = 0;
         var index = startingIndex;
 
         //Switch the images every 10 seconds
