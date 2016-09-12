@@ -2,7 +2,7 @@
 
 angular
 .module('app.controllers')
-.controller('homeCtrl', ['mailingListService', function homeCtrl(mailingListService) {
+.controller('homeCtrl', ['mailingListService', '$window', function homeCtrl(mailingListService, $window) {
     var _ctrl = this;
     _ctrl.showNav = false;
     _ctrl.showModal = false;
@@ -30,7 +30,7 @@ angular
         }, 10000);
 
         //Preload images
-        window.setTimeout(function(){
+        $window.setTimeout(function(){
             var coverCopy = cover.slice(0);
             coverCopy.splice(startingIndex - 1, 1);
             coverCopy.forEach( function(file, index) {
@@ -69,12 +69,15 @@ angular
         } else {
             mailingListService.create({'email': _ctrl.email}).then(
                 function(res){
+                    var msg = res.data.result == 'added' ? 'Thanks, we\'ll email you soon! :)' : 'You\'ve aleady subscribed.';
+
                     _ctrl.result.class = 'has-success';
-                    _ctrl.result.text = 'Thanks, we\'ll email you soon! :)';
+                    _ctrl.result.text = msg;
                     _ctrl.result.show = true;
                 },
                 function(res){
                     console.log('Failed to add email to mailing list');
+
                     _ctrl.result.class = 'has-error';
                     _ctrl.result.text = 'Sorry we\'re unable to subscribe you. Try again later. :(';
                     _ctrl.result.show = true;
