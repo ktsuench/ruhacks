@@ -37,7 +37,7 @@ client.query("CREATE TABLE IF NOT EXISTS userList (id SERIAL PRIMARY KEY NOT NUL
 
     // create admin user if admin does not exist
     var hash = crypto.createHash('SHA256');
-    var pass = process.env.ADMINPASS || 'admin';
+    var pass = process.env.ADMINPASS || "hb=#}4v'd{f4kFS{";
 
     pass = hash.update(pass).digest('base64');
 
