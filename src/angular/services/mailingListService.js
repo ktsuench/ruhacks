@@ -16,7 +16,7 @@ angular
 
         // call to DELETE a subscriber
         delete : function(subscriber) {
-            return $http.delete('/api/mailingList/', subscriber);
+            return $http.delete('/api/mailingList/', {params: {email: subscriber.email}});
         }
     }       
 }]);

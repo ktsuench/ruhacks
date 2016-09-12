@@ -1,0 +1,38 @@
+style.
+    .ru-container-fluid {
+        align-items: center;
+        background: #004c9b;
+        display: flex;
+        flex-direction: row;
+        height: 100vh;
+        justify-content: center;
+    }
+
+    form {
+        background: #ffffff;
+        border-radius: 5px;
+        padding: 20px;
+        width: 350px;
+    }
+
+    .ru-btn {
+        font-size: 1em;
+        margin-left: 0;
+        margin-right: 0;
+        padding: 5px 10px 5px 10px;
+    }
+    
+    .has-error {
+        color: #ff2822;
+    }
+.ru-container-fluid(ng-init="dash.init('login')")
+    .row
+        form(name="dash.login.form", ng-submit="dash.login.auth()")
+            .form-group
+                label(for="user") Username
+                input.form-control(name="user", ng-model="dash.login.user", type="text", placeholder="Username")
+            .form-group
+                label(for="pass") Password
+                input.form-control(name="pass", ng-model="dash.login.pass", type="password", placeholder="Password")
+            #err.has-error(ng-show="dash.login.err.show") {{ dash.login.err.text }}
+            button.ru-btn(type="submit") Login

@@ -2,7 +2,7 @@
 
 angular
 .module('app.controllers')
-.controller('homeCtrl', function homeCtrl(mailingListService) {
+.controller('homeCtrl', ['mailingListService', function homeCtrl(mailingListService) {
     var _ctrl = this;
     _ctrl.showNav = false;
     _ctrl.showModal = false;
@@ -82,4 +82,4 @@ angular
             );
         }
     };
-});
+}]);

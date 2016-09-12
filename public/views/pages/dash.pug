@@ -1,0 +1,16 @@
+include ../partials/header_dash.pug
+.container-fluid(ng-init="dash.init('dash')")
+    .row(style="padding-top:70px;")
+        h2 Subscribers
+        table.table
+            thead
+                tr
+                    td #
+                    td Email
+                    td Delete
+            tbody
+                tr#subscriber(ng-repeat="subscriber in dash.subscribers.list track by $index", ng-cloak="")
+                    td {{ subscriber.id }}
+                    td {{ subscriber.email.trim() }}
+                    td
+                        button.btn.btn-danger(ng-click="dash.subscribers.delete(subscriber)") Delete

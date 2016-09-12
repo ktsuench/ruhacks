@@ -8,12 +8,12 @@ angular
         templateUrl: 'pages/home',
         controller: 'homeCtrl as home'
     })
-    .when('/home', {
-        templateUrl: 'pages/home',
-        controller: 'homeCtrl as home'
-    })
     .when('/login', {
         templateUrl: 'pages/login',
+        controller: 'dashCtrl as dash'
+    })
+    .when('/dash', {
+        templateUrl: 'pages/dash',
         controller: 'dashCtrl as dash'
     })
     .otherwise({

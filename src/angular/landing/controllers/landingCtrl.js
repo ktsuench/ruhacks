@@ -2,7 +2,7 @@
 
 angular
 .module('app.controllers', [])
-.controller('landingCtrl', function landingCtrl(mailingListService) {
+.controller('landingCtrl', ['mailingListService', function landingCtrl(mailingListService) {
     var _ctrl = this;
     _ctrl.showModal = false;
     _ctrl.email = '';
@@ -81,4 +81,4 @@ angular
             );
         }
     };
-});
+}]);
