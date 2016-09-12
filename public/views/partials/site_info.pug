@@ -1,10 +1,43 @@
-meta(http-equiv="Content-Type", content="text/html; charset=UTF-8")
-meta(http-equiv="X-UA-Compatible", content="IE=edge")
-meta(name="description", content="RU Hacks, the official Ryerson University's hackathon! RU Hacks is happening in 2017 with venues provided by Ryerson University.")
-meta(name="keywords", content="hackathon, Ryerson University, RU Hacks, Toronto, Ryerson")
-meta(name="viewport", content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0")
-meta(name="theme-color", content="#004c9b")
-//base(href="http://www.ruhacks.com")
-//base(href="http://localhost:7000")
+- var keywords = "hackathon, Ryerson University, RU Hacks, Toronto, Ryerson"
+- var title = "RU Hacks | Ryerson University"
+- var desc = "RU Hacks, the official Ryerson University's hackathon! RU Hacks is happening in Winter 2017 with venues provided by Ryerson University."
+- var img = "img/og_twitter.png"
+
+meta(http-equiv="Content-Type",     content="text/html; charset=UTF-8")
+meta(http-equiv="X-UA-Compatible",  content="IE=edge")
+meta(name="description",            content=desc)
+meta(name="keywords",               content=keywords)
+meta(name="viewport",               content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0")
+meta(name="theme-color",            content="#004c9b")
 base(href="/")
+
+//- ==================== Twitter Handle ==================== 
+meta(name="twitter:card",           content="summary")
+meta(name="twitter:site",           content="@ruhacks")
+meta(name="twitter:creator",        content="@ruhacks")
+meta(name="twitter:domain",         content="http://ruhacks.com/")
+meta(name="twitter:title",          content=title)
+meta(name="twitter:description",    content=desc)
+meta(name="twitter:image",          content=img)
+
+//- ==================== Open Graph ==================== 
+meta(property="og:site_name",       content="RU Hacks | Ryerson University")
+meta(property="og:type",            content="website")
+meta(property="og:url",             content="http://ruhacks.com/")
+meta(property="og:title",           content=title)
+meta(property="og:description",     content=desc)
+meta(property="og:image",           content=img)
+
+//- ==================== Stylesheets ==================== 
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,700,300italic,400italic,700italic" />
+  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="{{ '/css/bootstrap.min.css' | prepend: site.baseurl | prepend: site.url }}" />
+  <link rel="stylesheet" type="text/css" href="{{ '/css/base.css' | prepend: site.baseurl | prepend: site.url }}" />
+  <link rel="stylesheet" type="text/css" href="{{ '/css/' | prepend: site.baseurl | prepend: site.url }}{{ site.style.theme | append: '.css' }}" />
+  <!-- link rel="icon" href="/img/favicon.ico" -->
+
+//- ====================Favicon ==================== 
+link(rel="canonical", href="")
 link(rel="icon", type="image/png", href="img/logo_50x50.png")
+//-link(rel="icon", type="image/ico", href="img/favicon.ico")
+script document.querySelector('link[rel=canonical]').href = window.location.href
