@@ -5,10 +5,30 @@ var session = require('express-session');
 var crypto = require('crypto');
 
 module.exports = function(app) {
-    // route to handle all angular requests
+    // route set up
     app.set('views', 'public/views');
     app.set('view engine', 'pug');
 
+    // social media image
+    app.get('/img/og_twitter.png', function(req, res){
+        var options = {
+            root: __dirname + '/../public/img/',
+            dotfiles: 'deny',
+            headers: {
+                'x-timestamp': Date.now(),
+                'x-sent': true
+            }
+        };
+
+        res.sendFile('og_twitter.png', options, function(err){
+            if(err){
+                console.log(err);
+                res.status(err.status).end();
+            }
+        });
+    });
+
+    // route to handle all angular requests
     app.all('/*', function(req, res, next) {
         var arbitraryUrls = ['pages', 'api', 'login', 'dash'];
         
