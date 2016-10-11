@@ -13,7 +13,7 @@ angular
     }
 
     // Start background slideshow and fix layout of landing page
-    _ctrl.init = function() {        
+    _ctrl.init = function() {
         /* Change this script so that it gets the name and count of images in the specified folder - done through call to nodejs backend*/
         var landing = document.getElementById('landing');
         var path = '../img/cover/';
@@ -55,8 +55,13 @@ angular
     };
 
     // Toggle modal
-    _ctrl.toggleSubscribe = function() {
+    _ctrl.toggleSubscribe = function(modal) {
         _ctrl.showModal = !_ctrl.showModal;
+        if(_ctrl.showModal) {
+            (document.querySelector(modal)).setAttribute('style','display:flex');
+        } else {
+            (document.querySelector(modal)).removeAttribute('style');
+        }
     };
 
     // Submit user's email to database
