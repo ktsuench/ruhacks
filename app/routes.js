@@ -220,6 +220,7 @@ module.exports = function(app) {
 
     // route to handle creating goes here (app.post)
     app.post('/api/mail/recieve', function(req, res) {
+        console.log("Recieved mail");
         console.log(req.body);
 
         /*// connect to db
