@@ -218,6 +218,52 @@ module.exports = function(app) {
         res.sendStatus(200);
     });
 
+    // route to handle creating goes here (app.post)
+    app.post('/api/mail/recieve', function(req, res) {
+        console.log(req.body);
+
+        /*// connect to db
+        var client = new pg.Client(db.url);
+        
+        client.connect(function(err) {
+            if(err) {
+                console.log(err);
+                throw err;
+            }            
+        });
+
+        // start query to db, check if email already is subscribed
+        client.query("SELECT * FROM mailingList WHERE email='" + req.body.email + "';", function(err, result) {
+            if(err) throw err;
+
+            if(result.rowCount < 1){
+                client.query("INSERT INTO mailingList(email) VALUES ('" + req.body.email + "');", function(err, result) {
+                    if(err) {
+                        console.log(err);
+                        throw err;
+                    }
+
+                    //console.log(result.rows);
+                    res.json({result: 'added'});
+
+                    // end connection to db
+                    client.end(function(err) {
+                        if(err) throw err;
+                    });
+                });
+            } else {
+                res.json({result: 'duplicate'});
+
+                // end connection to db
+                client.end(function(err) {
+                    if(err) throw err;
+                });
+            }
+        });
+        
+        //*/res.sendStatus(200);
+    });
+
     // frontend routes =================================================
     app.get('/pages/*', function(req, res, next) {
         res.render('.' + req.path);
