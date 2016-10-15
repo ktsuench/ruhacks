@@ -81,7 +81,8 @@ module.exports = function(app) {
                 var hash = crypto.createHash('SHA256');
                 var pass = hash.update(req.body.pass).digest('base64');
 
-                if(pass.trim() == result.rows[0].hash.trim()) {
+                // Check that result.rows array is defined and compare password hashes
+                if(result.rows.length > 0 && pass.trim() == result.rows[0].hash.trim()) {
                     req.session.authenticated = true;
                     res.json({valid: true});
                 } else {
