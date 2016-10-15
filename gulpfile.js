@@ -34,7 +34,7 @@ var bowerComponentsDir = baseDirs.app + 'public/libs/';
 // Bower components first!
 var appFiles = {
   js: [bowerComponentsDir + '**/*.min.js', baseDirs.app + 'public/js/**/*.js'],
-  angular: ['!' + baseDirs.app + 'src/angular/**/*.inc.*', '!' + baseDirs.app + 'src/angular/landing/**/*', baseDirs.app + 'src/angular/libs/*.js', baseDirs.app + 'src/angular/**/*.js'],
+  angular: ['!' + baseDirs.app + 'src/angular/**/*.inc.*', baseDirs.app + 'src/angular/libs/*.js', baseDirs.app + 'src/angular/app/**/*.js'],
   css: [bowerComponentsDir + '**/*.min.css'],
   less: ['!' + baseDirs.app + 'src/less/**/*.inc.*', '!' + baseDirs.app + 'src/less/landing.less', baseDirs.app + 'src/less/**/*.less'],
   img: [baseDirs.app + 'public/img/**/*'],
@@ -168,7 +168,7 @@ gulp.task('dist:compileless', function () {
 
 var cjsarg = yargs.array('files')
   .default({
-    'files': appFiles.angular,
+    'files': false,
     'minify': false,
     'output': concatFilenames.js,
     'sourcemaps': false,
@@ -176,6 +176,20 @@ var cjsarg = yargs.array('files')
   .argv;
 
 gulp.task('dist:concatjs', function() {
+  // add in default files if custom files specified
+  if(cjsarg.files[0] !== false){
+    // add in default files to existing array of files
+    var x = cjsarg.files;
+    cjsarg.files = appFiles.angular.slice(0,2);
+
+    x.forEach(function(el, index){
+      cjsarg.files.push(el);
+    });
+  }else{
+    cjsarg.files = appFiles.angular;
+  }
+
+  // continue gulp processing
   return gulp.src(cjsarg.files)
     .pipe(ifElse(cjsarg.sourcemaps, function() {
       return sourcemaps.init();
