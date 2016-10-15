@@ -2,9 +2,8 @@
 
 angular
 .module('app.controllers')
-.controller('homeCtrl', ['mailingListService', '$window', function homeCtrl(mailingListService, $window) {
+.controller('mainCtrl', ['mailingListService', '$window', function mainCtrl(mailingListService, $window) {
     var _ctrl = this;
-    _ctrl.showNav = false;
     _ctrl.showModal = false;
     _ctrl.email = '';
     _ctrl.result = {
@@ -49,11 +48,6 @@ angular
             });
         }, 1000);
     };
-
-    // Show nav
-    _ctrl.toggleNav = function() {
-        _ctrl.showNav = !_ctrl.showNav;
-    }
 
     // Toggle modal
     _ctrl.toggleSubscribe = function() {
