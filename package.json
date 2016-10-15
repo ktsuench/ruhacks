@@ -18,6 +18,7 @@
     "express": "4.14.0",
     "express-session": "1.14.1",
     "less": "2.7.1",
+    "mailgun-js": "0.7.12",
     "method-override": "2.3.6",
     "pg": "6.1.0",
     "pug": "2.0.0-beta4"
