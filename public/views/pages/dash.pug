@@ -1,16 +1,26 @@
-include ../partials/header_dash.pug
-.container-fluid(ng-init="dash.init('dash')")
-    .row(style="padding-top:70px;")
-        h2 Subscribers
-        table.table
-            thead
-                tr
-                    td #
-                    td Email
-                    td Delete
-            tbody
-                tr#subscriber(ng-repeat="subscriber in dash.subscribers.list track by $index", ng-cloak="")
-                    td {{ $index + 1 }}
-                    td {{ subscriber.email.trim() }}
-                    td
-                        button.btn.btn-danger(ng-click="dash.subscribers.delete(subscriber)") Delete
+extends ../template.pug
+
+append vars
+    -var header = true
+    -var headerCtrl = "headerCtrl as header"
+    -var headerCtrlAlias = "header"
+    -var ctrl = "dashCtrl as dash"
+    -var ctrlAlias = "dash"
+
+append ruNav
+    li
+        a(href="/dash") Home
+    li
+        a(href="/dash/subscribers") Subscribers
+    li
+        a(href="/dash/mail") Mail
+    li
+        a(href="/#", ng-click="header.logout()") Logout
+
+append ruController
+    .container-fluid
+        .row(style="padding-top:70px;", ng-view="")
+            h2 Dashboard Overview
+
+            p hi
+    

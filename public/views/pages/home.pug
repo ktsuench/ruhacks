@@ -1,6 +1,73 @@
-// ==================== Header ==================== 
-include ../partials/header_home.pug
-// ==================== Cover ==================== 
-include home_sections/cover.pug
-// ==================== About ==================== 
-include home_sections/about.pug
+extends ../template.pug
+
+append vars
+    -var header = true
+    -var headerCtrl = "headerCtrl as header"
+    -var headerCtrlAlias = "header"
+    -var ctrl = "mainCtrl as home"
+    -var ctrlAlias = "home"
+
+append ruNav
+    li
+        a(href="/#") Home
+    li
+        a(href="/#about") About
+    li
+        a(href="/#faq") FAQ
+    li
+        a(href="/#apply") Apply
+
+append ruController
+    // ==================== Cover ==================== 
+    #landing
+        #splash(ng-init="home.init()")
+            img#splash-img(src="img/logo_150x150.png", title="RU Hacks Logo")
+            #splash-title RU Hacks
+            #splash-loc-date
+                |Ryerson University
+                .divider
+                |Winter 2017
+            #splash-call-to-action
+                button.ru-btn(ng-click="home.toggleSubscribe('#modal')") 2017 Mailing List
+                a(href="/")
+                    button.ru-btn News
+            #splash-contact
+                |Contact us at 
+                a(href="mailto:helloworld@ruhacks.com") helloworld@ruhacks.com
+        #modal(ng-show="home.showModal")
+            #modal-container
+                span#modal-close(ng-click="home.toggleSubscribe('#modal')") X
+                form#subscribe(name="mailingList")
+                    #subscribe-msg Be the first to hear<br>about RU Hacks 2017!
+                    span#subscribe-result(ng-show="home.result.show", ng-class="home.result.class") 
+                        |{{ home.result.text }}
+                    .ru-form-group-vertical
+                        label#subscribe-email-lbl.ru-control-label(for="mailingListEmail") Email
+                        input#subscribe-email.ru-form-control(type="email", name="mailingListEmail", placeholder="example@domain.com", ng-model="home.email")
+                    button.ru-btn(ng-click="home.subscribe()") Subscribe
+    // ==================== About ==================== 
+    .ru-content-blue.container-fluid
+        .row
+            .ru-section.ru-section-inverted.col-md-10.col-md-push-1
+                .ru-section-header About
+                .ru-section-content.
+                    RU Hacks is the Ryerson University's annual hackathon.
+                .ru-section-content
+                    div(style="color: #ffdc00") REPLACE CONTENT
+                    | /ˈhakəθɒn/: An event, typically lasting several days, in which a large number of people meet to engage in collaborative computer programming.
+                .ru-section-content
+                    div(style="color: #ffdc00") REPLACE CONTENT
+                    | We look past this traditional definition of a hackathon and take it to new heights. At RU Hacks, we bring people together to make new friends, learn new things, and bring new ideas to life.
+    // ==================== Something ==================== 
+    .ru-content-white.container-fluid
+        .row
+            .ru-section.ru-section-default.col-md-10.col-md-push-1
+                .ru-section-header Something
+                .ru-section-content.
+                    RU Hacks is the Ryerson University's annual hackathon.
+                .ru-section-content
+                    div(style="color: #004c9b") REPLACE CONTENT
+                    | /ˈhakəθɒn/: An event, typically lasting several days, in which a large number of people meet to engage in collaborative computer programming.
+                .ru-section-content
+                    div(style="color: #004c9b") REPLACE CONTENT
+                    | We look past this traditional definition of a hackathon and take it to new heights. At RU Hacks, we bring people together to make new friends, learn new things, and bring new ideas to life.
