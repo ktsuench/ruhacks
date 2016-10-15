@@ -10,7 +10,7 @@ angular
         text: ''
     }
     
-    _ctrl.auth = function() {
+    _ctrl.login = function() {
         var userCheck = typeof _ctrl.user === 'undefined' || _ctrl.user === '';
         var passCheck = typeof _ctrl.pass === 'undefined' || _ctrl.pass === '';
 

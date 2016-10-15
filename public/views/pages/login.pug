@@ -1,7 +1,7 @@
 extends ../template.pug
 
 append vars
-    -var ctrl = "authCtrl as login"
+    -var ctrl = "authCtrl as auth"
 
 append styles
     style.
@@ -35,12 +35,12 @@ append styles
 append ruController
     .ru-container-fluid
         .row
-            form(name="login.form", ng-submit="login.auth()")
+            form(name="auth.form", ng-submit="auth.login()")
                 .form-group
                     label(for="user") Username
-                    input.form-control(name="user", ng-model="login.user", type="text", placeholder="Username")
+                    input.form-control(name="user", ng-model="auth.user", type="text", placeholder="Username")
                 .form-group
                     label(for="pass") Password
-                    input.form-control(name="pass", ng-model="login.pass", type="password", placeholder="Password")
-                #err.has-error(ng-show="login.err.show") {{ login.err.text }}
+                    input.form-control(name="pass", ng-model="auth.pass", type="password", placeholder="Password")
+                #err.has-error(ng-show="auth.err.show") {{ auth.err.text }}
                 button.ru-btn(type="submit") Login
