@@ -123,14 +123,24 @@ module.exports = function(app) {
             }
         });
 
-        // handle dashbaord landing page route
+        // handle dashboard landing page route
         app.get('/dash', function(req, res){
-            //res.render('index');
-            if(req.session.hasOwnProperty('authenticated')){
-                res.render('pages/dash');
-            } else {
-                res.redirect('/login');
-            }
+            checkAuthElseRender(req, res, 'pages/dash/index');
+        });
+
+        // handle dashbaord subscribers page route
+        app.get('/dash/subscribers', function(req, res){
+            checkAuthElseRender(req, res, 'pages/dash/subscribers');
+        });
+
+        // handle dashbaord mail page route
+        app.get('/dash/mail', function(req, res){
+            checkAuthElseRender(req, res, 'pages/dash/mail');
+        });
+
+        // handle dashbaord mail page route
+        app.get('/dash/users', function(req, res){
+            checkAuthElseRender(req, res, 'pages/dash/users');
         });
 
         // handle catch all dashboard check to see if user is logged in
@@ -306,9 +316,56 @@ module.exports = function(app) {
             //*/res.sendStatus(200);
         });
 
-        app.get('/api/mail/send', function(req, res) {
+        app.post('/api/mail/send', function(req, res) {
             console.log("Sent mail");
-            //console.log(req.body);
+            console.log(req.body);
+
+            var email = req.body;
+            email.from = email.from.slice(0,1).toUpperCase() + RegExp(/^[^@]+/).exec(email.from)[0].slice(1) + "<" + email.from + ">";
+
+            if(typeof email.cc !== "undefined") {
+                var cc = [];
+                var regex = new RegExp(/[^,]+/g);
+                var nextCC = [];
+
+                do {
+                    nextCC = regex.exec(email.cc);
+
+                    if(nextCC !== null) cc.push(nextCC[0]);
+                } while(nextCC !== null);
+
+                email.cc = cc;
+            }
+
+            if(typeof email.bcc !== "undefined") {
+                var bcc = [];
+                var regex = new RegExp(/[^,]+/g);
+                var nextBCC = [];
+
+                do {
+                    nextBCC = regex.exec(email.bcc);
+
+                    if(nextBCC !== null) bcc.push(nextBCC[0]);
+                } while(nextBCC !== null);
+
+                email.bcc = bcc;
+            }
+
+            if(typeof email.attachments !== "undefined") {
+                if(Array.isArray(email.attachments)) {
+                    email.attachments = new mailgun.Attachment({data: email.attachments.data, filename: email.attachments.name});
+                } else {
+                    var attachments = [];
+
+                    email.attachments.forEach(function(attachment) {
+                        attachments.push(new mailgun.Attachment({data: attachment.data, filename: attachment.name}));
+                    });
+
+                    email.attachments = attachments;
+                }
+            }
+            
+            console.log(email);
 
             /*// connect to db
             var client = new pg.Client(db.url);
@@ -350,16 +407,14 @@ module.exports = function(app) {
             });
             
             */
-            
-            var data = {
-                from: 'Excited User <helloworld@ruhacks.com>',
-                to: 'will289@hotmail.com',
-                subject: 'Hello',
-                text: 'Testing some Mailgun awesomness!'
-            };
              
-            mailgun.messages().send(data, function (error, body) {
-              console.log(body);
+            mailgun.messages().send(email, function (error, body) {
+                if(error) {
+                    console.log(error);
+                    throw error;
+                }
+
+                console.log(body);
             });
             
             res.sendStatus(200);
@@ -371,3 +426,11 @@ module.exports = function(app) {
         res.render('.' + req.path);
     });
 };
+
+function checkAuthElseRender(req, res, pageToRender) {
+    if(req.session.hasOwnProperty('authenticated')){
+        res.render(pageToRender);
+    } else {
+        res.redirect('/login');
+    }
+}
