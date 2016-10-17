@@ -1,0 +1,69 @@
+extends ../dash_template.pug
+
+append styles
+    style.
+        .ru-tab-link{
+            color: black;
+            cursor: pointer;
+            display: inline;
+            font-weight: normal;
+            margin-right: 10px;
+        }
+        .active{
+            color: blue;
+            font-weight: bold;
+        }
+append vars
+    -var init = "dash.mail.init()"
+
+append ruDashContent
+    h2 Mail
+    ul
+        li.ru-tab-link(ng-click="dash.mail.changeTab(0)", ng-class="{active: dash.mail.currentTab == 0}") Send email
+        li.ru-tab-link(ng-click="dash.mail.changeTab(1)", ng-class="{active: dash.mail.currentTab == 1}") Inbox
+        li.ru-tab-link(ng-click="dash.mail.changeTab(2)", ng-class="{active: dash.mail.currentTab == 2}") Drafts
+        li.ru-tab-link(ng-click="dash.mail.changeTab(3)", ng-class="{active: dash.mail.currentTab == 3}") Trash
+    
+    .tab(ng-show="dash.mail.showSend")
+        form(name="mail.form", ng-submit="dash.mail.send()", style="width:50%; margin-left:auto; margin-right:auto;")
+            .form-group
+                label(for="sender") Sender
+                input.form-control(name="sender", ng-model="dash.mail.form.sender", type="email", placeholder="Email Sender")
+            .form-group
+                label(for="recipient") Recipient
+                input.form-control(name="recipient", ng-model="dash.mail.form.recipient", type="email", placeholder="Email Recipient")
+            .form-group
+                label(for="carbonCopy") Carbon Copy (CC) (Optional)
+                input.form-control(name="carbonCopy", ng-model="dash.mail.form.carbonCopy", type="text", placeholder="example@domain.com,someone@domain.com")
+            .form-group
+                label(for="blindCarbonCopy") Blind Carbon Copy (BCC) (Optional)
+                input.form-control(name="blindCarbonCopy", ng-model="dash.mail.form.blindCarbonCopy", type="text", placeholder="example@domain.com,someone@domain.com")
+            .form-group
+                label(for="subject") Subject
+                input.form-control(name="subject", ng-model="dash.mail.form.subject", type="text", placeholder="Email Subject")
+            .form-group
+                label(for="body") Body
+                textarea.form-control(name="body", ng-model="dash.mail.form.body", placeholder="Email Body", rows="5", cols="20", style="resize:none;")
+            .form-group
+                label(for="attachments", style="display:none") Attach a file
+                input.form-control(name="attachments", ng-model="dash.mail.form.attachments", type="file", placeholder="Email Attachments", multiple, style="display:none")
+            #err.has-error(ng-show="dash.mail.form.err.show") {{ dash.mail.form.err.text }}
+            button.ru-btn(type="submit") Send mail
+
+    .tab(ng-show="dash.mail.showStorage")
+        table.table
+            thead
+                tr
+                    td #
+                    td Date
+                    td Sender
+                    td Title
+                    td(ng-show="dash.mail.notTrash")
+            tbody
+                tr#subscriber(ng-repeat="mail in dash.mail.list track by $index", ng-cloak="")
+                    td {{ $index + 1 }}
+                    td {{ mail.date.trim() }}
+                    td {{ mail.title.trim() }}
+                    td {{ mail.sender.trim() }}
+                    td(ng-show="dash.mail.notTrash")
+                        button.btn.btn-danger(ng-click="dash.mail.delete(mail)") Delete

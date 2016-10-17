@@ -1,0 +1,54 @@
+extends ../dash_template.pug
+
+append styles
+    style.
+        .ru-tab-link{
+            color: black;
+            cursor: pointer;
+            display: inline;
+            font-weight: normal;
+            margin-right: 10px;
+        }
+        .active{
+            color: blue;
+            font-weight: bold;
+        }
+append vars
+    -var init = "dash.user.init()"
+
+append ruDashContent
+    h2 User
+    ul
+        li.ru-tab-link(ng-click="dash.user.changeTab(0)", ng-class="{active: dash.user.currentTab == 0}") New User
+        li.ru-tab-link(ng-click="dash.user.changeTab(1)", ng-class="{active: dash.user.currentTab == 1}") List Users
+    
+    .tab(ng-show="dash.user.showSend")
+        form(name="user.form", ng-submit="dash.user.create()", style="width:50%; margin-left:auto; margin-right:auto;")
+            .form-group
+                label(for="email") Name
+                input.form-control(name="name", ng-model="dash.user.form.name", type="text", placeholder="Name")
+            .form-group
+                label(for="email") Email Address
+                input.form-control(name="email", ng-model="dash.user.form.email", type="email", placeholder="Email Address")
+            .form-group
+                label(for="pass") Password
+                input.form-control(name="pass", ng-model="dash.user.form.pass", type="pass", placeholder="Password")
+            .form-group
+                label(for="passConfirm") Confirm Password
+                input.form-control(name="passConfirm", ng-model="dash.user.form.passConfirm", type="pass", placeholder="Confrim Password")
+            #err.has-error(ng-show="dash.user.form.err.show") {{ dash.user.form.err.text }}
+            button.ru-btn(type="submit") Create new user
+
+    .tab(ng-show="dash.user.showStorage")
+        table.table
+            thead
+                tr
+                    td Name
+                    td Email Address
+                    td
+            tbody
+                tr#subscriber(ng-repeat="user in dash.user.list", ng-cloak="")
+                    td {{ user.Name.trim() }}
+                    td {{ user.email.trim() }}
+                    td
+                        button.btn.btn-danger(ng-click="dash.user.delete(user)") Delete

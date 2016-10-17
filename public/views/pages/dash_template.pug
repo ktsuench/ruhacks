@@ -14,13 +14,13 @@ append ruNav
         a(href="/dash/subscribers") Subscribers
     li
         a(href="/dash/mail") Mail
+    //-li
+        a(href="/dash/users") Users
     li
         a(href="/#", ng-click="header.logout()") Logout
 
 append ruController
     .container-fluid
-        .row(style="padding-top:70px;", ng-view="")
-            h2 Dashboard Overview
-
-            p hi
+        .row(style="padding-top:70px;", ng-init=init)
+            block ruDashContent
     
