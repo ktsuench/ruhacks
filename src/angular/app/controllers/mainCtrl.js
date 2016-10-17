@@ -8,8 +8,8 @@ angular
     _ctrl.email = '';
     _ctrl.result = {
         'class': '',
-        'text': '',
-        'show': false
+        'show': false,
+        'text': ''
     }
 
     // Start background slideshow and fix layout of landing page

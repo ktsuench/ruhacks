@@ -11,8 +11,8 @@ angular
     }
     
     _ctrl.login = function() {
-        var userCheck = typeof _ctrl.user === 'undefined' || _ctrl.user === '';
-        var passCheck = typeof _ctrl.pass === 'undefined' || _ctrl.pass === '';
+        var userCheck = typeof _ctrl.user === 'undefined' || _ctrl.user.trim() === '';
+        var passCheck = typeof _ctrl.pass === 'undefined' || _ctrl.pass.trim() === '';
 
         if(userCheck || passCheck) {
             if(userCheck && passCheck) {
