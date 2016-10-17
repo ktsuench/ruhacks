@@ -90,21 +90,17 @@ angular
                     function(res){
                         console.log('Mail was successfully sent');
                         
-                        mailForm = {
-                            class: 'has-success',
-                            show: true,
-                            text: 'Mail was successfully sent.'
-                        }
+                        mailForm.err.class = 'has-success';
+                        mailForm.err.show = true;
+                        mailForm.err.text = 'Mail was successfully sent.';
                     },
                     function(res){
                         console.log('Failed to send mail');
                         console.log(res.status + ' ' + res.statusText);
 
-                        mailForm = {
-                            class: 'has-error',
-                            show: true,
-                            text: 'Unable to send mail. Try again later. :('
-                        }
+                        mailForm.err.class = 'has-error';
+                        mailForm.err.show = true;
+                        mailForm.err.text = 'Unable to send mail. Try again later. :(';
                     }
                 );
             }
