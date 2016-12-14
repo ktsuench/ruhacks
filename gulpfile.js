@@ -36,7 +36,7 @@ var appFiles = {
   js: [bowerComponentsDir + '**/*.min.js', baseDirs.app + 'public/js/**/*.js'],
   angular: ['!' + baseDirs.app + 'src/angular/**/*.inc.*', baseDirs.app + 'src/angular/libs/*.js', baseDirs.app + 'src/angular/app/**/*.js'],
   css: [bowerComponentsDir + '**/*.min.css'],
-  less: ['!' + baseDirs.app + 'src/less/**/*.inc.*', '!' + baseDirs.app + 'src/less/landing.less', baseDirs.app + 'src/less/**/*.less'],
+  less: ['!' + baseDirs.app + 'src/less/**/*.inc.*', baseDirs.app + 'src/less/**/*.less'],
   img: [baseDirs.app + 'public/img/**/*'],
   index: [baseDirs.app + 'views/index.pug']
 };
@@ -55,40 +55,9 @@ var sysDirs = [
   baseDirs.app + 'node_modules/'
 ];
 
-/*gulp.task('clean', function() {
+gulp.task('clean', function() {
   return gulp.src(baseDirs.dist, {read: false}).pipe(clean());
-});*/
-
-/*gulp.task('dev:concatjs', function () {
-  return gulp.src(appFiles.js)
-    .pipe(sourcemaps.init())
-    .pipe(concat(concatFilenames.js))
-    .pipe(sourcemaps.write('.'))
-    .pipe(gulp.dest(baseDirs.app + publicDirs.js));
-});*/
-
-/*gulp.task('dev:concatcss', function () {
-  return gulp.src(appFiles.css)
-    .pipe(sourcemaps.init())
-    .pipe(concat(concatFilenames.css))
-    .pipe(postcss([autoprefix({ browsers: ['last 2 versions'] })]))
-    .pipe(sourcemaps.write('.'))
-    .pipe(gulp.dest(baseDirs.app + publicDirs.css));
-});*/
-
-/*gulp.task('nodemon', function () {
-  nodemon({
-      script: baseDirs.app + startupScript,
-      ext: 'js',
-      ignore: [
-        baseDirs.app + 'public/',
-        baseDirs.app + 'js/',
-        baseDirs.app + 'css/']
-    })
-    .on('restart', function () {
-      console.log('Magic restarted');
-    });
-});*/
+});
 
 gulp.task('livereload', ['dist:compileless'], function () {
   return gulp.src(appFiles.index)
@@ -108,9 +77,25 @@ gulp.task('watch', function () {
     });
 });
 
+// Compiled list of Gulp tasks =========================================
 gulp.task('default', [/*'dev:concatjs',*/ /*'dev:concatcss',*/ /*'nodemon',*/ 'watch']);
 //gulp.task('dist', ['dist:copy']);
 
+/**
+ * NOTE: To make compiling easier, save commands to a file
+ *       This is suggested since by default, compiler compiles files
+ *       in alphabetical order. Thus, unless you list all file names
+ *       in the order you need them to be compiled and concated in,
+ *       you'll run into issues.
+ * 
+ * TODO: Future reference, DON'T BE LAZY. Split the concat/minifying
+ *       process and the compiling process into two tasks. Then create
+ *       a task that uses both.
+ * 
+ * BASH command: gulp `< [path-to-file-with-command]`
+ */
+
+// LESS Dist Processing ================================================
 var lessarg = yargs.array('files')
   .default({
     'concat': false,
@@ -151,21 +136,7 @@ gulp.task('dist:compileless', function () {
     .pipe(gulp.dest(baseDirs.dist + publicDirs.css));
 });
 
-/*gulp.task('dist:minifycss', ['dev:concatcss'], function() {
-  return gulp.src(baseDirs.app + publicDirs.css + concatFilenames.css)
-    .pipe(minify({
-      minify: true,
-      collapseWhitespace: true,
-      conservativeCollapse: true,
-      minifyCSS: true,
-      getKeptComment: function (content, filePath) {
-        var m = content.match(/\/\*![\s\S]*?\*\//img);
-        return m && m.join('\n') + '\n' || '';
-      }
-    }))
-    .pipe(gulp.dest(baseDirs.dist + publicDirs.css));
-});*/
-
+// JS Dist Processing ==================================================
 var cjsarg = yargs.array('files')
   .default({
     'files': false,
@@ -177,15 +148,7 @@ var cjsarg = yargs.array('files')
 
 gulp.task('dist:concatjs', function() {
   // add in default files if custom files specified
-  if(cjsarg.files[0] !== false){
-    // add in default files to existing array of files
-    var x = cjsarg.files;
-    cjsarg.files = appFiles.angular.slice(0,2);
-
-    x.forEach(function(el, index){
-      cjsarg.files.push(el);
-    });
-  }else{
+  if(cjsarg.files[0] === false){
     cjsarg.files = appFiles.angular;
   }
 
@@ -213,17 +176,7 @@ gulp.task('dist:concatjs', function() {
     .pipe(gulp.dest(baseDirs.dist + publicDirs.js)); 
 })
 
-/*gulp.task('dist:minifyjs', ['dev:concatjs'], function() {
-  return gulp.src(baseDirs.app + publicDirs.js + concatFilenames.js)
-    .pipe(minify({
-      minify: true,
-      collapseWhitespace: true,
-      conservativeCollapse: true,
-      minifyJS: true
-    }))
-    .pipe(gulp.dest(baseDirs.dist + publicDirs.js));
-});*/
-
+// Image minification ==================================================
 gulp.task('dist:minifyimg', function () {
     return gulp.src(appFiles.img)
         .pipe(cache(imagemin({
@@ -236,6 +189,7 @@ gulp.task('dist:minifyimg', function () {
         .pipe(gulp.dest(baseDirs.dist + publicDirs.img))
 });
 
+// Distribution Processing =============================================
 /*gulp.task('dist:copy', ['dist:minifycss', 'dist:minifyjs', 'dist:minifyimg'], function() {
   // server.js
   gulp.src(baseDirs.app + '/' + startupScript)

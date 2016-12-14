@@ -24,3 +24,4 @@ ftp-sync.json
 *.stTheme.cache
 *.sublime-workspace
 *.sublime-project
+/nbproject/private/

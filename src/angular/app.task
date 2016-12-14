@@ -1,0 +1,1 @@
+dist:concatjs --files src/angular/libs/prefixfree.js --files src/angular/libs/angular.min.js --files src/angular/libs/angular-route.min.js --files src/angular/app/controllers/**/*.js --files src/angular/app/services/**/*.js --files src/angular/app/*.js --minify

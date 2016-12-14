@@ -5,15 +5,8 @@
 /* ==================== Landing ==================== */
 
 #landing {
-    .flex-center();
-    background: url('../img/cover/holding_a_laptop.jpg');
-    background-color: @blue-lochmara;
-    background-position: 50% 80%;
-    background-size: cover;
-    background-repeat: no-repeat;
-    flex-direction: column;
+    .landing-base();
     position: relative;
-    transition: background 0.5s;
 
     @media (min-width: 768px) and (min-height: 650px) {
         & {
@@ -25,12 +18,9 @@
 /* ==================== Splash ==================== */
 
 #splash {
-    background: rgba(255, 255, 255, 0.6);
-    border: 4px solid rgba(220, 220, 220, 0.6);
-    border-radius: 10px;
+    .splash-base();
+
     margin: 62px 0 0 0;
-    padding: 20px;
-    text-align: center;
 
     @media (min-width: 768px) {
         & {
@@ -41,43 +31,6 @@
     &-img {
         margin: 20px 0 20px 0;
     }
-
-    &-title {
-        font-size: 3.5em;
-        font-weight: 700;
-        margin: 0 0 10px 0;
-    }
-
-    &-loc-date {
-        font-size: 2.65em;
-        margin: 5px 0 5px 0;
-    }
-
-    &-call-to-action {
-        .flex-center();
-        flex-direction: row;
-        flex-wrap: wrap;
-        padding: 10px;
-    }
-
-    &-contact {
-        font-size: 1.5em;
-        padding: 10px 0 10px 0;
-    }
-
-    &-contact a {
-        color: @ryerson-blue;
-        font-weight: 700;
-        text-decoration: none;
-
-        &:link, &:visited {
-            color: @ryerson-blue;
-        }
-
-        &:active, &:hover, &:visited {
-            color: @blue-lochmara;
-        }
-    }
 }
 
 /* ==================== Modal ==================== */
@@ -85,6 +38,7 @@
 #modal {
     .flex-center();
     background: rgba(200, 200, 200, 0.6);
+    display: none;
     flex-direction: row;
     height: 100%;
     left: 0;

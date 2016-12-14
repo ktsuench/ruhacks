@@ -1,3 +1,7 @@
+// .env loading ============================================
+// development purposes only
+require('dotenv').config();
+
 // modules =================================================
 var express         = require('express');
 var app             = express();
@@ -15,7 +19,7 @@ var db = require('./config/db');
 // set our port
 app.set('port', (process.env.PORT || 7000));
 
-// connect to our postgres database 
+// connect to our postgres database
 var client = new pg.Client(db.url);
 
 client.connect(function(err) {
@@ -27,6 +31,13 @@ client.query("CREATE TABLE IF NOT EXISTS mailingList (id SERIAL PRIMARY KEY NOT 
     if(err) throw err;
 
     console.log('mailingList\n' + result.rows + '\n');
+});
+
+// create mail table if it does not exist
+client.query("CREATE TABLE IF NOT EXISTS mail (id SERIAL PRIMARY KEY NOT NULL, sender CHAR(100) NOT NULL, recipient CHAR(100) NOT NULL, cc CHAR(500), bcc CHAR(500), title CHAR(75) NOT NULL, content CHAR(400) NOT NULL, attachment CHAR(10000) NOT NULL, date CHAR(24) NOT NULL);", function(err, result){
+    if(err) throw err;
+
+    console.log('mail\n' + result.rows + '\n');
 });
 
 // create userList table if it does not exist
@@ -80,7 +91,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // parse cookies
 var key = process.env.COOKIE_SECRET || "gf'BTtV4E%^A%!/>s$rDk8#@cQqkV#739x+k";
-app.use(session({path: '/', name: 'ruhacks', secret: key, httpOnly: true, secure: false, maxAge: null, resave: false}));
+// refer to the express-session docs: https://github.com/expressjs/session
+app.use(session({path: '/', name: 'ruhacks', secret: key, httpOnly: true, secure: false, maxAge: null, resave: false, saveUninitialized: false}));
 
 // override with the X-HTTP-Method-Override header in the request. simulate DELETE/PUT
 app.use(methodOverride('X-HTTP-Method-Override')); 

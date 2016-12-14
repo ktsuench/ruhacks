@@ -6,141 +6,17 @@
 /* ==================== Landing ==================== */
 
 #landing {
-    .flex-center();
-    background: url('../img/cover/TRSM.jpg');
-    background-color: @blue-lochmara;
-    background-position: 50% 80%;
-    background-size: cover;
-    background-repeat: no-repeat;
-    flex-direction: column;
-    transition: background 0.5s;
+    .landing();
 }
 
 /* ==================== Splash ==================== */
 
 #splash {
-    background: rgba(255, 255, 255, 0.6);
-    border: 4px solid rgba(220, 220, 220, 0.6);
-    border-radius: 10px;
-    padding: 20px;
-    text-align: center;
+    .splash-base();
 
     &-img {
         margin: 0px 0 0px 0;
     }
-
-    &-title {
-        font-size: 3.5em;
-        font-weight: 700;
-        margin: 0 0 10px 0;
-    }
-
-    &-loc-date {
-        font-size: 2.65em;
-        margin: 5px 0 5px 0;
-    }
-
-    &-call-to-action {
-        .flex-center();
-        flex-direction: row;
-        flex-wrap: wrap;
-        padding: 10px;
-    }
-
-    &-contact {
-        font-size: 1.5em;
-        padding: 10px 0 10px 0;
-    }
-
-    &-contact a {
-        color: @ryerson-blue;
-        font-weight: 700;
-        text-decoration: none;
-
-        &:link, &:visited {
-            color: @ryerson-blue;
-        }
-
-        &:active, &:hover, &:visited {
-            color: @blue-lochmara;
-        }
-    }
 }
 
-/* ==================== Modal ==================== */
-
-#modal {
-    .flex-center();
-    background: rgba(200, 200, 200, 0.6);
-    display: none;
-    flex-direction: row;
-    height: 100%;
-    left: 0;
-    position: fixed;
-    top: 0;
-    width: 100%;
-
-    &-container {
-        background: @white;
-        border-radius: 10px;
-        padding: 20px;
-        text-align: center;
-
-        @media (max-width: 680px) {
-            & {
-                padding-right: 10px;
-                padding-left: 10px;
-            }
-        }
-    }
-
-    &-close {
-        cursor: pointer;
-        float: right;
-        margin: -10px -5px 0 0;
-        position: relative;
-
-        @media (max-width: 680px) {
-            & {
-                margin-right: 5px;
-            }
-        }
-    }
-}
-
-#subscribe {
-    padding: 5px;
-
-    &-msg {
-        font-size: 2em;
-        margin: 0 0 10px 0;
-    }
-
-    &-result{
-        font-size: 1em;
-
-        &.has-error {
-            color: @on-error;
-        }
-
-        &.has-success {
-            color: @on-success;
-        }
-    }
-
-    &-email-lbl {
-        font-size: 1.5em;
-    }
-
-    &-email {
-        font-size: 1.5em;
-        text-align: center;
-
-        @media (max-width: 680px) {
-            & {
-                padding-right: 0;
-                padding-left: 0;
-            }
-        }
-    }
-}
+@import (once) 'cover.less';

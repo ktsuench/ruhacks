@@ -1,7 +1,7 @@
 /*global angular */
 
 angular
-.module('app.controllers', [])
+.module('app.controllers')
 .controller('mainCtrl', ['mailingListService', '$window', function mainCtrl(mailingListService, $window) {
     var _ctrl = this;
     _ctrl.showModal = false;
