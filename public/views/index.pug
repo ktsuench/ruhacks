@@ -17,15 +17,15 @@ html#top(lang="en", data-framework="angularjs")
                         .divider
                         |Winter 2017
                     #splash-call-to-action
-                        button.ru-btn(ng-click="home.toggleSubscribe('#modal')") 2017 Mailing List
+                        button.ru-btn(ng-click="showModal={display: 'flex'}") 2017 Mailing List
                         a(href="/")
                             button.ru-btn News
                     #splash-contact
                         |Contact us at 
                         a(href="mailto:helloworld@ruhacks.com") helloworld@ruhacks.com
-                #modal(ng-show="home.showModal")
+                #modal(ng-style="showModal")
                     #modal-container
-                        span#modal-close(ng-click="home.toggleSubscribe('#modal')") X
+                        span#modal-close(ng-click="showModal={}") X
                         form#subscribe(name="mailingList")
                             #subscribe-msg Be the first to hear<br>about RU Hacks 2017!
                             span#subscribe-result(ng-show="home.result.show", ng-class="home.result.class") 

@@ -4,7 +4,6 @@ angular
 .module('app.controllers', [])
 .controller('mainCtrl', ['mailingListService', '$window', function mainCtrl(mailingListService, $window) {
     var _ctrl = this;
-    _ctrl.showModal = false;
     _ctrl.email = '';
     _ctrl.result = {
         'class': '',
@@ -47,11 +46,6 @@ angular
                 }
             });
         }, 1000);
-    };
-
-    // Toggle modal
-    _ctrl.toggleSubscribe = function() {
-        _ctrl.showModal = !_ctrl.showModal;
     };
 
     // Submit user's email to database
