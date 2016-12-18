@@ -1,6 +1,6 @@
 // .env loading ============================================
 // development purposes only
-require('dotenv').config();
+if(!process.env.requireDotenv) require('dotenv').config();
 
 // modules =================================================
 var express         = require('express');
@@ -31,13 +31,6 @@ client.query("CREATE TABLE IF NOT EXISTS mailingList (id SERIAL PRIMARY KEY NOT 
     if(err) throw err;
 
     console.log('mailingList\n' + result.rows + '\n');
-});
-
-// create mail table if it does not exist
-client.query("CREATE TABLE IF NOT EXISTS mail (id SERIAL PRIMARY KEY NOT NULL, sender CHAR(100) NOT NULL, recipient CHAR(100) NOT NULL, cc CHAR(500), bcc CHAR(500), title CHAR(75) NOT NULL, content CHAR(400) NOT NULL, attachment CHAR(10000) NOT NULL, date CHAR(24) NOT NULL);", function(err, result){
-    if(err) throw err;
-
-    console.log('mail\n' + result.rows + '\n');
 });
 
 // create userList table if it does not exist
