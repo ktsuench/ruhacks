@@ -27,6 +27,7 @@ html#top(lang="en", data-framework="angularjs")
                                 button.ru-btn News
                         #splash-contact
                             |Contact us at 
+                            .divider
                             a(href="mailto:helloworld@ruhacks.com") helloworld@ruhacks.com
                 #modal.landing-layer(ng-style="showModal")
                     #modal-container
@@ -39,6 +40,7 @@ html#top(lang="en", data-framework="angularjs")
                                 label#subscribe-email-lbl.ru-control-label(for="mailingListEmail") Email
                                 input#subscribe-email.ru-form-control(type="email", name="mailingListEmail", placeholder="example@domain.com", ng-model="home.email")
                             button.ru-btn(ng-click="home.subscribe()") Subscribe
+
         // ==================== Includes ==================== 
         include partials/includes.pug
 
