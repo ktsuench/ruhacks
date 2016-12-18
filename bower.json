@@ -2,9 +2,6 @@
   "name": "ruhacks",
   "version": "1.0.0",
   "dependencies": {
-    "angular": "1.5.8",
-    "angular-route": "1.5.8",
-    "bootstrap": "3.3.7",
-    "prefix-free": "1.0.10"
+
   }
 }
