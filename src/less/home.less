@@ -69,6 +69,7 @@
     }
 
     #snow& {
+        animation: snow 10s linear 1;
         background: none;
         background-image:   url('../img/splash/s1.png'), 
                             url('../img/splash/s2.png'), 
@@ -79,7 +80,6 @@
         top: 0;
         width: 100%;
         z-index:400;
-        animation: snow 10s linear 1;
     }
 
     @keyframes snow {
@@ -91,8 +91,6 @@
 
 /* ==================== Splash ==================== */
 #splash-container.landing-layer{
-    .flex-center();
-    flex-direction: row;
     z-index: 500;
 }
 
@@ -101,7 +99,7 @@
     border: none;
     .flex-center();
     flex-direction: column;
-    height: 90%;
+    height: 100%;
     text-align: center;
 
     @media (min-width: 400px) and (min-height: 800px) {
@@ -124,6 +122,7 @@
     }
 
     &-logo {
+        animation: logo 1.5s cubic-bezier(0, 0, 0.2, 1) 1;
         background-image: url('../img/splash/logo-splash.png');
         background-position-x: center;
         background-repeat: no-repeat;
@@ -134,20 +133,29 @@
     }
 
     &-loc-date {
+        animation: typing 4s steps(100, end);
         color: #fff;
         font-size: 1.65em;
-        margin: 5px 0 5px 0;
+        letter-spacing: 0em;
+        margin: 5px auto 5px auto;
+        overflow: hidden;
+        white-space: nowrap;
     }
 
     &-call-to-action {
+        animation: fadein 5s linear 1;
         display: block;
         padding: 10px;
+        transition: display 2.5s;
     }
 
     &-contact {
+        animation: typing 5s steps(100, end);
         color: #fff;
         font-size: 1.5em;
+        overflow: hidden;
         padding: 10px 0 10px 0;
+        white-space: nowrap;
     }
 
     &-contact a {
@@ -163,6 +171,21 @@
         &:active, &:hover, &:visited {
             color: @blue-lochmara;
         }
+    }
+
+    @keyframes logo {
+        0% {background-position: -100%;}
+        100% {background-position: center 0;}
+    }
+
+    @keyframes typing {
+        0%, 50% {width: 0}
+        100% {width: 100%}
+    }
+
+    @keyframes fadein {
+        0%, 50%{opacity: 0}
+        100% {opacity: 1}
     }
 }
 
