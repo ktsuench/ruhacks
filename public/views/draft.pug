@@ -7,7 +7,7 @@ html#top(lang="en", data-framework="angularjs")
     body(ng-app="app")
         include partials/visitor_notify.pug
         // ==================== Content ==================== 
-        #ru-container(ng-controller="mainCtrl as home")
+        #landing-container(ng-controller="mainCtrl as home")
             // ==================== Cover ==================== 
             #landing
                 #snow.landing-layer
@@ -42,7 +42,7 @@ html#top(lang="en", data-framework="angularjs")
                                 input#subscribe-email.ru-form-control(type="email", name="mailingListEmail", placeholder="example@domain.com", ng-model="home.email")
                             button.ru-btn(ng-click="home.subscribe()") Subscribe
             // ==================== About ==================== 
-            #about.ru-content-white.container-fluid
+            #about.ru-content-white
                 .row
                     .ru-section.ru-section-default
                         .ru-section-header About
@@ -51,7 +51,7 @@ html#top(lang="en", data-framework="angularjs")
                         .ru-section-content
                             | /ˈhakəθɒn/: An event, typically lasting several days, in which a large number of people meet to engage in collaborative computer programming.
             // ==================== Why Attend ==================== 
-            #attend.ru-content-blue.container-fluid
+            #attend.ru-content-blue
                 .row
                     .ru-section.ru-section-inverted
                         .ru-section-header Why Attend?
@@ -60,7 +60,7 @@ html#top(lang="en", data-framework="angularjs")
                         .ru-section-content
                             | /ˈhakəθɒn/: An event, typically lasting several days, in which a large number of people meet to engage in collaborative computer programming.
             // ==================== Schedule ==================== 
-            #schedule.ru-content-white.container-fluid
+            #schedule.ru-content-white
                 .row
                     .ru-section.ru-section-default
                         .ru-section-header Schedule
@@ -69,7 +69,7 @@ html#top(lang="en", data-framework="angularjs")
                         .ru-section-content
                             | /ˈhakəθɒn/: An event, typically lasting several days, in which a large number of people meet to engage in collaborative computer programming.
             // ==================== FAQ ==================== 
-            #faq.ru-content-blue.container-fluid
+            #faq.ru-content-blue
                 .row
                     .ru-section.ru-section-inverted
                         .ru-section-header FAQ
@@ -78,7 +78,7 @@ html#top(lang="en", data-framework="angularjs")
                         .ru-section-content
                             | /ˈhakəθɒn/: An event, typically lasting several days, in which a large number of people meet to engage in collaborative computer programming.
             // ==================== Sponsors ==================== 
-            #sponsors.ru-content-white.container-fluid
+            #sponsors.ru-content-white
                 .row
                     .ru-section.ru-section-default
                         .ru-section-header Sponsors &amp; Partners
@@ -88,7 +88,7 @@ html#top(lang="en", data-framework="angularjs")
                             | /ˈhakəθɒn/: An event, typically lasting several days, in which a large number of people meet to engage in collaborative computer programming.
 
         // ==================== Footer ==================== 
-        #ru-footer.ru-content-blue.container-fluid
+        #ru-footer.ru-content-blue
             .row
                 .text-center
                     small.ru-section-inverted &copy; 2016 RU Hacks. All Rights Reserved

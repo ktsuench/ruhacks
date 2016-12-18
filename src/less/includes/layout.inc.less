@@ -7,6 +7,19 @@
     justify-content: center;
 }
 
+/* ==================== Colors ==================== */
+.bg-blue {
+    background-color: @ryerson-blue;
+}
+
+
+/* ==================== Utility ==================== */
+.full-screen {
+    height: 100%;
+    position: absolute;
+    width: 100%;
+}
+
 .divider {
     color: #fff;
     display: block;
@@ -90,6 +103,13 @@
 /* ==================== Content ==================== */
 
 .ru{
+    &-container {
+        .flex-center();
+        flex-direction: row;
+        height: 100%;
+        width: 100%;
+    }
+
     &-content-blue {
         background: @ryerson-blue;
     }

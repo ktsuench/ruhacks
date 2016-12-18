@@ -29,35 +29,41 @@
         }
     }
 
-    &-form-group {
-        .ru-form-elements(@display: block) {
-            & .ru-control-label {
-                display: @display;
-                font-size: 1em;
-                padding: 5px;
-                margin: 5px 0 5px 0;
+    &-form {
+        background: rgba(255,255,255,0.5);
+        border-radius: 10px;
+        padding: 10px;
+
+        &-group {
+            .ru-form-elements(@display: block) {
+                & .ru-control-label {
+                    display: @display;
+                    font-size: 1em;
+                    padding: 5px;
+                    margin: 5px 0 5px 0;
+                }
+
+                & .ru-form-control {
+                    text-align: left;
+                    border: 1px solid @gray-dusty;
+                    border-radius: 5px;
+                    display: @display;
+                    font-size: 1em;
+                    padding: 5px 10px 5px 10px;
+                }
             }
 
-            & .ru-form-control {
-                text-align: left;
-                border: 1px solid @gray-dusty;
-                border-radius: 5px;
-                display: @display;
-                font-size: 1em;
-                padding: 5px 10px 5px 10px;
+            &-vertical {
+                display: block;
+
+                .ru-form-elements(block);
             }
-        }
+            
+            &-horizontal {
+                display: block;
 
-        &-vertical {
-            display: block;
-
-            .ru-form-elements(block);
-        }
-        
-        &-horizontal {
-            display: block;
-
-            .ru-form-elements(inline);
+                .ru-form-elements(inline);
+            }
         }
     }
 }

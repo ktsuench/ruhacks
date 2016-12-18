@@ -1,0 +1,24 @@
+doctype html
+html#top(lang="en", data-framework="angularjs")
+    head
+        include partials/site_info.pug
+
+        title RU Hacks | Ryerson University
+    body.full-screen.bg-blue(ng-app="app")
+        include partials/visitor_notify.pug
+        // ==================== Content ==================== 
+        .ru-container(ng-controller="authCtrl as auth")
+            form#login.ru-form(name="auth.form", ng-submit="auth.login()")
+                .ru-form-group-vertical
+                    label.ru-form-label(for="user") Username
+                    input.ru-form-control(name="user", ng-model="auth.user", type="text", placeholder="Username")
+                .ru-form-group-vertical
+                    label.ru-form-label(for="pass") Password
+                    input.ru-form-control(name="pass", ng-model="auth.pass", type="password", placeholder="Password")
+                #err.has-error(ng-show="auth.err.show") {{ auth.err.text }}
+                button.ru-btn(type="submit") Login
+
+        // ==================== Includes ==================== 
+        include partials/includes.pug
+
+        block scripts

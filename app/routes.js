@@ -30,7 +30,7 @@ module.exports = function(app) {
 
     // route to handle all angular requests
     app.all('/*', function(req, res, next) {
-        var arbitraryUrls = ['pages', 'api', 'draft'];
+        var arbitraryUrls = ['pages', 'api', 'draft', 'login'];
         
         if (arbitraryUrls.indexOf(req.url.split('/')[1]) > -1) {
             next();
@@ -45,6 +45,9 @@ module.exports = function(app) {
     });
 
     // server routes =================================================
+    app.get('/login', function(req, res, next) {
+        res.render('login');
+    });
     // handle things like api calls
 
     // subscriber mailing list routes
