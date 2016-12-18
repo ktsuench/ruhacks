@@ -2,7 +2,7 @@
 
 angular
 .module('app.controllers', [])
-.controller('mainCtrl', ['mailingListService', '$window', function mainCtrl(mailingListService, $window) {
+.controller('mainCtrl', ['mailingListService', function mainCtrl(mailingListService, $window) {
     var _ctrl = this;
     _ctrl.email = '';
     _ctrl.result = {
@@ -11,42 +11,7 @@ angular
         'text': ''
     }
 
-    // Start background slideshow and fix layout of landing page
-    _ctrl.init = function() {
-        /* Change this script so that it gets the name and count of images in the specified folder - done through call to nodejs backend*/
-        var landing = document.getElementById('landing');
-        var path = '../img/cover/';
-        var cover = ['eng1', 'eng2', 'holding_a_laptop','image_center', 'img_3828', 'mac', 'slc', 'TRSM'];
-        var ext = '.jpg';
-        var startingIndex = 3;
-        var index = startingIndex;
-
-        //Switch the images every 10 seconds
-        var imageSlideshow = window.setInterval(function() {
-            landing.setAttribute('style', 'background: url("' + path + cover[index++] + ext + '"); background-size: cover; background-position: 50% 80%; background-repeat: no-repeat;');
-            index = index >= cover.length ? 0 : index;
-        }, 10000);
-
-        //Preload images
-        $window.setTimeout(function(){
-            var coverCopy = cover.slice(0);
-            coverCopy.splice(startingIndex - 1, 1);
-            coverCopy.forEach( function(file, index) {
-                //Append images to document to send request to server
-                var image = document.createElement('img');
-                image.setAttribute('id', file);
-                image.setAttribute('src', path + file + ext);
-                image.setAttribute('style', 'display: none;');
-                document.body.appendChild(image);
-
-                //Once loaded, remove the image
-                image = document.getElementById(file);
-                image.onload = function(){
-                    document.body.removeChild(image);
-                }
-            });
-        }, 1000);
-    };
+    _ctrl.init = function() {};
 
     // Submit user's email to database
     _ctrl.subscribe = function() {
