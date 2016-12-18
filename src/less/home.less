@@ -3,33 +3,166 @@
 @import (reference) 'layout.inc.less';
 
 /* ==================== Landing ==================== */
-
 #landing {
-    .landing-base();
+    display: block;
+    background-color: @blue-lochmara;
+    background-position: 50% 80%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
     position: relative;
+    transition: background 0.5s;
 
-    @media (min-width: 768px) and (min-height: 650px) {
+    /*@media (min-width: 768px) and (min-height: 650px) {
         & {
             height: 100vh;
         }
+    }*/
+}
+
+.landing-layer {
+    background-color: transparent;
+    background-position-x: center;
+    background-position-y: bottom;
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 100%;
+    position: absolute;
+    width: 100%;
+
+    @media (min-width: 480px) and (min-height: 300px) {
+        #tower& {
+            background-image: url('../img/splash/cntower.png') !important;
+        }
+
+        #top& {
+            background-image: url('../img/splash/top.png') !important;
+        }
+        
+        #mid& {
+            background-image: url('../img/splash/mid.png') !important;
+        }
+
+        #bot& {
+            background-image: url('../img/splash/bot.png') !important;
+        }
+    }
+
+    #tower& {
+        background-image: url('../img/splash/cntower_1290x1200.png');
+        z-index: 150;
+    }
+
+    #top& {
+        background-image: url('../img/splash/top_1290x1200.png');
+        z-index: 300;
+    }
+    
+    #mid& {
+        background-image: url('../img/splash/mid_1290x1200.png');
+        z-index: 200;
+    }
+
+    #bot& {
+        background-image: url('../img/splash/bot_1290x1200.png');
+        z-index: 100;
+    }
+
+    #snow& {
+        background: none;
+        background-image:   url('../img/splash/s1.png'), 
+                            url('../img/splash/s2.png'), 
+                            url('../img/splash/s3.png');
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        z-index:400;
+        animation: snow 10s linear 1;
+    }
+
+    @keyframes snow {
+        0% {background-position: 0px 0px, 0px 0px, 0px 0px;}
+        50% {background-position: 250px 250px, 200px 200px, -150px 150px;}
+        100% {background-position: 500px 500px, 400px 400px, -300px 300px;}
     }
 }
 
 /* ==================== Splash ==================== */
+#splash-container.landing-layer{
+    .flex-center();
+    flex-direction: row;
+    z-index: 500;
+}
 
 #splash {
-    .splash-base();
+    background: transparent;
+    border: none;
+    .flex-center();
+    flex-direction: column;
+    height: 90%;
+    text-align: center;
 
-    margin: 62px 0 0 0;
-
-    @media (min-width: 768px) {
-        & {
-            margin: 100px 0 40px 0;
+    @media (min-width: 400px) and (min-height: 800px) {
+        &-logo {
+            max-height: 35% !important;
         }
     }
 
-    &-img {
-        margin: 20px 0 20px 0;
+    @media (min-width: 768px) and (min-height: 600px) {
+        &-loc-date {
+            font-size: 2.65em !important;
+        }
+
+        &-call-to-action {
+            align-items: center;
+            display: flex !important;
+            flex-direction: row;
+            justify-content: center;
+        }
+    }
+
+    &-logo {
+        background-image: url('../img/splash/logo-splash.png');
+        background-position-x: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        height: 100%;
+        max-height: 40%;
+        width: 100%;
+    }
+
+    &-loc-date {
+        color: #fff;
+        font-size: 1.65em;
+        margin: 5px 0 5px 0;
+    }
+
+    &-call-to-action {
+        display: block;
+        padding: 10px;
+    }
+
+    &-contact {
+        color: #fff;
+        font-size: 1.5em;
+        padding: 10px 0 10px 0;
+    }
+
+    &-contact a {
+        color: @ryerson-blue;
+        font-weight: 700;
+        text-decoration: none;
+        text-shadow: 0px 1px 7px #fbdd00;
+
+        &:link, &:visited {
+            color: @ryerson-blue;
+        }
+
+        &:active, &:hover, &:visited {
+            color: @blue-lochmara;
+        }
     }
 }
 
@@ -45,6 +178,10 @@
     position: absolute;
     top: 0;
     width: 100%;
+
+    &.landing-layer {
+        z-index: 600;
+    }
 
     &-container {
         background: @white;
