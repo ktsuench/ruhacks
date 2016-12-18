@@ -1,0 +1,99 @@
+doctype html
+html#top(lang="en", data-framework="angularjs")
+    head
+        include partials/site_info.pug
+
+        title RU Hacks | Ryerson University
+    body(ng-app="app")
+        include partials/visitor_notify.pug
+        // ==================== Content ==================== 
+        #ru-container(ng-controller="mainCtrl as home")
+            // ==================== Cover ==================== 
+            #landing
+                #snow.landing-layer
+                #tower.landing-layer
+                #top.landing-layer
+                #mid.landing-layer
+                #bot.landing-layer
+                #splash-container.landing-layer
+                    #splash(ng-init="home.init()")
+                        #splash-logo
+                        #splash-loc-date
+                            |Ryerson University
+                            .divider
+                            |Winter 2017
+                        #splash-call-to-action
+                            button.ru-btn(ng-click="showModal={display: 'flex'}") 2017 Mailing List
+                            a(href="/")
+                                button.ru-btn News
+                        #splash-contact
+                            |Contact us at 
+                            .divider
+                            a(href="mailto:helloworld@ruhacks.com") helloworld@ruhacks.com
+                #modal.landing-layer(ng-style="showModal")
+                    #modal-container
+                        span#modal-close(ng-click="showModal={}") X
+                        form#subscribe(name="mailingList")
+                            #subscribe-msg Be the first to hear<br>about RU Hacks 2017!
+                            span#subscribe-result(ng-show="home.result.show", ng-class="home.result.class") 
+                                |{{ home.result.text }}
+                            .ru-form-group-vertical
+                                label#subscribe-email-lbl.ru-control-label(for="mailingListEmail") Email
+                                input#subscribe-email.ru-form-control(type="email", name="mailingListEmail", placeholder="example@domain.com", ng-model="home.email")
+                            button.ru-btn(ng-click="home.subscribe()") Subscribe
+            // ==================== About ==================== 
+            #about.ru-content-white.container-fluid
+                .row
+                    .ru-section.ru-section-default
+                        .ru-section-header About
+                        .ru-section-content.
+                            RU Hacks is the Ryerson University's annual hackathon.
+                        .ru-section-content
+                            | /ˈhakəθɒn/: An event, typically lasting several days, in which a large number of people meet to engage in collaborative computer programming.
+            // ==================== Why Attend ==================== 
+            #attend.ru-content-blue.container-fluid
+                .row
+                    .ru-section.ru-section-inverted
+                        .ru-section-header Why Attend?
+                        .ru-section-content.
+                            RU Hacks is the Ryerson University's annual hackathon.
+                        .ru-section-content
+                            | /ˈhakəθɒn/: An event, typically lasting several days, in which a large number of people meet to engage in collaborative computer programming.
+            // ==================== Schedule ==================== 
+            #schedule.ru-content-white.container-fluid
+                .row
+                    .ru-section.ru-section-default
+                        .ru-section-header Schedule
+                        .ru-section-content.
+                            RU Hacks is the Ryerson University's annual hackathon.
+                        .ru-section-content
+                            | /ˈhakəθɒn/: An event, typically lasting several days, in which a large number of people meet to engage in collaborative computer programming.
+            // ==================== FAQ ==================== 
+            #faq.ru-content-blue.container-fluid
+                .row
+                    .ru-section.ru-section-inverted
+                        .ru-section-header FAQ
+                        .ru-section-content.
+                            RU Hacks is the Ryerson University's annual hackathon.
+                        .ru-section-content
+                            | /ˈhakəθɒn/: An event, typically lasting several days, in which a large number of people meet to engage in collaborative computer programming.
+            // ==================== Sponsors ==================== 
+            #sponsors.ru-content-white.container-fluid
+                .row
+                    .ru-section.ru-section-default
+                        .ru-section-header Sponsors &amp; Partners
+                        .ru-section-content.
+                            RU Hacks is the Ryerson University's annual hackathon.
+                        .ru-section-content
+                            | /ˈhakəθɒn/: An event, typically lasting several days, in which a large number of people meet to engage in collaborative computer programming.
+
+        // ==================== Footer ==================== 
+        #ru-footer.ru-content-blue.container-fluid
+            .row
+                .text-center
+                    small.ru-section-inverted &copy; 2016 RU Hacks. All Rights Reserved
+
+        // ==================== Includes ==================== 
+        include partials/includes.pug
+
+        block scripts

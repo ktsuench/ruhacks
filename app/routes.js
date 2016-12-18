@@ -30,13 +30,18 @@ module.exports = function(app) {
 
     // route to handle all angular requests
     app.all('/*', function(req, res, next) {
-        var arbitraryUrls = ['pages', 'api'];
+        var arbitraryUrls = ['pages', 'api', 'draft'];
         
         if (arbitraryUrls.indexOf(req.url.split('/')[1]) > -1) {
             next();
         } else {
             res.render('index');
         }
+    });
+
+    // Temporary Route
+    app.get('/draft', function(req, res, next) {
+        res.render('draft');
     });
 
     // server routes =================================================
