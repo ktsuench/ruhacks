@@ -4,6 +4,7 @@
 
 /* ==================== Landing ==================== */
 #landing {
+    animation: daytime 20s linear 1;
     display: block;
     background-color: @blue-lochmara;
     background-position: 50% 80%;
@@ -14,11 +15,13 @@
     position: relative;
     transition: background 0.5s;
 
-    /*@media (min-width: 768px) and (min-height: 650px) {
-        & {
-            height: 100vh;
-        }
-    }*/
+    @keyframes daytime {
+        0%{background-color: @blue-lochmara;}
+        20%{background-color: @blue-cerulean;}
+        40%{background-color: @blue-lochmara;}
+        50%{background-color: @blue-midnight;}
+        100%{background-color: @blue-lochmara;}
+    }
 }
 
 .landing-layer {
@@ -70,7 +73,7 @@
     }
 
     #snow& {
-        animation: snow 10s linear 1;
+        animation: snow 20s linear 1;
         background: none;
         background-image:   url('../img/splash/s1.png'), 
                             url('../img/splash/s2.png'), 
@@ -87,6 +90,55 @@
         0% {background-position: 0px 0px, 0px 0px, 0px 0px;}
         50% {background-position: 250px 250px, 200px 200px, -150px 150px;}
         100% {background-position: 500px 500px, 400px 400px, -300px 300px;}
+    }
+
+    #sun&, #moon& {
+        background: none;
+        background-repeat: no-repeat;
+        background-size: 100%;
+        left: 100vw;
+        position: absolute;
+        top: 100vh;
+        width: 15vw;
+        z-index:10;
+    }
+
+    #sun& {
+        animation: sun 10s linear 1;
+        background-image:   url('../img/splash/sun.png');
+    }
+
+    #moon& {
+        animation: moon 20s linear 1;
+        background-image:   url('../img/splash/moon.png');
+    }
+
+    @keyframes sun {
+        0% {left: 95vw; top: 100vh}
+        10% {left: 85vw; top: 70vh}
+        20% {left: 75vw; top: 50vh}
+        30% {left: 65vw; top: 35vh}
+        40% {left: 55vw; top: 25vh}
+        50% {left: 45vw; top: 20vh}
+        60% {left: 35vw; top: 25vh}
+        70% {left: 25vw; top: 35vh}
+        80% {left: 15vw; top: 50vh}
+        90% {left: 5vw; top: 70vh}
+        100% {left: 0vw; top: 100vh}
+    }
+
+    @keyframes moon {
+        0%, 50% {left: 95vw; top: 100vh}
+        55% {left: 85vw; top: 70vh}
+        60% {left: 75vw; top: 50vh}
+        65% {left: 65vw; top: 35vh}
+        70% {left: 55vw; top: 25vh}
+        75% {left: 45vw; top: 20vh}
+        80% {left: 35vw; top: 25vh}
+        85% {left: 25vw; top: 35vh}
+        90% {left: 15vw; top: 50vh}
+        95% {left: 5vw; top: 70vh}
+        100% {left: 0vw; top: 100vh}
     }
 }
 
