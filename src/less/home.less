@@ -4,7 +4,7 @@
 
 /* ==================== Landing ==================== */
 #landing {
-    animation: daytime 20s linear 1;
+    animation: daytime 20s linear infinite;
     display: block;
     background-color: @blue-lochmara;
     background-position: 50% 80%;
@@ -104,27 +104,27 @@
     }
 
     #sun& {
-        animation: sun 10s linear 1;
+        animation: sun 20s linear infinite;
         background-image:   url('../img/splash/sun.png');
     }
 
     #moon& {
-        animation: moon 20s linear 1;
+        animation: moon 20s linear infinite;
         background-image:   url('../img/splash/moon.png');
     }
 
     @keyframes sun {
         0% {left: 95vw; top: 100vh}
-        10% {left: 85vw; top: 70vh}
-        20% {left: 75vw; top: 50vh}
-        30% {left: 65vw; top: 35vh}
-        40% {left: 55vw; top: 25vh}
-        50% {left: 45vw; top: 20vh}
-        60% {left: 35vw; top: 25vh}
-        70% {left: 25vw; top: 35vh}
-        80% {left: 15vw; top: 50vh}
-        90% {left: 5vw; top: 70vh}
-        100% {left: 0vw; top: 100vh}
+        5% {left: 85vw; top: 70vh}
+        15% {left: 75vw; top: 50vh}
+        20% {left: 65vw; top: 35vh}
+        25% {left: 55vw; top: 25vh}
+        30% {left: 45vw; top: 20vh}
+        35% {left: 35vw; top: 25vh}
+        40% {left: 25vw; top: 35vh}
+        45% {left: 15vw; top: 50vh}
+        50% {left: 5vw; top: 70vh}
+        55%, 100% {left: 0vw; top: 100vh}
     }
 
     @keyframes moon {
