@@ -154,21 +154,33 @@
             font-size: 1em;
             padding: 10px;
 
-            &-col {
-                display: inline-block;
-                vertical-align: top;
-                width: 33%;
+            &-col-3 {
+                width: 30vw;
 
-                @media (max-width: 900px) {
+                @media (max-width: 1080px) {
                     & {
-                        width: auto !important;
+                        width: 45vw !important;
+                    }
+                }
+
+                @media (max-width: 780px) {
+                    & {
+                        width: 100vw !important;
                     }
                 }
             }
 
-            &-row {
-                
-            }
+            &-col {}
+
+            &-row {}
+        }
+
+        &-row {
+            align-items: flex-start;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-around;
         }
     }
 }
