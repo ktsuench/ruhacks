@@ -123,25 +123,52 @@
 
         &-default {
             color: @black;
+
+            & * {
+                color: inherit;
+            }
         }
 
         &-inverted {
             color: @white;
+
+            & * {
+                color: inherit;
+            }
         }
 
         &-header {
-            border-bottom: 1px solid @gray-dusty;   
-            color: inherit;
+            border-bottom: 1px solid @gray-dusty;
             font-size: 2.5em;
             font-weight: 700;
             padding: 10px;
         }
 
+        &-subheader {
+            font-size: 1.5em;
+            font-weight: 600;
+            padding: 10px;
+        }
+
         &-content {
-            color: inherit;
             font-size: 1em;
             padding: 10px;
 
+            &-col {
+                display: inline-block;
+                vertical-align: top;
+                width: 33%;
+
+                @media (max-width: 900px) {
+                    & {
+                        width: auto !important;
+                    }
+                }
+            }
+
+            &-row {
+                
+            }
         }
     }
 }
