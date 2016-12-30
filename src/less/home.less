@@ -36,6 +36,10 @@
     width: 100%;
 
     @media (min-width: 480px) and (min-height: 200px) {
+        #lights& {
+            background-image: url('../img/splash/lights.png') !important;
+        }
+
         #tower& {
             background-image: url('../img/splash/cntower.png') !important;
         }
@@ -51,6 +55,29 @@
         #bot& {
             background-image: url('../img/splash/bot.png') !important;
         }
+    }
+
+    #lights& {
+        animation: lights 20s linear infinite;
+        background-image: url('../img/splash/lights_1290x1200.png');
+        opacity: 0;
+        z-index: 350;
+    }
+
+    @keyframes lights {
+        0%, 40% {opacity: 0}
+        45% {opacity: 10}
+        50% {opacity: 20}
+        55% {opacity: 30}
+        60% {opacity: 40}
+        65% {opacity: 50}
+        70% {opacity: 60}
+        75% {opacity: 50}
+        80% {opacity: 40}
+        85% {opacity: 30}
+        90& {opacity: 20}
+        95& {opacity: 10}
+        100% {opacity: 0}
     }
 
     #tower& {
