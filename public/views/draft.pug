@@ -46,37 +46,55 @@ html#top(lang="en", data-framework="angularjs")
                             button.ru-btn(ng-click="home.subscribe()") Subscribe
             // ==================== About ==================== 
             #about.ru-content-white
-                .row
+                .ru-row
                     .ru-section.ru-section-default
-                        .ru-section-header About
+                        .ru-section-header What is RUHacks?
                         .ru-section-content.
-                            RU Hacks is the Ryerson University's annual hackathon.
-                        .ru-section-content
-                            | /ˈhakəθɒn/: An event, typically lasting several days, in which a large number of people meet to engage in collaborative computer programming.
+                            RU Hacks is a unique hackathon at Ryerson University, located at the heart of downtown Toronto. This year will be the first ever RU Hacks and we hope you will be here to join us for 36 hours of creativity.
             // ==================== Why Attend ==================== 
             #attend.ru-content-blue
-                .row
+                .ru-row
                     .ru-section.ru-section-inverted
                         .ru-section-header Why Attend?
                         .ru-section-content.
-                            RU Hacks is the Ryerson University's annual hackathon.
-                        .ru-section-content
-                            | /ˈhakəθɒn/: An event, typically lasting several days, in which a large number of people meet to engage in collaborative computer programming.
+                            Be a part of something special - join 400 other passionate individuals and let your creativity run wild. This event is a great opportunity to showcase your talents and ideas, whether you are a developer, a designer, or a creator with a skillset not listed here. This event is also an opportunity to learn new skills as mentors will be present, and there will be plenty of workshops to help you get your ideas off the ground.
             // ==================== Schedule ==================== 
             #schedule.ru-content-white
-                .row
+                .ru-row
                     .ru-section.ru-section-default
                         .ru-section-header Schedule
                         .ru-section-content.
                             RU Hacks is the Ryerson University's annual hackathon.
                         .ru-section-content
                             | /ˈhakəθɒn/: An event, typically lasting several days, in which a large number of people meet to engage in collaborative computer programming.
+            // ==================== Location ==================== 
+            #location.ru-content-blue
+                .ru-row
+                    .ru-section.ru-section-inverted
+                        .ru-section-header Location
+                        .ru-section-row.ru-section-row-wrap
+                            .ru-section-content-media.ru-section-content-media-inline
+                                iframe(src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d11546.178518710383!2d-79.3772168!3d43.6576417!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xfec6b680ae45e7b0!2sGeorge+Vari+Engineering+and+Computing+Centre!5e0!3m2!1sen!2sus!4v1483767485746", style="border: none; height: 75vh; width: 75vw;")
+                            .ru-section-content.ru-section-content-inline
+                                .ru-section-subheader Where is RU Hacks?
+                                .ru-section-content.
+                                    RU Hacks will held at George Vari Engineering and Computing Centre at Ryerson University. It is located at the corner of Gould St. and Church St.
+
+            // ==================== Sponsors ==================== 
+            #sponsors.ru-content-white
+                .ru-row
+                    .ru-section.ru-section-default
+                        .ru-section-header Sponsors &amp; Partners
+                        .ru-section-row
+                            .ru-section-content-col
+                                a(href="http://ress.ca")
+                                    img.ru-partner(src="img/sponsors-partners/ress_200x200.png")
             // ==================== FAQ ==================== 
             #faq.ru-content-blue
-                .row
-                    .ru-section.ru-section-inverted
+                .ru-row
+                    .ru-section.ru-section-inverted.ru-section-fullwidth
                         .ru-section-header FAQ
-                        .ru-section-row
+                        .ru-section-row.ru-section-row-grid
                             .ru-section-content-col-3
                                 .ru-section-subheader Who can attend?
                                 .ru-section-content.
@@ -113,19 +131,10 @@ html#top(lang="en", data-framework="angularjs")
                                 .ru-section-subheader I still have more questions!
                                 .ru-section-content Reach out to us at 
                                     a(href="mailto:helloworld@ruhacks.com") helloworld@ruhacks.com
-            // ==================== Sponsors ==================== 
-            #sponsors.ru-content-white
-                .row
-                    .ru-section.ru-section-default
-                        .ru-section-header Sponsors &amp; Partners
-                        .ru-section-row
-                            .ru-section-content-col
-                                a(href="http://ress.ca")
-                                    img.ru-partner(src="img/sponsors-partners/ress_200x200.png")
 
         // ==================== Footer ==================== 
         #ru-footer.ru-content-blue
-            .row
+            .ru-row
                 .text-center
                     small.ru-section-inverted &copy; 2016 RU Hacks. All Rights Reserved
 

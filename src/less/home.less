@@ -358,13 +358,33 @@
 /* ==================== Attend ==================== */
 #attend {
     background-attachment: fixed;
+    background-image: url('../img/cover/image_center.jpg');
+    background-position: center bottom;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    & .ru-row {
+        background: rgba(3,3,3,0.6);
+    }
+}
+
+/* ==================== Location ==================== */
+#location {
+    background-attachment: fixed;
     background-image: url('../img/cover/eng2.jpg');
     background-position: center bottom;
     background-size: cover;
     background-repeat: no-repeat;
 
-    & .row {
+    & .ru-row {
         background: rgba(3,3,3,0.6);
+    }
+}
+
+/* ==================== Sponsors/Partners ==================== */
+#sponsors {
+    & .ru-partner {
+        padding: 10px;
     }
 }
 
@@ -376,14 +396,7 @@
     background-size: cover;
     background-repeat: no-repeat;
 
-    & .row {
+    & .ru-row {
         background: rgba(3,3,3,0.6);
-    }
-}
-
-/* ==================== Sponsors/Partners ==================== */
-#sponsors {
-    & .ru-partner {
-        padding: 10px;
     }
 }

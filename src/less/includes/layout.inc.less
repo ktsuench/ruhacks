@@ -118,8 +118,17 @@
         background: @white;
     }
 
+    &-row {
+        font-size: 1.1em;
+        padding: 20px;
+    }
+
     &-section {
+        line-height: 1.5em;
+        margin-left: auto;
+        margin-right: auto;
         padding: 30px;
+        width: 85%;
 
         &-default {
             color: @black;
@@ -137,10 +146,15 @@
             }
         }
 
+        &-fullwidth {
+            width: auto;
+        }
+
         &-header {
             border-bottom: 1px solid @gray-dusty;
             font-size: 2.5em;
             font-weight: 700;
+            line-height: normal;
             padding: 10px;
         }
 
@@ -173,14 +187,28 @@
             &-col {}
 
             &-row {}
+
+            &-media {
+                padding-bottom: 20px;
+                padding-top: 20px;
+            }
         }
 
         &-row {
-            align-items: flex-start;
+            align-items: center;
             display: flex;
             flex-direction: row;
-            flex-wrap: wrap;
+            flex-wrap: none;
             justify-content: space-around;
+
+            &-grid {
+                align-items: flex-start;
+                flex-wrap: wrap;
+            }
+
+            &-wrap {
+                flex-wrap: wrap;
+            }
         }
     }
 }
