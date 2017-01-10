@@ -99,7 +99,7 @@ module.exports = function(app) {
 
         // log user out if they are logged in, otherwise send HTTP response 404
         app.get('/api/logout', function(req, res) {
-            if(req.session.authenticated){
+            if(req.session.hasOwnProperty('authenticated') && req.session.authenticated){
                 req.session.destroy(function(err){
                     if(err) throw err;
                 });
@@ -114,7 +114,7 @@ module.exports = function(app) {
     {
         // handle login route
         app.get('/login', function(req, res){
-            if(req.session.hasOwnProperty('authenticated')){
+            if(req.session.hasOwnProperty('authenticated') && req.session.authenticated){
                 res.redirect('/dash');
             } else {
                 res.render('login');
@@ -143,8 +143,7 @@ module.exports = function(app) {
 
         // handle catch all dashboard check to see if user is logged in
         app.get('/dash/*', function(req, res){
-            //res.render('index');
-            if(req.session.hasOwnProperty('authenticated')){
+            if(req.session.hasOwnProperty('authenticated') && req.session.authenticated){
                 res.render('pages/dash');
             } else {
                 res.redirect('/login');
@@ -158,33 +157,36 @@ module.exports = function(app) {
         app.get('/api/mailingList', function(req, res) {
             //console.log(req.body);
 
-            // connect to db
-            var client = new pg.Client(db.url);
-            
-            client.connect(function(err) {
-                if(err) {
-                    console.log(err);
-                    throw err;
-                }            
-            });
-
-            // start query to db
-            client.query("SELECT * FROM mailingList;", function(err, result) {
-                if(err) {
-                    console.log(err);
-                    throw err;
-                }
-
-                //console.log(result.rows);
-                res.json(result.rows);
-
-                // end connection to db
-                client.end(function(err) {
-                    if(err) throw err;
+            if(req.session.hasOwnProperty('authenticated') && req.session.authenticated) {
+                // connect to db
+                var client = new pg.Client(db.url);
+                
+                client.connect(function(err) {
+                    if(err) {
+                        console.log(err);
+                        throw err;
+                    }            
                 });
-            });
 
-            //res.sendStatus(500);
+                // start query to db
+                client.query("SELECT * FROM mailingList;", function(err, result) {
+                    if(err) {
+                        console.log(err);
+                        throw err;
+                    }
+
+                    //console.log(result.rows);
+                    res.json(result.rows);
+
+                    // end connection to db
+                    client.end(function(err) {
+                        if(err) throw err;
+                    });
+                });
+            } else {
+                // Send Client Error Forbidden Status Code
+                res.sendStatus(403);
+            }
         });
 
         // add new subscriber to mailing list
@@ -237,32 +239,37 @@ module.exports = function(app) {
         app.delete('/api/mailingList', function(req, res) {
             //console.log(req.query);
 
-            // connect to db
-            var client = new pg.Client(db.url);
-            
-            client.connect(function(err) {
-                if(err) {
-                    console.log(err);
-                    throw err;
-                }            
-            });
-
-            // start query to db
-            client.query("DELETE FROM mailingList WHERE email='" + req.query.email + "';", function(err, result) {
-                if(err) {
-                    console.log(err);
-                    throw err;
-                }
-
-                //console.log(result.rows);
-
-                // end connection to db
-                client.end(function(err) {
-                    if(err) throw err;
+            if(req.session.hasOwnProperty('authenticated') && req.session.authenticated) {
+                // connect to db
+                var client = new pg.Client(db.url);
+                
+                client.connect(function(err) {
+                    if(err) {
+                        console.log(err);
+                        throw err;
+                    }            
                 });
-            });
 
-            res.sendStatus(200);
+                // start query to db
+                client.query("DELETE FROM mailingList WHERE email='" + req.query.email + "';", function(err, result) {
+                    if(err) {
+                        console.log(err);
+                        throw err;
+                    }
+
+                    //console.log(result.rows);
+
+                    // end connection to db
+                    client.end(function(err) {
+                        if(err) throw err;
+                    });
+                });
+
+                res.sendStatus(200);
+            } else {
+                // Send Client Error Forbidden Status Code
+                res.sendStatus(403);
+            }
         });
     }
 
@@ -273,7 +280,7 @@ module.exports = function(app) {
 };
 
 function checkAuthElseRender(req, res, pageToRender) {
-    if(req.session.hasOwnProperty('authenticated')){
+    if(req.session.hasOwnProperty('authenticated') && req.session.authenticated){
         res.render(pageToRender);
     } else {
         res.redirect('/login');
