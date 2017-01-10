@@ -2,7 +2,7 @@ extends ../template.pug
 
 append vars
     -var header = true
-    -var headerCtrl = "dashCtrl as header"
+    -var headerCtrl = "dashCtrl as dash"
     -var headerCtrlAlias = "dash"
     -var ctrl = "dashCtrl as dash"
     -var ctrlAlias = "dash"
@@ -21,6 +21,6 @@ append ruNav
 
 append ruController
     .container-fluid
-        .row(style="padding-top:70px;", ng-init=init)
+        .row(ng-init=init)
             block ruDashContent
     

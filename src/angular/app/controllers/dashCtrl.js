@@ -35,12 +35,12 @@ angular
         },
         list: [],
         delete: function(subscriber) {
-            /*mailingListService.delete(subscriber).then(function(res) {
+            mailingListService.delete(subscriber).then(function(res) {
                 _ctrl.subscribers.list.splice(_ctrl.subscribers.list.indexOf(subscriber), 1);
             }, function(res) {
                 console.log('Failed to delete subscriber.');
                 console.log(res.status + ' ' + res.statusText);
-            });*/
+            });
         }
     };
 

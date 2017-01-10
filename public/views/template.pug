@@ -1,16 +1,18 @@
 mixin ruHeader(ctrl, alias)
-    .ru-navbar.ru-navbar-fixed-top(ng-controller=ctrl)
-        .ru-navbar-header
-            input.ru-nav-toggle-switch(ng-click=alias+".toggleNav()", type="checkbox", name="ru-nav")
-            label.ru-nav-toggle-label(for="ru-nav") Toggle Navigation
-            span.ru-nav-toggle
+    .ru-navbar-container.ru-navbar-fixed-top(ng-controller=ctrl)
+        .ru-navbar
+            .ru-nav-header
+                a.ru-brand(href="/") 
+                    img(src="img/logo_50x50.png", title="RU Hacks")
+                    .ru-brand-title RU Hacks
+            .ru-nav-toggle(ng-click=alias+".toggleNav()")
                 - for(var i = 0; i < 3; i++)
                     span.icon-bar
-            a.ru-brand(href="/") 
-                img(src="img/logo_50x50.png", title="RU Hacks")
-                .ru-brand-title RU Hacks
-        .ru-nav.ru-nav-responsive(ng-class="{ru-nav-collapsed: "+alias+".showNav}")
-            ul#ru-navbar-links
+            .ru-nav.ru-nav-responsive     
+                ul.ru-navbar-links
+                    block
+        .ru-nav.ru-nav-responsive.ru-nav-mobile(ng-class="{'ru-nav-show': "+alias+".showNav}")
+            ul.ru-navbar-links
                 block
 
 doctype html
@@ -38,10 +40,9 @@ html#top(lang="en", data-framework="angularjs")
                 block ruContainer
 
         // ==================== Footer ==================== 
-        #ru-footer.ru-content-blue.container-fluid
-            .row
-                .col-md-4.col-md-push-4.text-center
-                    small.ru-section-inverted &copy; 2016 RU Hacks. All Rights Reserved
+        #ru-footer.ru-content-blue
+            .text-center
+                small.ru-section-inverted &copy; 2016 RU Hacks. All Rights Reserved
 
         // ==================== Includes ==================== 
         include partials/includes.pug

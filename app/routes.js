@@ -234,7 +234,7 @@ module.exports = function(app) {
         });
 
         // delete a subscriber from mailing list
-        /*app.delete('/api/mailingList', function(req, res) {
+        app.delete('/api/mailingList', function(req, res) {
             //console.log(req.query);
 
             // connect to db
@@ -263,7 +263,7 @@ module.exports = function(app) {
             });
 
             res.sendStatus(200);
-        });*/
+        });
     }
 
     // frontend routes =================================================
