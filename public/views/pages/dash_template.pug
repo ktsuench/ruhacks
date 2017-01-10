@@ -2,8 +2,8 @@ extends ../template.pug
 
 append vars
     -var header = true
-    -var headerCtrl = "headerCtrl as header"
-    -var headerCtrlAlias = "header"
+    -var headerCtrl = "dashCtrl as header"
+    -var headerCtrlAlias = "dash"
     -var ctrl = "dashCtrl as dash"
     -var ctrlAlias = "dash"
 
@@ -12,12 +12,12 @@ append ruNav
         a(href="/dash") Home
     li
         a(href="/dash/subscribers") Subscribers
-    li
+    //-li
         a(href="/dash/mail") Mail
     //-li
         a(href="/dash/users") Users
     li
-        a(href="/#", ng-click="header.logout()") Logout
+        a(href="", ng-click="header.logout()") Logout
 
 append ruController
     .container-fluid

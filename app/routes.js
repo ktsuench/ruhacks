@@ -30,7 +30,7 @@ module.exports = function(app) {
 
     // route to handle all angular requests
     app.all('/*', function(req, res, next) {
-        var arbitraryUrls = ['pages', 'api', 'draft', 'login'];
+        var arbitraryUrls = ['pages', 'api', 'draft', 'login', 'dash'];
         
         if (arbitraryUrls.indexOf(req.url.split('/')[1]) > -1) {
             next();
@@ -45,15 +45,117 @@ module.exports = function(app) {
     });
 
     // server routes =================================================
-    app.get('/login', function(req, res, next) {
-        res.render('login');
-    });
     // handle things like api calls
+
+    // authentication routes
+    {
+        // check if user is logged in
+        /*app.get('/api/auth', function(req, res) {
+            if(req.session.hasOwnProperty('authenticated')){
+                res.json({authenticated: req.session.authenticated});
+            } else {
+                res.json({authenticated: false});
+            }
+        });*/
+
+        // check if user exists
+        app.post('/api/auth', function(req, res) {
+            // connect to db
+            var client = new pg.Client(db.url);
+            
+            client.connect(function(err) {
+                if(err) {
+                    console.log(err);
+                    throw err;
+                }            
+            });
+
+            // start query to db
+            client.query("SELECT * FROM userList WHERE username='" + req.body.username + "';", function(err, result) {
+                if(err) {
+                    console.log(err);
+                    throw err;
+                }
+
+                var hash = crypto.createHash('SHA256');
+                var pass = hash.update(req.body.pass).digest('base64');
+
+                // Check that result.rows array is defined and compare password hashes
+                if(result.rows.length > 0 && pass.trim() == result.rows[0].hash.trim()) {
+                    req.session.authenticated = true;
+                    res.json({valid: true});
+                } else {
+                    res.json({valid: false});
+                }
+
+                // end connection to db
+                client.end(function(err) {
+                    if(err) throw err;
+                });
+            });
+
+            //res.sendStatus(200);
+        });
+
+        // log user out if they are logged in, otherwise send HTTP response 404
+        app.get('/api/logout', function(req, res) {
+            if(req.session.authenticated){
+                req.session.destroy(function(err){
+                    if(err) throw err;
+                });
+                res.sendStatus(200);
+            } else {
+                res.sendStatus(404);
+            }
+        });
+    }
+
+    // dashboard routes
+    {
+        // handle login route
+        app.get('/login', function(req, res){
+            if(req.session.hasOwnProperty('authenticated')){
+                res.redirect('/dash');
+            } else {
+                res.render('login');
+            }
+        });
+
+        // handle dashboard landing page route
+        app.get('/dash', function(req, res){
+            checkAuthElseRender(req, res, 'pages/dash/index');
+        });
+
+        // handle dashbaord subscribers page route
+        app.get('/dash/subscribers', function(req, res){
+            checkAuthElseRender(req, res, 'pages/dash/subscribers');
+        });
+
+        // handle dashbaord mail page route
+        /*app.get('/dash/mail', function(req, res){
+            checkAuthElseRender(req, res, 'pages/dash/mail');
+        });*/
+
+        // handle dashbaord mail page route
+        /*app.get('/dash/users', function(req, res){
+            checkAuthElseRender(req, res, 'pages/dash/users');
+        });*/
+
+        // handle catch all dashboard check to see if user is logged in
+        app.get('/dash/*', function(req, res){
+            //res.render('index');
+            if(req.session.hasOwnProperty('authenticated')){
+                res.render('pages/dash');
+            } else {
+                res.redirect('/login');
+            }
+        });
+    }
 
     // subscriber mailing list routes
     {
         // return all subscribers of mailing list
-        /*app.get('/api/mailingList', function(req, res) {
+        app.get('/api/mailingList', function(req, res) {
             //console.log(req.body);
 
             // connect to db
@@ -83,7 +185,7 @@ module.exports = function(app) {
             });
 
             //res.sendStatus(500);
-        });*/
+        });
 
         // add new subscriber to mailing list
         app.post('/api/mailingList', function(req, res) {
@@ -169,3 +271,11 @@ module.exports = function(app) {
         res.render('.' + req.path);
     });
 };
+
+function checkAuthElseRender(req, res, pageToRender) {
+    if(req.session.hasOwnProperty('authenticated')){
+        res.render(pageToRender);
+    } else {
+        res.redirect('/login');
+    }
+}

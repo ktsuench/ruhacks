@@ -1,17 +1,17 @@
 mixin ruHeader(ctrl, alias)
-    #ru-navbar.navbar.navbar-default.navbar-fixed-top(ng-controller=ctrl)
-        .container-fluid
-            .navbar-header
-                button.navbar-toggle.collapsed(ng-click=alias+".toggleNav()")
-                    span.sr-only Toggle Navigation
-                    - for(var i = 0; i < 3; i++)
-                        span.icon-bar
-                a#ru-brand.navbar-brand(href="/") 
-                    img(src="img/logo_50x50.png", title="RU Hacks")
-                    #ru-brand-title RU Hacks
-            #ru-nav.collapse.navbar-collapse(ng-class="{in: "+alias+".showNav}")
-                ul#ru-navbar-links.nav.navbar-nav.navbar-right
-                    block
+    .ru-navbar.ru-navbar-fixed-top(ng-controller=ctrl)
+        .ru-navbar-header
+            input.ru-nav-toggle-switch(ng-click=alias+".toggleNav()", type="checkbox", name="ru-nav")
+            label.ru-nav-toggle-label(for="ru-nav") Toggle Navigation
+            span.ru-nav-toggle
+                - for(var i = 0; i < 3; i++)
+                    span.icon-bar
+            a.ru-brand(href="/") 
+                img(src="img/logo_50x50.png", title="RU Hacks")
+                .ru-brand-title RU Hacks
+        .ru-nav.ru-nav-responsive(ng-class="{ru-nav-collapsed: "+alias+".showNav}")
+            ul#ru-navbar-links
+                block
 
 doctype html
 html#top(lang="en", data-framework="angularjs")
@@ -22,6 +22,7 @@ html#top(lang="en", data-framework="angularjs")
 
         title RU Hacks | Ryerson University
     body(ng-app="app")
+        include partials/visitor_notify.pug
         if header && headerCtrl && headerCtrlAlias
             // ==================== Header ==================== 
             +ruHeader(headerCtrl, headerCtrlAlias)

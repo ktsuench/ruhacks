@@ -1,8 +1,8 @@
 /*global angular */
 
 angular
-.module('app.controllers', [])
-.controller('mainCtrl', ['mailingListService', function mainCtrl(mailingListService, $window) {
+.module('app.controllers')
+.controller('mainCtrl', ['mailingListService', function mainCtrl(mailingListService) {
     var _ctrl = this;
     _ctrl.email = '';
     _ctrl.result = {
