@@ -26,9 +26,13 @@ html#top(lang="en", data-framework="angularjs")
                             .divider
                             |Spring 2017
                         #splash-call-to-action
-                            button.ru-btn(ng-click="showModal={display: 'flex'}") 2017 Mailing List
-                            a(href="/")
-                                button.ru-btn News
+                            .ru-btn(ng-click="showModal={display: 'flex'}") 2017 Mailing List
+                            a(href="https://www.facebook.com/ryehacks/")
+                                .ru-btn News
+                        //
+                        //applicant
+                        //sponsor
+                        //mentor
                         #splash-contact
                             |Contact us at 
                             .divider
@@ -83,7 +87,11 @@ html#top(lang="en", data-framework="angularjs")
                 .ru-row
                     .ru-section.ru-section-default
                         .ru-section-header Sponsors &amp; Partners
-                        .ru-section-row
+                        .ru-section-content
+                            |For sponsorship inquiries, send an email to 
+                            a(href="mailto:sponsors@ruhacks.com") sponsors@ruhacks.com
+                            |.
+                    .ru-section-row
                             .ru-section-content-col
                                 a(href="http://ress.ca")
                                     img.ru-partner(src="img/sponsors-partners/ress_200x200.png")
