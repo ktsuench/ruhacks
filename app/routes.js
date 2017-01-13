@@ -38,12 +38,7 @@ module.exports = function(app) {
             res.render('index');
         }
     });
-
-    // Temporary Route
-    app.get('/draft', function(req, res, next) {
-        res.render('draft');
-    });
-
+    
     // server routes =================================================
     // handle things like api calls
 
