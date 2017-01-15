@@ -3,6 +3,7 @@ var pg = require('pg');
 var db = require('../config/db');
 var session = require('express-session');
 var crypto = require('crypto');
+//var mailgun = require('mailgun-js')({apiKey: process.env.MAILGUN_API_KEY, domain: "ruhacks.com"});
 
 module.exports = function(app) {
     // route set up
@@ -38,7 +39,7 @@ module.exports = function(app) {
             res.render('index');
         }
     });
-    
+
     // server routes =================================================
     // handle things like api calls
 
@@ -180,7 +181,8 @@ module.exports = function(app) {
                 });
             } else {
                 // Send Client Error Forbidden Status Code
-                res.sendStatus(403);
+                //res.sendStatus(403);
+                res.redirect('');
             }
         });
 
@@ -263,9 +265,68 @@ module.exports = function(app) {
                 res.sendStatus(200);
             } else {
                 // Send Client Error Forbidden Status Code
-                res.sendStatus(403);
+                //res.sendStatus(403);
+                res.redirect('');
             }
         });
+    }
+
+    // mailing list routes
+    {
+        // EXPERIMENTAL
+        
+        /*app.post('/api/hackersMailingList', function(req, res) {
+            console.log(req.body);
+            var email = req.body;
+
+            // Condition 1
+            //if (email.from.toLowerCase().indexOf("ress.ca") > -1) {
+            // Condition 2
+            if (email.from.toLowerCase() === "ruhacks@ress.ca") {
+                var emailBlast = {};
+
+                emailBlast.from = "RU Hacks 2017 Team <organizers@ruhacks.com>";
+                emailBlast.to = "mailingtest@ruhacks.com";
+                
+                if (email.hasOwnProperty("cc")) emailBlast.cc = "," + email.cc;
+                if (email.hasOwnProperty("bcc")) emailBlast.bcc = "," + email.bcc;
+                
+                emailBlast.subject = email.subject;
+                emailBlast.text = email["body-plain"];
+                emailBlast.html = email["body-html"];
+                
+                if(email.hasOwnProperty("attachments")) {
+                    emailBlast.attachment = [];
+
+                    // @todo need to figure out how to get attachments to send properly
+
+                    JSON.parse(email.attachments).forEach(function(attch, index) {                        
+                        var attachment = new mailgun.Attachment({
+                            data: request(attch.url).auth('api', process.env.MAILGUN_API_KEY),
+                            filename: attch.name,
+                            knownLength: attch.size,
+                            contentType: attch["content-type"]
+                        });
+
+                        emailBlast.attachment.push(body);
+                    });
+                }
+                    
+                console.log("Email to be sent:");
+                console.log(emailBlast);
+
+                mailgun.messages().send(emailBlast, function(err, result) {
+                    if (err) {
+                        console.log("Failed to send email");
+                        console.log(err);
+                    }
+
+                    console.log(result);
+                });
+            }
+            
+            res.sendStatus(200);
+        });*/
     }
 
     // frontend routes =================================================
