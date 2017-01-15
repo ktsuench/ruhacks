@@ -300,7 +300,7 @@ module.exports = function(app) {
                         csvString += subscriber.email.trim();
 
                         if (index < result.rows.length - 1) {
-                            csvString += ",";
+                            csvString += ",\n";
                         }
                     });
 
