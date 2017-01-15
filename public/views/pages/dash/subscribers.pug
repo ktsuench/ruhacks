@@ -5,6 +5,8 @@ append vars
 
 append ruDashContent
     h2 Subscribers
+    a.ru-btn-link(href="http://www.ruhacks.com/mailingList")
+        .ru-btn Download CSV
     table.table
         thead
             tr
@@ -16,4 +18,4 @@ append ruDashContent
                 td {{ $index + 1 }}
                 td {{ subscriber.email.trim() }}
                 td
-                    button.btn.btn-danger(ng-click="dash.subscribers.delete(subscriber)") Delete
+                    .ru-btn(ng-click="dash.subscribers.delete(subscriber)") Delete
