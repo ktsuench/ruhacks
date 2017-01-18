@@ -254,6 +254,10 @@
             padding: 10px;
         }
 
+        &-image {
+            padding: 20px 30px;
+        }
+
         &-content {
             font-size: 1em;
             padding: 10px;
@@ -288,7 +292,7 @@
             align-items: center;
             display: flex;
             flex-direction: row;
-            flex-wrap: none;
+            flex-wrap: nowrap;
             justify-content: space-around;
 
             &-grid {
@@ -298,6 +302,10 @@
 
             &-wrap {
                 flex-wrap: wrap;
+            }
+
+            &-center {
+                justify-content: center;
             }
         }
     }
