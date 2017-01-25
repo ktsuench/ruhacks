@@ -10,6 +10,7 @@ angular
         'show': false,
         'text': ''
     }
+    _ctrl.subscribeDisabled = false;
 
     _ctrl.init = function() {};
 
@@ -20,6 +21,7 @@ angular
             _ctrl.result.text = 'Please provide your email.';
             _ctrl.result.show = true;
         } else {
+            _ctrl.subscribeDisabled = true;
             mailingListService.create({'email': _ctrl.email}).then(
                 function(res){
                     var msg = res.data.result == 'added' ? 'Thanks, we\'ll email you soon! :)' : 'You\'ve aleady subscribed.';
@@ -27,6 +29,7 @@ angular
                     _ctrl.result.class = 'has-success';
                     _ctrl.result.text = msg;
                     _ctrl.result.show = true;
+                    _ctrl.subscribeDisabled = false;
                 },
                 function(res){
                     console.log('Failed to add email to mailing list');
@@ -34,6 +37,7 @@ angular
                     _ctrl.result.class = 'has-error';
                     _ctrl.result.text = 'Sorry we\'re unable to subscribe you. Try again later. :(';
                     _ctrl.result.show = true;
+                    _ctrl.subscribeDisabled = false;
                 }
             );
         }
