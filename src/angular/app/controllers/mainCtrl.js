@@ -24,7 +24,7 @@ angular
             _ctrl.subscribeDisabled = true;
             mailingListService.create({'email': _ctrl.email}).then(
                 function(res){
-                    var msg = res.data.result == 'added' ? 'Thanks, we\'ll email you soon! :)' : 'You\'ve aleady subscribed.';
+                    var msg = res.data.result == 'added' ? 'Thanks, we will email you soon! :)' : 'You have already subscribed.';
 
                     _ctrl.result.class = 'has-success';
                     _ctrl.result.text = msg;
@@ -35,7 +35,7 @@ angular
                     console.log('Failed to add email to mailing list');
 
                     _ctrl.result.class = 'has-error';
-                    _ctrl.result.text = 'Sorry we\'re unable to subscribe you. Try again later. :(';
+                    _ctrl.result.text = 'Sorry we are unable to subscribe you. Try again later. :(';
                     _ctrl.result.show = true;
                     _ctrl.subscribeDisabled = false;
                 }
