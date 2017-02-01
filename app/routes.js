@@ -191,52 +191,47 @@ module.exports = function(app) {
         app.post('/api/mailingList', function(req, res) {
             //console.log(req.body);
 
-            if (req.session.hasOwnProperty('authenticated') && req.session.authenticated) {
-                // connect to db
-                var client = new pg.Client(db.url);
-                
-                client.connect(function(err) {
-                    if (err) {
-                        console.log(err);
-                        throw err;
-                    }            
-                });
+            // connect to db
+            /*var client = new pg.Client(db.url);
+            
+            client.connect(function(err) {
+                if (err) {
+                    console.log(err);
+                    throw err;
+                }            
+            });
 
-                // start query to db, check if email already is subscribed
-                client.query("SELECT * FROM mailingList WHERE email='" + req.body.email + "';", function(err, result) {
-                    if (err) throw err;
+            // start query to db, check if email already is subscribed
+            client.query("SELECT * FROM mailingList WHERE email='" + req.body.email + "';", function(err, result) {
+                if (err) throw err;
 
-                    if (result.rowCount < 1){
-                        client.query("INSERT INTO mailingList(email) VALUES ('" + req.body.email + "');", function(err, result) {
-                            if (err) {
-                                console.log(err);
-                                throw err;
-                            }
+                if (result.rowCount < 1){
+                    client.query("INSERT INTO mailingList(email) VALUES ('" + req.body.email + "');", function(err, result) {
+                        if (err) {
+                            console.log(err);
+                            throw err;
+                        }
 
-                            //console.log(result.rows);
-                            res.json({result: 'added'});
-
-                            // end connection to db
-                            client.end(function(err) {
-                                if (err) throw err;
-                            });
-                        });
-                    } else {
-                        res.json({result: 'duplicate'});
+                        //console.log(result.rows);
+                        res.json({result: 'added'});
 
                         // end connection to db
                         client.end(function(err) {
                             if (err) throw err;
                         });
-                    }
-                });
-                
-                //res.sendStatus(200);
-            } else {
-                // Send Client Error Forbidden Status Code
-                //res.sendStatus(403);
-                res.redirect('../');
-            }
+                    });
+                } else {
+                    res.json({result: 'duplicate'});
+
+                    // end connection to db
+                    client.end(function(err) {
+                        if (err) throw err;
+                    });
+                }
+            });*/
+            
+            //res.sendStatus(200);
+            res.sendStatus(400);
         });
 
         // delete a subscriber from mailing list
