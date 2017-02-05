@@ -44,12 +44,11 @@
 .ru {
     &-navbar {
         align-items: center;
-        background: rgba(200, 200, 200, 0.95);
-        border-bottom: 3px solid @ryerson-gold;
+        background: @ryerson-blue;
         display: flex;
         flex-direction: row;
         justify-content: space-around;
-        padding: 5px;
+        padding: 10px;
 
         @media (min-width: 768px) {
             //padding: 5px 100px 5px 100px;
@@ -65,13 +64,14 @@
         }
 
         &-links a {
-            color: @black;
+            color: @white;
             font-size: 1.15em;
             font-weight: 400;
             text-decoration: none !important;
+            cursor: pointer;
 
             &:link, &:visited {
-                color: @black;
+                color: @white;
                 text-decoration: none !important;
             }
 
@@ -79,6 +79,16 @@
                 color: @ryerson-gold;
                 text-decoration: none !important;
             }
+        }
+
+        &-fixed-top {
+            position: fixed;
+            width: 100%;
+            z-index: 101;
+        }
+
+        &-landing {
+            background: transparent;
         }
     }
 
@@ -88,7 +98,7 @@
             flex-direction: column;
             justify-content: space-between;
             align-items: center;
-            background: rgba(150,150,150,1);
+            background: rgba(150,150,150,0.5);
             border-radius: 5px;
             width: 30px;
             padding: 5px;
@@ -110,7 +120,7 @@
             }
 
             & .icon-bar {
-                background: @black;
+                background: @white;
                 height: 4px;
                 margin: 2px;
                 width: 20px;
@@ -139,13 +149,14 @@
 
             &.ru-nav-show .ru-navbar-links {
                 & li {
-                    background: rgba(200, 200, 200, 0.95);
+                    background: @ryerson-blue;
                     border-bottom: 1px solid @ryerson-gold;
                     display: block !important;
+                    text-align: center;
 
                     & a {
                         display: block;
-                        padding: 10px;
+                        padding: 10px 0 10px 0;
                         width: 100%;
                     }
                 }
@@ -155,21 +166,21 @@
 
     &-brand {
         .flex-center();
-        color: @black;
+        color: @white;
         flex-direction: row;
         font-weight: 400;
         padding: 0 10px 0 10px;
         text-decoration: none !important;
 
         &-title {
-            color :@black;
+            color: @white;
             font-size: 1.25em;
             font-weight: 700;
             padding: 0 0 0 10px;
         }
 
         &:link, &:visited, &:hover, &:active, &:focus {
-            color: @black;
+            color: @white;
             text-decoration: none !important;
         }
     }

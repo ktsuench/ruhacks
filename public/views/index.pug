@@ -1,3 +1,17 @@
+mixin ruHeader(cls)
+    .ru-navbar(class=cls)
+        .ru-nav-header
+            a.ru-brand(href="/") 
+                .ru-brand-title RU Hacks
+        .ru-nav-toggle(ng-click="home.toggleNav()")
+            - for(var i = 0; i < 3; i++)
+                span.icon-bar
+        .ru-nav.ru-nav-responsive     
+            ul.ru-navbar-links
+                block
+    .ru-nav.ru-nav-responsive.ru-nav-mobile(class=cls, ng-class="{'ru-nav-show': home.showNav}")
+        ul.ru-navbar-links
+            block
 doctype html
 html#top(lang="en", data-framework="angularjs")
     head
@@ -6,6 +20,23 @@ html#top(lang="en", data-framework="angularjs")
         title RU Hacks | Ryerson University
     body(ng-app="app")
         include partials/visitor_notify.pug
+        // ==================== Menu ==================== 
+        #ru-nav-scroll.ru-navbar-container.ru-navbar-fixed-top(ng-controller="mainCtrl as home")
+            +ruHeader("ru-navbar-landing")
+                li
+                    a(href="https://ruhacks.typeform.com/to/zXWNeG", title="RU Hacks Hacker Application") Apply
+                //-li
+                    a(href="https://ruhacks.typeform.com/to/zXWNeG", title="RU Hacks Hacker Application") Mentor
+                //-li
+                    a(href="https://ruhacks.typeform.com/to/zXWNeG", title="RU Hacks Hacker Application") Volunteer
+                li
+                    a(href="#schedule", title="RU Hacks Schedule") Schedule
+                li
+                    a(href="#location", title="RU Hacks Location") Location
+                li
+                    a(href="#sponsors", title="RU Hacks Sponsors and Partners") Sponsors &amp; Partners
+                li
+                    a(href="#faq", title="RU Hacks FAQ") FAQ
         // ==================== Content ==================== 
         #landing-container(ng-controller="mainCtrl as home")
             // ==================== Cover ==================== 
@@ -27,15 +58,15 @@ html#top(lang="en", data-framework="angularjs")
                             |March 17-19 2017
                         #splash-call-to-action
                             //-.ru-btn(ng-click="showModal={display: 'flex'}") 2017 Mailing List
-                            a.ru-btn-link(href="https://ruhacks.typeform.com/to/zXWNeG")
+                            a.ru-btn-link(href="https://ruhacks.typeform.com/to/zXWNeG", title="RU Hacks Hacker Application")
                                 .ru-btn Apply
-                            a.ru-btn-link(href="https://www.facebook.com/ryehacks/")
+                            a.ru-btn-link(href="https://www.facebook.com/ryehacks/", title="RU Hacks Facebook")
                                 .ru-btn News
                         #splash-contact
                             |Contact us at 
                             .divider
-                            a(href="mailto:helloworld@ruhacks.com") helloworld@ruhacks.com
-                #modal.landing-layer(ng-style="showModal")
+                            a(href="mailto:helloworld@ruhacks.com", title="helloworld@ruhacks.com") helloworld@ruhacks.com
+                //-#modal.landing-layer(ng-style="showModal")
                     #modal-container
                         span#modal-close(ng-click="showModal={}") X
                         form#subscribe(name="mailingList")
@@ -149,7 +180,7 @@ html#top(lang="en", data-framework="angularjs")
                     small.ru-section-inverted &copy; 2016 RU Hacks. All Rights Reserved
 
         // ==================== MLH Banner ==================== 
-        a#mlh-trust-badge(style="display:block;max-width:100px;min-width:60px;position:fixed;left:30px;top:0;width:10%;z-index:10000", href="https://mlh.io/seasons/na-2017/events?utm_source=na-2017&utm_medium=TrustBadge&utm_campaign=na-2017&utm_content=white", target="_blank")
+        a#mlh-trust-badge(style="display:block;max-width:100px;min-width:60px;position:fixed;left:20px;top:0;width:10%;z-index:100001", href="https://mlh.io/seasons/na-2017/events?utm_source=na-2017&utm_medium=TrustBadge&utm_campaign=na-2017&utm_content=white", target="_blank")
             img(src="https://s3.amazonaws.com/logged-assets/trust-badge/2017/white.svg", alt="Major League Hacking 2017 Hackathon Season", style="width:80%")
         
         // ==================== Includes ==================== 

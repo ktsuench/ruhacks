@@ -2,8 +2,9 @@
 
 angular
 .module('app.controllers')
-.controller('mainCtrl', ['mailingListService', function mainCtrl(mailingListService) {
+.controller('mainCtrl', ['$window', 'mailingListService', function mainCtrl($window, mailingListService) {
     var _ctrl = this;
+    _ctrl.showNav = false;
     _ctrl.email = '';
     _ctrl.result = {
         'class': '',
@@ -12,7 +13,41 @@ angular
     }
     _ctrl.subscribeDisabled = false;
 
-    _ctrl.init = function() {};
+    _ctrl.init = function() {
+        $window.showNav = false;
+         
+        $window.onscroll = function () {
+            if ($window.showNav === false) {
+                var val = 1 - ($window.outerHeight - $window.scrollY) / $window.outerHeight;
+                var nav = document.getElementById("ru-nav-scroll");
+
+                if (nav.hasAttribute("style")) {
+                    nav.removeAttribute("style");
+                }
+
+                nav.setAttribute("style", "background: rgba(0, 76, 155, " + val +");");
+            }
+        }
+    };
+
+    // Show nav
+    _ctrl.toggleNav = function() {
+        _ctrl.showNav = !_ctrl.showNav;
+        $window.showNav = _ctrl.showNav;
+
+        var val = 1 - ($window.outerHeight - $window.scrollY) / $window.outerHeight;
+        var nav = document.getElementById("ru-nav-scroll");
+
+        if (nav.hasAttribute("style")) {
+            nav.removeAttribute("style");
+        }
+
+        if (_ctrl.showNav) {
+            nav.setAttribute("style", "background: rgba(0, 76, 155, 1);");
+        } else {
+            nav.setAttribute("style", "background: rgba(0, 76, 155, " + val +");");          
+        }
+    }
 
     // Submit user's email to database
     _ctrl.subscribe = function() {
