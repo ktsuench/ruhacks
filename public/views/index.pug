@@ -13,7 +13,7 @@ mixin ruHeader(cls)
         ul.ru-navbar-links
             block
 doctype html
-html#top(lang="en", data-framework="angularjs")
+html(lang="en", data-framework="angularjs")
     head
         include partials/site_info.pug
 
@@ -25,10 +25,10 @@ html#top(lang="en", data-framework="angularjs")
             +ruHeader("ru-navbar-landing")
                 li
                     a(href="https://ruhacks.typeform.com/to/zXWNeG", title="RU Hacks Hacker Application") Apply
-                //-li
-                    a(href="https://ruhacks.typeform.com/to/zXWNeG", title="RU Hacks Hacker Application") Mentor
-                //-li
-                    a(href="https://ruhacks.typeform.com/to/zXWNeG", title="RU Hacks Hacker Application") Volunteer
+                li
+                    a(href="https://ruhacks.typeform.com/to/fRrYKS", title="RU Hacks Mentor Application") Mentor
+                li
+                    a(href="https://ruhacks.typeform.com/to/alzn9w", title="RU Hacks Volunteer Application") Volunteer
                 li
                     a(href="#schedule", title="RU Hacks Schedule") Schedule
                 li
@@ -125,16 +125,16 @@ html#top(lang="en", data-framework="angularjs")
                     .ru-section-row.ru-section-row-center.ru-section-row-wrap
                         .ru-section-image
                             a(href="https://mlh.io/")
-                                img.ru-partner(src="img/sponsors-partners/mlh-logo-color_sm.png")
+                                img.ru-partner(src="img/sponsors-partners/mlh-logo-color_sm.png", alt="MLH Logo")
                         .ru-section-image
                             a(href="http://ress.ca/")
-                                img.ru-partner(src="img/sponsors-partners/ress_sm.png")
+                                img.ru-partner(src="img/sponsors-partners/ress_sm.png", alt="Ryerson Engineering Student Society Logo")
                         .ru-section-image
                             a(href="http://www.ambitions.co/")
-                                img.ru-partner(src="img/sponsors-partners/ambitions_sm.png")
+                                img.ru-partner(src="img/sponsors-partners/ambitions_sm.png" alt="Ambitions Logo")
                         .ru-section-image
                             a(href="https://www.synaptivemedical.com/")
-                                img.ru-partner(src="img/sponsors-partners/synaptive-medical_sm.png")
+                                img.ru-partner(src="img/sponsors-partners/synaptive-medical_sm.png" alt="Synaptive Medical Logo")
             // ==================== FAQ ==================== 
             #faq.ru-content-blue
                 .ru-row
