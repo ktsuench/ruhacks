@@ -373,6 +373,46 @@
     }
 }
 
+/* ==================== Schedule ==================== */
+#schedule {
+    & .ru-section-content-col-3 {
+        width: 27vw;
+
+        @media (max-width: 1080px) {
+            & {
+                width: 40vw !important;
+            }
+        }
+
+        @media (max-width: 780px) {
+            & {
+                width: 100vw !important;
+            }
+        }
+
+        & .ru-section-content {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            padding: 3px 10px;
+
+
+        }
+    }
+
+    & .ru-schedule-time {
+        border-right: 2px dotted @blue-lochmara;
+        padding: 8px 15px 8px 0px;
+        width: 30%;
+        text-align: right;
+    }
+
+    & .ru-schedule-content {
+        padding: 8px 0px 8px 15px;
+        width: 50%;
+    }
+}
+
 /* ==================== Location ==================== */
 #location {
     background-attachment: fixed;
