@@ -1,4 +1,4 @@
-mixin ruHeader(cls)
+﻿mixin ruHeader(cls)
     .ru-navbar(class=cls)
         .ru-nav-header
             a.ru-brand(href="/") 
@@ -177,20 +177,23 @@ html(lang="en", data-framework="angularjs")
                             |.
                     .ru-section-row.ru-section-row-center.ru-section-row-wrap
                         .ru-section-image
-                            a(href="https://mlh.io/")
+                            a(href="https://mlh.io/", title="Major League Hacking")
                                 img.ru-partner(src="img/sponsors-partners/mlh-logo-color_sm.png", alt="MLH Logo")
                         .ru-section-image
-                            a(href="http://ress.ca/")
+                            a(href="http://ress.ca/", title="Ryerson Engineering Student Society")
                                 img.ru-partner(src="img/sponsors-partners/ress_sm.png", alt="Ryerson Engineering Student Society Logo")
                         .ru-section-image
-                            a(href="https://rssonline.ca/")
-                                img.ru-partner(src="img/sponsors-partners/ryerson-science-society_sm.png" alt="Ryerson Science Society Logo")
+                            a(href="https://rssonline.ca/", title="Ryerson Science Society")
+                                img.ru-partner(src="img/sponsors-partners/ryerson-science-society_sm.png", alt="Ryerson Science Society Logo")
                         .ru-section-image
-                            a(href="http://www.ambitions.co/")
-                                img.ru-partner(src="img/sponsors-partners/ambitions_sm.png" alt="Ambitions Logo")
+                            a(href="https://www.github.com/", title="Github")
+                                img.ru-partner(src="img/sponsors-partners/github_logo_sm.png", alt="Github Logo")
                         .ru-section-image
-                            a(href="http://www.stickeryou.com/2")
-                                img.ru-partner(src="img/sponsors-partners/stickeryou_sm.png" alt="StickerYou Logo")
+                            a(href="http://www.ambitions.co/", title="Ambitions")
+                                img.ru-partner(src="img/sponsors-partners/ambitions_sm.png", alt="Ambitions Logo")
+                        .ru-section-image
+                            a(href="http://www.stickeryou.com/2", title="StickerYou")
+                                img.ru-partner(src="img/sponsors-partners/stickeryou_sm.png", alt="StickerYou Logo")
             // ==================== FAQ ==================== 
             #faq.ru-content-blue
                 .ru-row
@@ -246,5 +249,6 @@ html(lang="en", data-framework="angularjs")
         
         // ==================== Includes ==================== 
         include partials/includes.pug
+        link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css")
 
         block scripts
