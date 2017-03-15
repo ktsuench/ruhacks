@@ -266,7 +266,13 @@
         }
 
         &-image {
-            padding: 20px 15px;
+            padding: 20px 30px;
+
+            @media (max-width: 780px) {
+                & {
+                    padding: 20px 15px !important;
+                }
+            }
         }
 
         &-content {
