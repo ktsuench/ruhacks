@@ -39,6 +39,8 @@ html(lang="en", data-framework="angularjs")
                     a(href="#sponsors", title="RU Hacks Sponsors and Partners") Sponsors &amp; Partners
                 li
                     a(href="#faq", title="RU Hacks FAQ") FAQ
+                li
+                    a(href="#afterward", title="RU Hacks Afterward") Afterward
         // ==================== Content ==================== 
         #landing-container(ng-controller="mainCtrl as home")
             // ==================== Cover ==================== 
@@ -246,6 +248,22 @@ html(lang="en", data-framework="angularjs")
                                 .ru-section-subheader I still have more questions!
                                 .ru-section-content Reach out to us at 
                                     a(href="mailto:helloworld@ruhacks.com") helloworld@ruhacks.com
+
+        // ==================== afterward ==================== 
+        #afterward.ru-content-white
+                .ru-row
+                    .ru-section.ru-section-default
+                        .ru-section-header Afterward
+                        .ru-section-row.ru-section-row-wrap
+                            iframe#ru-afterward-video(src="https://player.vimeo.com/video/209641825", frameborder="0", webkitallowfullscreen, mozallowfullscreen, allowfullscreen)
+                            p.text-center
+                                a(href='https://vimeo.com/209641825') RU Hacks 2017
+                                |  from 
+                                a(href='https://vimeo.com/nexteracinematics') Next Era Cinematics
+                                |  on 
+                                a(href='https://vimeo.com') Vimeo
+                                | .
+
 
         // ==================== Footer ==================== 
         #ru-footer.ru-content-blue
