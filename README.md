@@ -1,3 +1,5 @@
-#RU Hacks 
+# RU Hacks 
 
-Hackathon site in progress.
+RU Hacks 2017 Official Website. Visit it at [http://www.ruhacks.com/](http://www.ruhacks.com/ "RU Hacks 2017")!
+
+Made using PostgreSQL Database, Express, Angular, and Node. Other tools used include Pug, LESS, Gulp, and Bower.
