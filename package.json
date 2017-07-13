@@ -55,7 +55,7 @@
     "url": "https://github.com/ktsuench/ruhacks.git"
   },
   "engines": {
-    "node": "^4.4"
+    "node": "^4.8.4"
   },
   "scripts": {
     "postinstall": "bower install"
