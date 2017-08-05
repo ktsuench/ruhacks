@@ -1,6 +1,6 @@
 {
   "name": "ruhacks",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "description": "ruhacks",
   "main": "server.js",
   "keywords": [
@@ -57,7 +57,5 @@
   "engines": {
     "node": "^4.8.4"
   },
-  "scripts": {
-    "postinstall": "bower install"
-  }
+  "scripts": {}
 }
