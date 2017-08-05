@@ -2,8 +2,8 @@ mixin ruHeader(ctrl, alias)
     .ru-navbar-container.ru-navbar-fixed-top(ng-controller=ctrl)
         .ru-navbar
             .ru-nav-header
-                a.ru-brand(href="/") 
-                    img(src="img/logo_50x50.png", title="RU Hacks")
+                a.ru-brand(href="/2017") 
+                    img(src="2017/img/logo_50x50.png", title="RU Hacks")
                     .ru-brand-title RU Hacks
             .ru-nav-toggle(ng-click=alias+".toggleNav()")
                 - for(var i = 0; i < 3; i++)

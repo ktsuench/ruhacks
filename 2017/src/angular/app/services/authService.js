@@ -6,10 +6,10 @@ angular
     return {
         // auth login info
         auth: function(loginData) {
-            return $http.post('/api/auth', loginData);
+            return $http.post('/2017/api/auth', loginData);
         },
         logout: function() {
-            return $http.get('api/logout');
+            return $http.get('/2017/api/logout');
         }
     }
 }]);

@@ -1,7 +1,7 @@
 ﻿mixin ruHeader(cls)
     .ru-navbar(class=cls)
         .ru-nav-header
-            a.ru-brand(href="/") 
+            a.ru-brand(href="/2017") 
                 .ru-brand-title RU Hacks
         .ru-nav-toggle(ng-click="home.toggleNav()")
             - for(var i = 0; i < 3; i++)
@@ -32,15 +32,15 @@ html(lang="en", data-framework="angularjs")
                 li
                     a(href="https://www.facebook.com/ryehacks/", title="RU Hacks Facebook") News
                 li
-                    a(href="#schedule", title="RU Hacks Schedule") Schedule
+                    a(href="/2017/#schedule", title="RU Hacks Schedule") Schedule
                 li
-                    a(href="#location", title="RU Hacks Location") Location
+                    a(href="/2017/#location", title="RU Hacks Location") Location
                 li
-                    a(href="#sponsors", title="RU Hacks Sponsors and Partners") Sponsors &amp; Partners
+                    a(href="/2017/#sponsors", title="RU Hacks Sponsors and Partners") Sponsors &amp; Partners
                 li
-                    a(href="#faq", title="RU Hacks FAQ") FAQ
+                    a(href="/2017/#faq", title="RU Hacks FAQ") FAQ
                 li
-                    a(href="#afterward", title="RU Hacks Afterward") Afterward
+                    a(href="/2017/#afterward", title="RU Hacks Afterward") Afterward
         // ==================== Content ==================== 
         #landing-container(ng-controller="mainCtrl as home")
             // ==================== Cover ==================== 
@@ -181,31 +181,31 @@ html(lang="en", data-framework="angularjs")
                     .ru-section-row.ru-section-row-center.ru-section-row-wrap
                         .ru-section-image
                             a(href="http://www.ee.ryerson.ca/", title="Ryerson University Department of Electrical and Computer Engineering")
-                                img.ru-partner.ru-partner-wide(src="img/sponsors-partners/ryerson_ece_logo_sm.png", alt="Ryerson University Department of Electrical and Computer Engineering Logo")
+                                img.ru-partner.ru-partner-wide(src="2017/img/sponsors-partners/ryerson_ece_logo_sm.png", alt="Ryerson University Department of Electrical and Computer Engineering Logo")
                         .ru-section-image
                             a(href="https://mlh.io/", title="Major League Hacking")
-                                img.ru-partner(src="img/sponsors-partners/mlh-logo-color_sm.png", alt="MLH Logo")
+                                img.ru-partner(src="2017/img/sponsors-partners/mlh-logo-color_sm.png", alt="MLH Logo")
                         .ru-section-image
                             a(href="http://ress.ca/", title="Ryerson Engineering Student Society")
-                                img.ru-partner(src="img/sponsors-partners/ress_sm.png", alt="Ryerson Engineering Student Society Logo")
+                                img.ru-partner(src="2017/img/sponsors-partners/ress_sm.png", alt="Ryerson Engineering Student Society Logo")
                         .ru-section-image
                             a(href="https://rssonline.ca/", title="Ryerson Science Society")
-                                img.ru-partner(src="img/sponsors-partners/ryerson-science-society_sm.png", alt="Ryerson Science Society Logo")
+                                img.ru-partner(src="2017/img/sponsors-partners/ryerson-science-society_sm.png", alt="Ryerson Science Society Logo")
                         .ru-section-image
                             a(href="https://sandboxdmz.com/", title="Sandbox by DMZ")
-                                img.ru-partner(src="img/sponsors-partners/sandbox_by_dmz_logo_sm.png", alt="Sandbox by DMZ Logo")
+                                img.ru-partner(src="2017/img/sponsors-partners/sandbox_by_dmz_logo_sm.png", alt="Sandbox by DMZ Logo")
                         .ru-section-image
                             a(href="https://www.github.com/", title="Github")
-                                img.ru-partner(src="img/sponsors-partners/github_logo_sm.png", alt="Github Logo")
+                                img.ru-partner(src="2017/img/sponsors-partners/github_logo_sm.png", alt="Github Logo")
                         .ru-section-image
                             a(href="http://www.ambitions.co/", title="Ambitions")
-                                img.ru-partner(src="img/sponsors-partners/ambitions_sm.png", alt="Ambitions Logo")
+                                img.ru-partner(src="2017/img/sponsors-partners/ambitions_sm.png", alt="Ambitions Logo")
                         .ru-section-image
                             a(href="http://www.stickeryou.com/2", title="StickerYou")
-                                img.ru-partner(src="img/sponsors-partners/stickeryou_sm.png", alt="StickerYou Logo")
+                                img.ru-partner(src="2017/img/sponsors-partners/stickeryou_sm.png", alt="StickerYou Logo")
                         .ru-section-image
                             a(href="https://www.wake-ups.com/", title="wake-ups")
-                                img.ru-partner(src="img/sponsors-partners/wakeups_logo_sm.jpg", alt="Wake-Ups Logo")
+                                img.ru-partner(src="2017/img/sponsors-partners/wakeups_logo_sm.jpg", alt="Wake-Ups Logo")
             // ==================== FAQ ==================== 
             #faq.ru-content-blue
                 .ru-row

@@ -27,7 +27,7 @@ angular
             authService.auth({'username': _ctrl.user, 'pass': _ctrl.pass}).then(
                 function(res){
                     if(res.data.valid){
-                        $window.location.assign('dash');
+                        $window.location.assign('2017/dash');
                         _ctrl.err.show = false;
                     } else {
                         _ctrl.err.text = 'Wrong username/password';

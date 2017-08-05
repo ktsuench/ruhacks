@@ -8,7 +8,7 @@ var Readable = require("stream").Readable;
 
 module.exports = function(app) {
     // route set up
-    app.set('views', 'public/views');
+    app.set('views', '2017/public/views');
     app.set('view engine', 'pug');
 
     // route to return social media image
@@ -112,7 +112,7 @@ module.exports = function(app) {
         // handle login route
         app.get('/login', function(req, res){
             if (req.session.hasOwnProperty('authenticated') && req.session.authenticated){
-                res.redirect('/dash');
+                res.redirect('/2017/dash');
             } else {
                 res.render('login');
             }
@@ -143,7 +143,7 @@ module.exports = function(app) {
             if (req.session.hasOwnProperty('authenticated') && req.session.authenticated){
                 res.render('pages/dash');
             } else {
-                res.redirect('/login');
+                res.redirect('/2017/login');
             }
         });
     }
@@ -183,7 +183,7 @@ module.exports = function(app) {
             } else {
                 // Send Client Error Forbidden Status Code
                 //res.sendStatus(403);
-                res.redirect('../');
+                res.redirect('/2017');
             }
         });
 
@@ -268,7 +268,7 @@ module.exports = function(app) {
             } else {
                 // Send Client Error Forbidden Status Code
                 //res.sendStatus(403);
-                res.redirect('../');
+                res.redirect('/2017');
             }
         });
 
@@ -323,7 +323,7 @@ module.exports = function(app) {
             } else {
                 // Send Client Error Forbidden Status Code
                 //res.sendStatus(403);
-                res.redirect('../');
+                res.redirect('/2017');
             }
         });
     }
@@ -396,6 +396,6 @@ function checkAuthElseRender(req, res, pageToRender) {
     if (req.session.hasOwnProperty('authenticated') && req.session.authenticated){
         res.render(pageToRender);
     } else {
-        res.redirect('/login');
+        res.redirect('/2017/login');
     }
 }
