@@ -1,6 +1,6 @@
 // .env loading ============================================
 // development purposes only
-if(!process.env.requireDotenv) require('dotenv').config({path: "./2017/prod.env"});
+if(!process.env.REQUIRE_DOT_ENV) require('dotenv').config({path: "./2017/.env"});
 
 // modules =================================================
 var express         = require('express');
@@ -85,7 +85,21 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // parse cookies
 var key = process.env.COOKIE_SECRET_2017 || "gf'BTtV4E%^A%!/>s$rDk8#@cQqkV#739x+k";
 // refer to the express-session docs: https://github.com/expressjs/session
-app.use(session({path: '/2017', name: 'ruhacks', secret: key, httpOnly: true, secure: false, maxAge: null, resave: false, saveUninitialized: false}));
+app.use(session(
+    {
+        path: '/2017',
+        name: 'ruhacks-2017',
+        secret: key,
+        httpOnly: true,
+        secure: false,
+        maxAge: null,
+        resave: false,
+        saveUninitialized: false,
+        cookie: {
+            path: '/2017'
+        }
+    }
+));
 
 // override with the X-HTTP-Method-Override header in the request. simulate DELETE/PUT
 app.use(methodOverride('X-HTTP-Method-Override')); 
