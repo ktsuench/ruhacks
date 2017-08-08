@@ -15,6 +15,7 @@
   "dependencies": {
     "body-parser": "1.17.2",
     "bower": "1.8.0",
+    "dotenv": "2.0.0",
     "express": "4.15.4",
     "express-session": "1.15.5",
     "less": "2.7.2",
@@ -25,7 +26,6 @@
   },
   "devDependencies": {
     "autoprefixer": "^6.3.7",
-    "dotenv": "2.0.0",
     "gulp": "^3.8.10",
     "gulp-cache": "^0.4.5",
     "gulp-clean": "^0.3.1",
