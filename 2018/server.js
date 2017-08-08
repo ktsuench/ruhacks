@@ -12,9 +12,6 @@ var crypto = require('crypto');
 
 // configuration ===========================================
 
-// config files
-var db = require('./config/db');
-
 // set our port
 app.set('port', (process.env.PORT_2018 || 7000));
 
