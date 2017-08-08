@@ -1,0 +1,30 @@
+﻿doctype html
+html(lang="en")
+    head
+        include partials/site_info.pug
+
+        title RU Hacks | Ryerson University
+    body
+        include partials/visitor_notify.pug
+        // ==================== Content ==================== 
+        #landing-container
+            // ==================== Cover ==================== 
+            #landing
+                #snow.landing-layer
+                #tower.landing-layer
+                #lights.landing-layer
+                #landscape.landing-layer
+                #splash-container.landing-layer
+                    #splash
+                        #splash-logo
+                        #splash-loc-date
+                            |Ryerson University
+                            .divider
+                            |Stay Tuned <br/>
+                            |Hackathon TBA
+                        #splash-contact
+                            |Visit our 2017 site @ 
+                            .divider
+                            a(href="https://www.ruhacks.com/2017", title="RU Hacks 2017") RU Hacks 2017
+        // ==================== Includes ==================== 
+        include partials/includes.pug
