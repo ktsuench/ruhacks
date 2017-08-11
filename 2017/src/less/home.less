@@ -24,6 +24,31 @@
         50%{background-color: @blue-midnight;}
         100%{background-color: @blue-lochmara;}
     }
+
+    #summary-video {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        min-width: 100%;
+        min-height: 100%;
+        width: auto;
+        height: auto;
+        z-index: -100;
+        transform: translateX(-50%) translateY(-50%);
+        background: url('./2017/img/vid-placeholder.jpg') no-repeat;
+        background-size: cover;
+        transition: 1s opacity;
+    }
+
+    #summary-video-tint {
+        position: absolute;
+        top: 0;
+        left: 0;
+        min-width: 100%;
+        min-height: 100%;
+        background: rgba(0, 76, 155, 0.6);
+        z-index: 0;
+    }
 }
 
 .landing-layer {
@@ -76,8 +101,8 @@
         75% {opacity: 50}
         80% {opacity: 40}
         85% {opacity: 30}
-        90& {opacity: 20}
-        95& {opacity: 10}
+        90% {opacity: 20}
+        95% {opacity: 10}
         100% {opacity: 0}
     }
 
