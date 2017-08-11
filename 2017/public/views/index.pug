@@ -39,7 +39,7 @@ html(lang="en", data-framework="angularjs")
                     a(href="/2017/#sponsors", title="RU Hacks Sponsors and Partners") Sponsors &amp; Partners
                 li
                     a(href="/2017/#faq", title="RU Hacks FAQ") FAQ
-                li
+                //-li
                     a(href="/2017/#afterward", title="RU Hacks Afterward") Afterward
         // ==================== Content ==================== 
         #landing-container(ng-controller="mainCtrl as home")
@@ -56,6 +56,9 @@ html(lang="en", data-framework="angularjs")
                 #summary-video-tint
                 video#summary-video(playsinline, autoplay, muted, loop)
                     source(src="./2017/img/summary.mp4" type="video/mp4")
+                    source(src="./2017/img/summary_720.mp4" type="video/mp4", media="all and (max-width: 720px)")
+                    source(src="./2017/img/summary_540.mp4" type="video/mp4", media="all and (max-width: 540px)")
+                    source(src="./2017/img/summary_360.mp4" type="video/mp4", media="all and (max-width: 360px)")
                 #splash-container.landing-layer
                     #splash(ng-init="home.init()")
                         #splash-logo
@@ -254,8 +257,8 @@ html(lang="en", data-framework="angularjs")
                                 .ru-section-content Reach out to us at 
                                     a(href="mailto:helloworld@ruhacks.com") helloworld@ruhacks.com
 
-        // ==================== afterward ==================== 
-        #afterward.ru-content-white
+        //-// ==================== afterward ==================== 
+        //-#afterward.ru-content-white
                 .ru-row
                     .ru-section.ru-section-default
                         .ru-section-header Afterward
