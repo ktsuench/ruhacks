@@ -1,6 +1,6 @@
 // .env loading ============================================
 // development purposes only
-if(!process.env.REQUIRE_DOT_ENV) require('dotenv').config({path: "./2018/.env"});
+if(!process.env.hasOwnProperty("REQUIRE_DOT_ENV") || process.env.REQUIRE_DOT_ENV === "true") require('dotenv').config({path: "./2018/.env"});
 
 // modules =================================================
 var express = require('express');
