@@ -13,10 +13,6 @@ angular
     }
     _ctrl.subscribeDisabled = false;
 
-    function vidFade(vid) {
-        vid.classList.add("stopfade");
-    }
-
     _ctrl.init = function() {
         $window.showNav = false;
          
@@ -32,22 +28,6 @@ angular
                 nav.setAttribute("style", "background: rgba(0, 76, 155, " + val +");");
             }
         }
-
-        var vid = document.getElementById("summary-video");
-        var pauseButton = document.querySelector("#play-vid");
-
-        if (window.matchMedia('(prefers-reduced-motion)').matches) {
-            vid.removeAttribute("autoplay");
-            vid.pause();
-            pauseButton.innerHTML = "<div class='ru-btn'>Play Video</div>";
-        }
-
-        vid.addEventListener('ended', function() {
-            // only functional if "loop" is removed 
-            vid.pause();
-            // to capture IE10
-            vidFade(vid);
-        }); 
     };
 
     // Show nav
@@ -97,19 +77,4 @@ angular
             );
         }
     };
-
-    // Play/Pause Video
-    _ctrl.playPauseVideo = function() {
-        var vid = document.getElementById("summary-video");
-        var pauseButton = document.querySelector("#play-vid");
-
-        vid.classList.toggle("stopfade");
-        if (vid.paused) {
-            vid.play();
-            pauseButton.innerHTML = "<div class='ru-btn'>Pause Video</div>";
-        } else {
-            vid.pause();
-            pauseButton.innerHTML = "<div class='ru-btn'>Play Video</div>";
-        }
-    }
 }]);
