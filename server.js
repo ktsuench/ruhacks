@@ -15,7 +15,7 @@ const app = express();
 
 // set our port
 app.set('port', (process.env.PORT || 7000));
-// app.use('/2017', require('./2017/server'));
+app.use('/2017', require('./2017/server'));
 app.use('/', require('./2018/server'));
 
 // start app ===============================================
