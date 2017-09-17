@@ -1,6 +1,6 @@
 {
   "name": "ruhacks",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "ruhacks",
   "main": "server.js",
   "keywords": [
@@ -10,7 +10,7 @@
     "ru hacks",
     "hackathon"
   ],
-  "author": "ktsuench",
+  "author": "ruhacks",
   "license": "ISC",
   "dependencies": {
     "body-parser": "1.17.2",
@@ -45,10 +45,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/ktsuench/ruhacks.git"
+    "url": "https://github.com/ruahcks/website.git"
   },
   "engines": {
-    "node": "^4.8.4"
+    "node": "8.5.x"
   },
-  "scripts": {}
+  "scripts": {
+    "start": "node server.js"
+  }
 }
