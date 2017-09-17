@@ -1,14 +1,14 @@
-module.exports = function(app) {
+module.exports = function (app) {
   // route set up
   app.set('views', '2018/public/views');
   app.set('view engine', 'pug');
 
-  app.get('/', function(req, res) {
+  app.get('/', (req, res) => {
     res.render('index');
   });
 
-  app.all('/*', function(req, res, next) {
-    var arbitraryUrls = ['2017'];
+  app.all('/*', (req, res, next) => {
+    const arbitraryUrls = ['2017'];
 
     if (arbitraryUrls.indexOf(req.url.split('/')[1]) > -1) {
       next();
@@ -16,4 +16,4 @@ module.exports = function(app) {
       res.render('index');
     }
   });
-}
+};

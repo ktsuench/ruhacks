@@ -26,6 +26,9 @@
   },
   "devDependencies": {
     "autoprefixer": "^6.3.7",
+    "eslint": "4.6.1",
+    "eslint-config-airbnb-base": "12.0.0",
+    "eslint-plugin-import": "2.7.0",
     "gulp": "^3.8.10",
     "gulp-cache": "^0.4.5",
     "gulp-clean": "^0.3.1",
@@ -51,6 +54,7 @@
     "node": "8.5.x"
   },
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "eslint": "eslint"
   }
 }

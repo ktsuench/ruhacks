@@ -1,0 +1,8 @@
+{
+    "extends": "airbnb-base",
+    "rules": {
+        "func-names": ["off", "always"],
+        "linebreak-style": ["error", "windows"],
+        "no-console": "off"
+    }
+}
