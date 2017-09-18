@@ -2,6 +2,12 @@
 
 RU Hacks 2018 Official Website. Visit it at [https://www.ruhacks.com/](https://www.ruhacks.com/ "RU Hacks 2018")!
 
+## Releases
+
+- `v1.0.0` - 2017 (up to and during 2017 hackathon)
+- `v1.0.1` - 2017 LTS (after 2017 hackathon)
+- `v2.1.1` - 2018 (current) and upcoming
+
 ## Contributing
 
 Try to commit all your changes at the end of the day. It gets messy when the day ends and you forget what you were doing. _Tends to happen to Kent, so trying to avoid that from happening again._
