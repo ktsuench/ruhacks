@@ -1,7 +1,14 @@
 {
     "extends": "airbnb-base",
+    "env": {
+        "node": true
+    },
+    "parserOptions": {
+        "ecmaVersion": 6
+    },
     "rules": {
         "func-names": ["off", "always"],
+        "import/no-extraneous-dependencies": "off",
         "linebreak-style": ["error", "windows"],
         "no-console": "off"
     }
