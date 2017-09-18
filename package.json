@@ -1,6 +1,6 @@
 {
   "name": "ruhacks",
-  "version": "2.1.0",
+  "version": "2.0.0",
   "description": "ruhacks",
   "main": "server.js",
   "keywords": [
@@ -26,6 +26,8 @@
   },
   "devDependencies": {
     "autoprefixer": "^6.3.7",
+    "chai": "4.1.2",
+    "chai-as-promised": "7.1.1",
     "eslint": "4.6.1",
     "eslint-config-airbnb-base": "12.0.0",
     "eslint-plugin-import": "2.7.0",
@@ -43,6 +45,7 @@
     "gulp-sourcemaps": "^1.6.0",
     "gulp-uglify": "^1.0.2",
     "imagemin-jpeg-recompress": "^5.1.0",
+    "mocha": "3.5.3",
     "pngquant": "^1.1.1",
     "yargs": "^5.0.0"
   },
@@ -55,6 +58,9 @@
   },
   "scripts": {
     "start": "node server.js",
-    "eslint": "eslint"
+    "lint": "eslint ./",
+    "test": "mocha --colors 2018\\tests\\**\\*.js",
+    "eslint": "eslint",
+    "mocha": "mocha"
   }
 }
