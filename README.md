@@ -28,16 +28,16 @@ Try to commit all your changes at the end of the day. It gets messy when the day
 
 ### Running Local Copy
 
-- Before running `node start`, startup the MongoDB first by running `mongod`
+- Before running `npm start`, startup the MongoDB first by running `mongod`
 - 
-  Run `node start` to start the server
+  Run `npm start` to start the server
 
   _If you don't have PostgreSQL installed, then in the `server.js` file comment out line `18`!_
 - 
-  Run `node test` to run the tests
+  Run `npm test` to run the tests
 
   _Currently only the database tests are written. They still need to be expanded._
-- Run `node lint` to lint your code, unless you're using the recommended setup above.
+- Run `npm run lint` to lint your code, unless you're using the recommended setup above.
 
 ### Deploying to Production
 
