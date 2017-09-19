@@ -2,8 +2,10 @@ const mongoose = require('mongoose');
 const schema = require('./schema');
 const error = require('../../config/error');
 
+mongoose.Promise = global.Promise;
+
 function getDbConnection(dbUrl) {
-  const connectionOptions = { useMongoClient: true, promiseLibrary: global.Promise };
+  const connectionOptions = { useMongoClient: true };
   let connection = null;
 
   if (dbUrl) {
