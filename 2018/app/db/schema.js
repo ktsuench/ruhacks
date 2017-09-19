@@ -1,4 +1,5 @@
 const constants = require('../constants');
+const mongoose = require('mongoose');
 
 function emailAddressValidate(value) {
   if (typeof value === 'string') {
@@ -30,6 +31,8 @@ const UserSchema = {
   },
   email: {
     type: String,
+    index: true,
+    unique: true,
     lowercase: true,
     required: true,
     validate: {
@@ -44,13 +47,13 @@ const UserSchema = {
   },
 };
 
-const SubscriberSchema = {
+const SubscriberSchema = new mongoose.Schema({
   name: UserSchema.name,
   email: UserSchema.email,
   gender: UserSchema.gender,
-};
+});
 
-const HackerSchema = {
+const HackerSchema = new mongoose.Schema({
   name: UserSchema.name,
   email: UserSchema.email,
   gender: UserSchema.gender,
@@ -100,16 +103,16 @@ const HackerSchema = {
     },
     mlh_tc_agreement: { type: Boolean, required: true },
   },
-};
+});
 
 /**
  * @todo add in other fields later
  */
-const VolunteerSchema = {
+const VolunteerSchema = new mongoose.Schema({
   name: UserSchema.name,
   email: UserSchema.email,
   gender: UserSchema.gender,
-};
+});
 
 module.exports = {
   subscriber: SubscriberSchema,

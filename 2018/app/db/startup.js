@@ -24,9 +24,9 @@ function getDbConnection(dbUrl) {
 }
 
 function getModels(db) {
-  const Subscriber = db.model('Subscriber', mongoose.Schema(schema.subscriber));
-  const Hacker = db.model('Hacker', mongoose.Schema(schema.hacker));
-  const Volunteer = db.model('Volunteer', mongoose.Schema(schema.volunteer));
+  const Subscriber = db.model('Subscriber', schema.subscriber);
+  const Hacker = db.model('Hacker', schema.hacker);
+  const Volunteer = db.model('Volunteer', schema.volunteer);
 
   return {
     Subscriber,
