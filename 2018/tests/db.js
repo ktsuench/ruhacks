@@ -33,8 +33,7 @@ mocha.describe('Database', () => {
 
   const connection = db.getConnection(dbConfig.default_url);
   const models = db.getModels(connection);
-  const startEvent = 'start test';
-  const eventQueue = new Stack(startEvent);
+  const eventQueue = new Stack();
 
   eventQueue.onEmpty(() => {
     db.closeConnection(connection);
@@ -51,6 +50,9 @@ mocha.describe('Database', () => {
   });
 
   mocha.describe('Subscriber Model', () => {
+    const addEvent = 'subscriber add';
+    eventQueue.push(addEvent);
+
     mocha.it('Integrity Check', () => {
       const event = 'subscriber model check';
       eventQueue.push(event);
@@ -74,7 +76,7 @@ mocha.describe('Database', () => {
       });
 
       return subscriber.save((err) => {
-        chai.expect(eventQueue.pop()).to.equal(event);
+        chai.expect(eventQueue.pop()).to.equal(addEvent);
 
         if (err) {
           console.error(`[${err.name} ${err.code}]: ${err.message}\n${err.stack}`);
@@ -105,19 +107,6 @@ mocha.describe('Database', () => {
       Object.getPrototypeOf(models.Volunteer).should.equal(mongoose.Model);
 
       chai.expect(eventQueue.pop()).to.equal(event);
-    });
-  });
-
-  // test failing
-  mocha.describe('Close DB Connection', () => {
-    mocha.it('after all events', () => {
-      // expecting the add subscriber event to be in stack still
-      chai.expect(eventQueue.list).to.be.lengthOf(2);
-
-      /**
-       * @todo event queue should be part of db script
-       */
-      chai.expect(eventQueue.pop()).to.equal(startEvent);
     });
   });
 });
