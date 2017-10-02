@@ -7,6 +7,7 @@ const constants = require('../app/constants');
 const error = require('../config/error');
 const dbConfig = require('../config/db');
 const db = require('../app/db/startup');
+const Stack = require('../app/struct/stack.js');
 
 chai.should();
 chai.use(chaiAsPromised);
@@ -14,16 +15,30 @@ chai.use(chaiAsPromised);
 mocha.describe('Database', () => {
   mocha.describe('Connection Test', () => {
     mocha.it('No DB Url provided', () => {
-      db.getDbConnection.should.throw(error.noDbUrlProvided);
+      db.getConnection.should.throw(error.noDbUrlProvided);
     });
+
+    let connection = null;
+
     mocha.it('DB Url provided', () => {
-      const connection = db.getDbConnection(dbConfig.url);
+      connection = db.getConnection(dbConfig.url);
 
       connection.should.be.an.instanceof(mongoose.Connection);
     });
+
+    mocha.it('DB Close Connection', () => {
+      db.closeConnection(connection);
+    });
   });
 
-  const models = db.getModels(db.getDbConnection(dbConfig.default_url));
+  const connection = db.getConnection(dbConfig.default_url);
+  const models = db.getModels(connection);
+  const startEvent = 'start test';
+  const eventQueue = new Stack(startEvent);
+
+  eventQueue.onEmpty(() => {
+    db.closeConnection(connection);
+  });
 
   Object.keys(models).forEach((model) => {
     models[model].remove({}, (err) => {
@@ -37,9 +52,18 @@ mocha.describe('Database', () => {
 
   mocha.describe('Subscriber Model', () => {
     mocha.it('Integrity Check', () => {
+      const event = 'subscriber model check';
+      eventQueue.push(event);
+
       Object.getPrototypeOf(models.Subscriber).should.equal(mongoose.Model);
+
+      chai.expect(eventQueue.pop()).to.equal(event);
     });
+
     mocha.it('Insert Bob', () => {
+      const event = 'subscriber add';
+      eventQueue.push(event);
+
       const subscriber = new models.Subscriber({
         name: {
           first: 'Bob',
@@ -50,8 +74,10 @@ mocha.describe('Database', () => {
       });
 
       return subscriber.save((err) => {
+        chai.expect(eventQueue.pop()).to.equal(event);
+
         if (err) {
-          // console.error(`[${err.name} ${err.code}]: ${err.message}\n${err.stack}`);
+          console.error(`[${err.name} ${err.code}]: ${err.message}\n${err.stack}`);
           return false;
         }
 
@@ -59,14 +85,39 @@ mocha.describe('Database', () => {
       });
     });
   });
+
   mocha.describe('Hacker Model', () => {
     mocha.it('Integrity Check', () => {
+      const event = 'hacker model check';
+      eventQueue.push(event);
+
       Object.getPrototypeOf(models.Subscriber).should.equal(mongoose.Model);
+
+      chai.expect(eventQueue.pop()).to.equal(event);
     });
   });
+
   mocha.describe('Volunteer Model', () => {
     mocha.it('Integrity Check', () => {
-      Object.getPrototypeOf(models.Subscriber).should.equal(mongoose.Model);
+      const event = 'volunteer model check';
+      eventQueue.push(event);
+
+      Object.getPrototypeOf(models.Volunteer).should.equal(mongoose.Model);
+
+      chai.expect(eventQueue.pop()).to.equal(event);
+    });
+  });
+
+  // test failing
+  mocha.describe('Close DB Connection', () => {
+    mocha.it('after all events', () => {
+      // expecting the add subscriber event to be in stack still
+      chai.expect(eventQueue.list).to.be.lengthOf(2);
+
+      /**
+       * @todo event queue should be part of db script
+       */
+      chai.expect(eventQueue.pop()).to.equal(startEvent);
     });
   });
 });
