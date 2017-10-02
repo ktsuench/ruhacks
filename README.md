@@ -28,13 +28,16 @@ Try to commit all your changes at the end of the day. It gets messy when the day
 
 - Visual Studio Code (with following extensions)
   - ESLint
-  - Git Blame
+  - Git Lens or Git Blame
+    - Git Lens is better (more features)
 - Learn how to debug NodeJS code in Visual Studio Code
 - Learn how to use `git` in Visual Studio Code
 
 ### Running Local Copy
 
-- Before running `npm start`, startup the MongoDB first by running `mongod`
+- Before running `npm start`, do the following:
+  - startup MongoDB by running `mongod`
+  - startup PostgreSQL DB running `pgc`
 - 
   Run `npm start` to start the server
 
