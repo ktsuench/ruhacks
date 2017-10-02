@@ -4,7 +4,7 @@ const error = require('../../config/error');
 
 mongoose.Promise = global.Promise;
 
-function getDbConnection(dbUrl) {
+function getConnection(dbUrl) {
   const connectionOptions = { useMongoClient: true };
   let connection = null;
 
@@ -35,7 +35,18 @@ function getModels(db) {
   };
 }
 
+function closeConnection(connection) {
+  connection.close((err) => {
+    if (err) {
+      console.error(`[${err.name} ${err.code}]: ${err.message}\n${err.stack}`);
+    } else {
+      console.log('Closed connection to Mongoose DB');
+    }
+  });
+}
+
 module.exports = {
-  getDbConnection,
+  getConnection,
   getModels,
+  closeConnection,
 };
