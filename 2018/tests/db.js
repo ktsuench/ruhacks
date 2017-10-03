@@ -7,7 +7,6 @@ const constants = require('../app/constants');
 const error = require('../config/error');
 const dbConfig = require('../config/db');
 const db = require('../app/db/startup');
-const Stack = require('../app/struct/stack.js');
 
 chai.should();
 chai.use(chaiAsPromised);
@@ -43,30 +42,24 @@ mocha.describe('Database', () => {
   const connection = db.getConnection(dbConfig.default_url);
   const models = db.getModels(connection);
 
-  Object.keys(models).forEach((model) => {
-    models[model].remove({}, (err) => {
-      if (err) {
-        console.error(`[${err.name} ${err.code}]: ${err.message}\n${err.stack}`);
-      } else {
-        // console.log(`Emptied ${model} collection.`);
-      }
-    });
-  });
+  connection.dropDatabase();
 
   mocha.describe('Subscriber Model', () => {
     mocha.it('Integrity Check', () => {
       Object.getPrototypeOf(models.Subscriber).should.equal(mongoose.Model);
     });
 
+    const subscriberBob = {
+      name: {
+        first: 'Bob',
+        last: 'Williams',
+      },
+      email: 'this.is@fake.email.addr',
+      gender: constants.gender[0],
+    };
+
     mocha.it('Insert Bob', () => {
-      const subscriber = new models.Subscriber({
-        name: {
-          first: 'Bob',
-          last: 'Williams',
-        },
-        email: 'this.is@fake.email.addr',
-        gender: constants.gender[0],
-      });
+      const subscriber = new models.Subscriber(subscriberBob);
 
       return subscriber.save((err) => {
         if (err) {
@@ -75,6 +68,24 @@ mocha.describe('Database', () => {
         }
 
         return true;
+      });
+    });
+
+    mocha.it('Get Bob', () => {
+      return models.Subscriber.find({
+        email: subscriberBob.email,
+      }, (err, data) => {
+        if (err) {
+          console.error(`[${err.name} ${err.code}]: ${err.message}\n${err.stack}`);
+          return false;
+        }
+
+        if (data[0].email === subscriberBob.email &&
+            data[0].name.first === subscriberBob.name.first &&
+            data[0].name.last === subscriberBob.name.last &&
+            data[0].gender === subscriberBob.gender) {
+          return true;
+        }
       });
     });
   });
