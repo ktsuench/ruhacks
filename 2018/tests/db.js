@@ -67,10 +67,12 @@ mocha.describe('Database', () => {
           done(err);
         }
 
+        // test passes if there is no run time error
         done();
       });
     });
 
+    // relies on previous test passing
     mocha.it('Get Bob', (done) => {
       models.Subscriber.find({
         email: subscriberBob.email,
@@ -79,6 +81,7 @@ mocha.describe('Database', () => {
           console.error(`[${err.name} ${err.code}]: ${err.message}\n${err.stack}`);
         }
 
+        // check that inserted doc is the same as the original doc
         chai.expect(data[0].email).to.equal(subscriberBob.email);
         chai.expect(data[0].name.first).to.equal(subscriberBob.name.first);
         chai.expect(data[0].name.last).to.equal(subscriberBob.name.last);
@@ -87,9 +90,13 @@ mocha.describe('Database', () => {
       });
     });
 
+    /**
+     * make an update and then query for the doc to check that the update has been made
+     */
     mocha.it('Update Bob', (done) => {
       const newLastName = { name: { first: subscriberBob.name.first, last: 'Williamson' } };
 
+      // make the update
       models.Subscriber.update({ email: subscriberBob.email }, newLastName, (err, res) => {
         if (err) {
           console.error(`[${err.name} ${err.code}]: ${err.message}\n${err.stack}`);
@@ -98,6 +105,7 @@ mocha.describe('Database', () => {
 
         // console.log(`Mongo response from update: ${res}`);
 
+        // querying for doc to check that update has been made
         models.Subscriber.find({
           email: subscriberBob.email,
         }, (err2, data) => {
@@ -108,8 +116,33 @@ mocha.describe('Database', () => {
 
           chai.expect(data[0].email).to.equal(subscriberBob.email);
           chai.expect(data[0].name.first).to.equal(subscriberBob.name.first);
+          // check that the update is made
           chai.expect(data[0].name.last).to.equal(newLastName.name.last);
           chai.expect(data[0].gender).to.equal(subscriberBob.gender);
+          done();
+        });
+      });
+    });
+
+    // remove the doc and query for it to see that it is removed
+    mocha.it('Remove Bob', (done) => {
+      // remove doc
+      models.Subscriber.deleteOne({ email: subscriberBob.email }, (err) => {
+        if (err) {
+          console.error(`[${err.name} ${err.code}]: ${err.message}\n${err.stack}`);
+          done(err);
+        }
+
+        // query for doc to check that it does not exist
+        models.Subscriber.find({
+          email: subscriberBob.email,
+        }, (err2, data) => {
+          if (err2) {
+            console.error(`[${err2.name} ${err2.code}]: ${err2.message}\n${err2.stack}`);
+            done(err2);
+          }
+
+          chai.expect(data).to.be.lengthOf(0);
           done();
         });
       });
