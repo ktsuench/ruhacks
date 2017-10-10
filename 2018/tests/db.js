@@ -58,34 +58,60 @@ mocha.describe('Database', () => {
       gender: constants.gender[0],
     };
 
-    mocha.it('Insert Bob', () => {
+    mocha.it('Insert Bob', (done) => {
       const subscriber = new models.Subscriber(subscriberBob);
 
-      return subscriber.save((err) => {
+      subscriber.save((err) => {
         if (err) {
           console.error(`[${err.name} ${err.code}]: ${err.message}\n${err.stack}`);
-          return false;
+          done(err);
         }
 
-        return true;
+        done();
       });
     });
 
-    mocha.it('Get Bob', () => {
-      return models.Subscriber.find({
+    mocha.it('Get Bob', (done) => {
+      models.Subscriber.find({
         email: subscriberBob.email,
       }, (err, data) => {
         if (err) {
           console.error(`[${err.name} ${err.code}]: ${err.message}\n${err.stack}`);
-          return false;
         }
 
-        if (data[0].email === subscriberBob.email &&
-            data[0].name.first === subscriberBob.name.first &&
-            data[0].name.last === subscriberBob.name.last &&
-            data[0].gender === subscriberBob.gender) {
-          return true;
+        chai.expect(data[0].email).to.equal(subscriberBob.email);
+        chai.expect(data[0].name.first).to.equal(subscriberBob.name.first);
+        chai.expect(data[0].name.last).to.equal(subscriberBob.name.last);
+        chai.expect(data[0].gender).to.equal(subscriberBob.gender);
+        done();
+      });
+    });
+
+    mocha.it('Update Bob', (done) => {
+      const newLastName = { name: { first: subscriberBob.name.first, last: 'Williamson' } };
+
+      models.Subscriber.update({ email: subscriberBob.email }, newLastName, (err, res) => {
+        if (err) {
+          console.error(`[${err.name} ${err.code}]: ${err.message}\n${err.stack}`);
+          done(err);
         }
+
+        // console.log(`Mongo response from update: ${res}`);
+
+        models.Subscriber.find({
+          email: subscriberBob.email,
+        }, (err2, data) => {
+          if (err2) {
+            console.error(`[${err2.name} ${err2.code}]: ${err2.message}\n${err2.stack}`);
+            done(err2);
+          }
+
+          chai.expect(data[0].email).to.equal(subscriberBob.email);
+          chai.expect(data[0].name.first).to.equal(subscriberBob.name.first);
+          chai.expect(data[0].name.last).to.equal(newLastName.name.last);
+          chai.expect(data[0].gender).to.equal(subscriberBob.gender);
+          done();
+        });
       });
     });
   });
