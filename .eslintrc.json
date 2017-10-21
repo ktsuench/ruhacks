@@ -9,7 +9,7 @@
     "rules": {
         "func-names": ["off", "always"],
         "import/no-extraneous-dependencies": "off",
-        "linebreak-style": ["error", "windows"],
+        "linebreak-style": ["error", "unix"], //set linebreak to windows to get rid of eslint linebreak style error
         "no-console": "off",
         "no-unused-vars": "warn"
     }
