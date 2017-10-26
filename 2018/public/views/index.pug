@@ -1,13 +1,40 @@
-﻿doctype html
-html(lang="en")
+﻿mixin ruHeader(cls)
+    .ru-navbar(class=cls)
+        .ru-nav-header
+            a.ru-brand(href="") 
+                .ru-brand-title RU Hacks
+        .ru-nav-toggle(ng-click="home.toggleNav()")
+            - for(var i = 0; i < 3; i++)
+                span.icon-bar
+        .ru-nav.ru-nav-responsive     
+            ul.ru-navbar-links
+                block
+    .ru-nav.ru-nav-responsive.ru-nav-mobile(class=cls, ng-class="{'ru-nav-show': home.showNav}")
+        ul.ru-navbar-links
+            block
+doctype html
+html(lang="en", data-framework="angularjs")
     head
         include partials/site_info.pug
 
         title RU Hacks | Ryerson University
-    body
+    body(ng-app="app")
         include partials/visitor_notify.pug
+        // ==================== Menu ==================== 
+        #ru-nav-scroll.ru-navbar-container.ru-navbar-fixed-top(ng-controller="mainCtrl as home")
+            +ruHeader("ru-navbar-landing")
+                li
+                    a(href="/2018/#schedule", title="RU Hacks Schedule") About
+                li
+                    a(href="/2018/#schedule", title="RU Hacks Schedule") Schedule
+                li
+                    a(href="/2018/#location", title="RU Hacks Location") Location
+                li
+                    a(href="/2018/#faq", title="RU Hacks FAQ") FAQ
+                li
+                    a(href="/2018/#sponsors", title="RU Hacks Sponsors and Partners") Sponsors
         // ==================== Content ==================== 
-        #landing-container
+        #landing-container(ng-controller="mainCtrl as home")
             // ==================== Cover ==================== 
             #landing
                 #snow.landing-layer
@@ -22,17 +49,34 @@ html(lang="en")
                             .divider
                             |Spring 2018
                             br
-                            |Stay Tuned
                         #splash-contact
                             |Contact us at 
                             .divider
                             a(href="mailto:helloworld@ruhacks.com", title="helloworld@ruhacks.com") helloworld@ruhacks.com
-                            br
-                            |Visit our 2017 site @ 
-                            .divider
-                            a(href="https://www.ruhacks.com/2017", title="RU Hacks 2017") RU Hacks 2017
                             
                         #splash-call-to-action
                             
+        // ==================== Footer ==================== 
+        #ru-footer.ru-content-blue
+            .ru-row
+                .text-center
+                    a(href="https://facebook.com/ryehacks", title="RU Hacks Facebook")
+                        i.fa.fa-facebook-official.ru-social-icon
+                    a(href="https://twitter.com/ru_hacks", title="RU Hacks Twitter")
+                        i.fa.fa-twitter.ru-social-icon
+                    a(href="https://www.snapchat.com/add/ruhacks", title="RU Hacks Snapchat")
+                        i.fa.fa-snapchat.ru-social-icon
+                    a(href="mailto:helloworld@ruhacks.com", title="Email helloworld@ruhacks.com")
+                        i.fa.fa-envelope.ru-social-icon
+                .text-center
+                    small.ru-section-inverted &copy; 2017-2018 RU Hacks. All Rights Reserved
+
+        // ==================== MLH Banner ==================== 
+        a#mlh-trust-badge(style="display:block;max-width:100px;min-width:60px;position:fixed;left:20px;top:0;width:10%;z-index:100001", href="https://mlh.io/seasons/na-2017/events?utm_source=na-2017&utm_medium=TrustBadge&utm_campaign=na-2017&utm_content=white", target="_blank")
+            img(src="https://s3.amazonaws.com/logged-assets/trust-badge/2017/white.svg", alt="Major League Hacking 2018 Hackathon Season", style="width:80%")
+        
         // ==================== Includes ==================== 
         include partials/includes.pug
+        link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css")
+
+        block scripts
