@@ -24,7 +24,7 @@ html(lang="en", data-framework="angularjs")
         #ru-nav-scroll.ru-navbar-container.ru-navbar-fixed-top(ng-controller="mainCtrl as home")
             +ruHeader("ru-navbar-landing")
                 li
-                    a(href="/2018/#schedule", title="RU Hacks Schedule") About
+                    a(href="/2018/#about", title="RU Hacks About") About
                 li
                     a(href="/2018/#schedule", title="RU Hacks Schedule") Schedule
                 li
@@ -50,10 +50,10 @@ html(lang="en", data-framework="angularjs")
                             |Spring 2018
                             br
                         #splash-contact
-                            |Contact us at 
+                            |Sign up here for
                             .divider
-                            a(href="mailto:helloworld@ruhacks.com", title="helloworld@ruhacks.com") helloworld@ruhacks.com
-                            
+                            br
+                            a(href="", title="LoginPortal") RU Hacks 2018   
                         #splash-call-to-action
 
 
@@ -127,19 +127,6 @@ html(lang="en", data-framework="angularjs")
                                 .ru-section-content
                                     span.ru-schedule-time 1PM
                                     span.ru-schedule-content Closing Ceremony
-            // ==================== Location ==================== 
-            #location.ru-content-blue
-                .ru-row
-                    .ru-section.ru-section-inverted
-                        .ru-section-header Location
-                        .ru-section-row.ru-section-row-wrap
-                            .ru-section-content-media.ru-section-content-media-inline
-                                iframe(src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d11546.178518710383!2d-79.3772168!3d43.6576417!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xfec6b680ae45e7b0!2sGeorge+Vari+Engineering+and+Computing+Centre!5e0!3m2!1sen!2sus!4v1483767485746", style="border: none; height: 75vh; width: 75vw;")
-                            .ru-section-content.ru-section-content-inline
-                                .ru-section-subheader Where is RU Hacks?
-                                .ru-section-content.
-                                    RU Hacks will held at George Vari Engineering and Computing Centre at Ryerson University. It is located at the corner of Gould St. and Church St.
-
         
             // ==================== FAQ ==================== 
             #faq.ru-content-blue
@@ -182,8 +169,15 @@ html(lang="en", data-framework="angularjs")
                             .ru-section-content-col-3
                                 .ru-section-subheader I still have more questions!
                                 .ru-section-content Reach out to us at 
-                                    a(href="mailto:helloworld@ruhacks.com") helloworld@ruhacks.com
-
+                                    a(href="mailto:helloworld@ruhacks.com") helloworld@ruhacks.com   
+                        .ru-section-row.ru-section-row-wrap
+                            .ru-section-content-media.ru-section-content-media-inline
+                                iframe(src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d11546.178518710383!2d-79.3772168!3d43.6576417!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xfec6b680ae45e7b0!2sGeorge+Vari+Engineering+and+Computing+Centre!5e0!3m2!1sen!2sus!4v1483767485746", style="border: none; height: 45vh; width: 90vw;")
+                            
+                            .ru-section-content.ru-section-content-inline
+                                .ru-section-subheader Where is RU Hacks?
+                                .ru-section-content.
+                                    RU Hacks will held at George Vari Engineering and Computing Centre at Ryerson University. It is located at the corner of Gould St. and Church St.
             // ==================== Sponsors ==================== 
             #sponsors.ru-content-white
                 .ru-row
