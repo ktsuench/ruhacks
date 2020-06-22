@@ -21,7 +21,7 @@
     "less": "3.11.2",
     "method-override": "2.3.9",
     "mongoose": "4.11.6",
-    "pg": "6.1.0",
+    "pg": "6.1.6",
     "pug": "2.0.0-rc.3"
   },
   "devDependencies": {
