@@ -1,0 +1,17 @@
+version: 2
+updates:
+- package-ecosystem: npm
+  directory: "/"
+  schedule:
+    interval: weekly
+    time: "10:00"
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: chai
+    versions:
+    - 4.2.0
+    - 4.3.0
+    - 4.3.3
+  - dependency-name: gulp-postcss
+    versions:
+    - 8.0.0
